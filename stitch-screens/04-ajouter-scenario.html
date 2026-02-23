@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ajouter un Scénario Pédagogique - Bac Pro Logistique</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full bg-slate-50 dark:bg-[#1a2634] border-b border-[#e7edf3] dark:border-slate-800 shadow-sm">
+<div class="px-6 md:px-10 py-3 flex items-center justify-between whitespace-nowrap">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-[#0d141b] dark:text-white">
+<div class="size-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">inventory_2</span>
+</div>
+<h2 class="text-[#0d141b] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Bac Pro Logistique</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-[#0d141b] dark:text-slate-200 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Accueil</a>
+<a class="text-primary text-sm font-medium leading-normal" href="#">Scénarios</a>
+<a class="text-[#0d141b] dark:text-slate-200 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Ressources</a>
+<a class="text-[#0d141b] dark:text-slate-200 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Mon Compte</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-4 md:gap-8 items-center">
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64 group">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-transparent group-focus-within:border-primary/50 transition-colors">
+<div class="text-[#4c739a] flex bg-[#e7edf3] dark:bg-slate-800 items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg rounded-l-none text-[#0d141b] dark:text-white focus:outline-0 focus:ring-0 border-none bg-[#e7edf3] dark:bg-slate-800 focus:border-none h-full placeholder:text-[#4c739a] px-4 pl-2 text-sm font-normal leading-normal" placeholder="Rechercher..." value=""/>
+</div>
+</label>
+<button class="flex items-center justify-center rounded-full size-10 bg-[#e7edf3] dark:bg-slate-800 text-[#0d141b] dark:text-white hover:bg-primary/10 hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-800"></span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-white dark:ring-slate-800 cursor-pointer" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBUicL6g7S5ltmWoY1wY9TYVPDU5OwdrFhI960qH05QMp5EIfUgI2xF4QGeZza_xzNBZU93dPHkdMZBfKElCvIJkIrhiLPBAzIfYzrDLbTpFYrAwuM8N6EKoxbmrfvBTjOLVQij34KcYT-4tNbSZkak0tq1eGLp9n9ZS42GhselOhTB0Ir_B-fD_pf8nA8IbA1Xwa1SsNFZCas-lhEiJWb1KHiGQEoofGlzvXeOtCdOdSauDV3JZxaUUowDGRglhTO5mO7z9tGwOEo");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col items-center w-full px-4 md:px-10 py-8 max-w-7xl mx-auto">
+<!-- Header Section -->
+<div class="w-full flex flex-col gap-6 mb-8">
+<div class="flex flex-wrap gap-2 text-sm">
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Accueil</a>
+<span class="text-slate-400">/</span>
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Scénarios</a>
+<span class="text-slate-400">/</span>
+<span class="text-primary font-medium">Nouveau Scénario</span>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div class="flex flex-col gap-2">
+<h1 class="text-slate-900 dark:text-white text-3xl md:text-4xl font-bold tracking-tight">Ajouter un Scénario Pédagogique</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base max-w-2xl">Partagez vos séquences pédagogiques conformes au nouveau Référentiel 2025 avec la communauté des enseignants.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                        Enregistrer brouillon
+                    </button>
+<button class="px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-blue-600 transition-colors shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">publish</span>
+                        Publier
+                    </button>
+</div>
+</div>
+</div>
+<!-- Form Layout -->
+<div class="w-full grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Main Form Data -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<!-- General Info Card -->
+<div class="bg-white dark:bg-[#1a2634] rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 md:p-8">
+<div class="flex items-center gap-3 mb-6 border-b border-slate-100 dark:border-slate-700 pb-4">
+<span class="material-symbols-outlined text-primary">info</span>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Informations Générales</h3>
+</div>
+<div class="space-y-6">
+<!-- Title Field -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300" for="title">Titre du scénario <span class="text-red-500">*</span></label>
+<input class="form-input w-full rounded-lg border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 focus:border-primary focus:ring-primary dark:text-white placeholder:text-slate-400 py-3" id="title" placeholder="Ex: Réception des marchandises - Cas IKEA" type="text"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Company Field -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300" for="company">Entreprise support</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 material-symbols-outlined text-[20px]">business</span>
+<input class="form-input w-full rounded-lg border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 focus:border-primary focus:ring-primary dark:text-white placeholder:text-slate-400 pl-10 py-3" id="company" placeholder="Ex: IKEA, Amazon, Fictif..." type="text"/>
+</div>
+</div>
+<!-- Level Field -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300" for="level">Niveau de classe <span class="text-red-500">*</span></label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 material-symbols-outlined text-[20px]">school</span>
+<select class="form-select w-full rounded-lg border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 focus:border-primary focus:ring-primary dark:text-white pl-10 py-3" id="level">
+<option disabled="" selected="" value="">Sélectionner un niveau</option>
+<option value="seconde">Seconde Bac Pro</option>
+<option value="premiere">Première Bac Pro</option>
+<option value="terminale">Terminale Bac Pro</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Description Field -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300" for="description">Description courte</label>
+<textarea class="form-textarea w-full rounded-lg border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 focus:border-primary focus:ring-primary dark:text-white placeholder:text-slate-400 p-3 resize-none" id="description" placeholder="Décrivez brièvement le contexte, les objectifs et le déroulement de la séance..." rows="4"></textarea>
+<p class="text-xs text-slate-400 text-right">0 / 500 caractères</p>
+</div>
+</div>
+</div>
+<!-- Pedagogical Anchoring Card -->
+<div class="bg-white dark:bg-[#1a2634] rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 md:p-8">
+<div class="flex items-center justify-between mb-6 border-b border-slate-100 dark:border-slate-700 pb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">verified</span>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Référentiel 2025</h3>
+</div>
+<span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-bold uppercase tracking-wider">Nouveau Programme</span>
+</div>
+<div class="space-y-6">
+<!-- Competencies Field -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Compétences visées</label>
+<div class="p-4 border border-slate-200 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-800 max-h-64 overflow-y-auto">
+<div class="space-y-3">
+<label class="flex items-start gap-3 p-3 bg-white dark:bg-slate-700 rounded border border-slate-100 dark:border-slate-600 cursor-pointer hover:border-primary/50 transition-colors">
+<input class="form-checkbox h-5 w-5 text-primary rounded border-slate-300 focus:ring-primary mt-0.5" type="checkbox"/>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-slate-900 dark:text-white">C1.1 - Préparer la réception</span>
+<span class="text-xs text-slate-500 dark:text-slate-300">Bloc 1 : Opérations de réception et de mise en stock</span>
+</div>
+</label>
+<label class="flex items-start gap-3 p-3 bg-white dark:bg-slate-700 rounded border border-slate-100 dark:border-slate-600 cursor-pointer hover:border-primary/50 transition-colors">
+<input class="form-checkbox h-5 w-5 text-primary rounded border-slate-300 focus:ring-primary mt-0.5" type="checkbox"/>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-slate-900 dark:text-white">C1.2 - Réceptionner les marchandises</span>
+<span class="text-xs text-slate-500 dark:text-slate-300">Bloc 1 : Opérations de réception et de mise en stock</span>
+</div>
+</label>
+<label class="flex items-start gap-3 p-3 bg-white dark:bg-slate-700 rounded border border-slate-100 dark:border-slate-600 cursor-pointer hover:border-primary/50 transition-colors">
+<input class="form-checkbox h-5 w-5 text-primary rounded border-slate-300 focus:ring-primary mt-0.5" type="checkbox"/>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-slate-900 dark:text-white">C2.1 - Préparer les commandes</span>
+<span class="text-xs text-slate-500 dark:text-slate-300">Bloc 2 : Préparation des commandes et expédition</span>
+</div>
+</label>
+<label class="flex items-start gap-3 p-3 bg-white dark:bg-slate-700 rounded border border-slate-100 dark:border-slate-600 cursor-pointer hover:border-primary/50 transition-colors">
+<input class="form-checkbox h-5 w-5 text-primary rounded border-slate-300 focus:ring-primary mt-0.5" type="checkbox"/>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-slate-900 dark:text-white">C3.3 - Participer à la gestion des stocks</span>
+<span class="text-xs text-slate-500 dark:text-slate-300">Bloc 3 : Gestion et suivi des stocks</span>
+</div>
+</label>
+</div>
+</div>
+<p class="text-xs text-slate-500 flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">info</span>
+                                Sélectionnez une ou plusieurs compétences du référentiel.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Upload & Tips -->
+<div class="flex flex-col gap-6">
+<!-- Upload Area -->
+<div class="bg-white dark:bg-[#1a2634] rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 md:p-8">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">cloud_upload</span>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Ressources</h3>
+</div>
+<div class="w-full">
+<label class="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-primary/30 rounded-xl cursor-pointer bg-slate-50 dark:bg-slate-800 hover:bg-primary/5 dark:hover:bg-slate-700/50 transition-colors group">
+<div class="flex flex-col items-center justify-center pt-5 pb-6">
+<div class="p-3 bg-primary/10 rounded-full mb-3 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">upload_file</span>
+</div>
+<p class="mb-2 text-sm text-slate-600 dark:text-slate-300 text-center"><span class="font-bold text-primary">Cliquez pour ajouter</span> ou glissez vos fichiers</p>
+<p class="text-xs text-slate-400 text-center">PDF, DOCX, PPTX, XLS (Max. 50 Mo)</p>
+</div>
+<input class="hidden" multiple="" type="file"/>
+</label>
+</div>
+<!-- File List Example -->
+<div class="mt-4 space-y-3">
+<div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 p-1.5 rounded text-xs font-bold w-10 text-center">PDF</div>
+<div class="flex flex-col min-w-0">
+<span class="text-sm font-medium text-slate-800 dark:text-slate-200 truncate">Séquence_Réception_V3.pdf</span>
+<span class="text-xs text-slate-400">2.4 Mo</span>
+</div>
+</div>
+<button class="text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Tips / Helper Card -->
+<div class="bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl p-6 border border-primary/20">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">lightbulb</span>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white text-sm mb-2">Conseils pédagogiques</h4>
+<ul class="text-sm text-slate-600 dark:text-slate-300 space-y-2 list-disc pl-4">
+<li>Intégrez des documents "élèves" et "professeurs" séparés si possible.</li>
+<li>Mentionnez si le scénario nécessite des logiciels spécifiques (EBP, Odoo...).</li>
+<li>Vérifiez que les logos d'entreprises sont libres de droits ou utilisés à des fins pédagogiques.</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Status Card (Desktop only visual balance) -->
+<div class="bg-white dark:bg-[#1a2634] rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 hidden lg:block">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white mb-4 uppercase tracking-wider text-xs text-slate-400">Statut</h3>
+<div class="flex items-center gap-3">
+<div class="size-3 rounded-full bg-slate-300"></div>
+<span class="text-sm text-slate-600 dark:text-slate-400">Brouillon (Non enregistré)</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="w-full py-8 mt-12 bg-white dark:bg-[#1a2634] border-t border-[#e7edf3] dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-sm text-slate-500">© 2024 Plateforme Bac Pro Logistique. Tous droits réservés.</p>
+<div class="flex gap-6">
+<a class="text-sm text-slate-500 hover:text-primary" href="#">Conditions d'utilisation</a>
+<a class="text-sm text-slate-500 hover:text-primary" href="#">Politique de confidentialité</a>
+<a class="text-sm text-slate-500 hover:text-primary" href="#">Aide</a>
+</div>
+</div>
+</footer>
+</body></html>

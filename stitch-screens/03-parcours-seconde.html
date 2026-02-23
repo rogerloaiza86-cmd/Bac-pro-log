@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Parcours Seconde - Bac Pro Logistique</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display antialiased flex flex-col min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 py-3 shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-6">
+<!-- Logo/Brand -->
+<div class="flex items-center gap-3 text-slate-900 dark:text-white">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">local_shipping</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight">Logistique Pro 2025</h1>
+</div>
+<!-- Search Bar -->
+<div class="hidden md:flex items-center w-80 relative">
+<span class="absolute left-3 text-slate-400 material-symbols-outlined text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm text-slate-700 dark:text-slate-300 focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Rechercher un scénario, une compétence..." type="text"/>
+</div>
+</div>
+<!-- Right Actions -->
+<div class="flex items-center gap-4">
+<button class="bg-primary hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="hidden sm:inline">Nouveau Scénario</span>
+</button>
+<div class="flex items-center gap-2 border-l border-slate-200 dark:border-slate-700 pl-4">
+<button class="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+</button>
+<button class="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+</button>
+<div class="w-9 h-9 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden ml-2 ring-2 ring-offset-2 ring-primary ring-offset-white dark:ring-offset-slate-900">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3XWdZjfFu9LUy1Vh_Dwxhv3sSQVRARUYfCaQo0rxDuWPyxadLNU7AXhxBsx1sRtgc0-M9caflzb0Y-t5Ax0K3oWsNFpz8xLFg1D7OyJnuWEkhhn9Eb5K7PxA12tJ8rUcHBxvyhxzUb6ENZ_zyb_hZh0ID85PJuMV6gUKO7MUcIqvw0Sa7dVjsSv7OIG_q9AEp6WmhHOioehvoVHqm2nfTIrEcAKL0qYT09NChrQQZfxMZOoyoLx-8IjN8kinoo1ExT-hOJPlmAd8"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col md:flex-row h-[calc(100vh-65px)] overflow-hidden">
+<!-- Sidebar Filters -->
+<aside class="w-full md:w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex-shrink-0 overflow-y-auto hidden md:block">
+<div class="p-5 flex flex-col gap-6">
+<div>
+<h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Vue</h3>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-lg font-medium" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+                            Tableau de bord
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg font-medium transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">calendar_month</span>
+                            Calendrier
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg font-medium transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">school</span>
+                            Élèves
+                        </a>
+</div>
+</div>
+<div class="h-px bg-slate-200 dark:bg-slate-800"></div>
+<div>
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Compétences</h3>
+<button class="text-primary hover:text-blue-600 text-xs font-medium">Tout voir</button>
+</div>
+<div class="flex flex-col gap-2">
+<label class="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300 cursor-pointer group">
+<input class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary bg-slate-100 dark:bg-slate-800 dark:border-slate-700" type="checkbox"/>
+<span class="group-hover:text-primary transition-colors">Bloc 1 - Réception</span>
+</label>
+<label class="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300 cursor-pointer group">
+<input class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary bg-slate-100 dark:bg-slate-800 dark:border-slate-700" type="checkbox"/>
+<span class="group-hover:text-primary transition-colors">Bloc 2 - Préparation</span>
+</label>
+<label class="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300 cursor-pointer group">
+<input class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary bg-slate-100 dark:bg-slate-800 dark:border-slate-700" type="checkbox"/>
+<span class="group-hover:text-primary transition-colors">Bloc 3 - Expédition</span>
+</label>
+<label class="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300 cursor-pointer group">
+<input class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary bg-slate-100 dark:bg-slate-800 dark:border-slate-700" type="checkbox"/>
+<span class="group-hover:text-primary transition-colors">Bloc 4 - Gestion stocks</span>
+</label>
+</div>
+</div>
+<div class="h-px bg-slate-200 dark:bg-slate-800"></div>
+<div>
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Entreprises</h3>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-primary hover:text-primary transition-colors">Amazon</span>
+<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-primary hover:text-primary transition-colors">Carrefour</span>
+<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-primary hover:text-primary transition-colors">DHL</span>
+<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-primary hover:text-primary transition-colors">Decathlon</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Dashboard Area -->
+<section class="flex-1 overflow-y-auto p-4 md:p-8">
+<!-- Breadcrumbs & Header -->
+<div class="mb-8">
+<nav class="flex text-sm text-slate-500 mb-2">
+<a class="hover:text-primary transition-colors" href="#">Accueil</a>
+<span class="mx-2">/</span>
+<span class="text-slate-900 dark:text-slate-200 font-medium">Parcours Seconde</span>
+</nav>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Parcours Seconde - Bac Pro Logistique</h2>
+<p class="text-slate-500 dark:text-slate-400">Tableau de bord de la progression pédagogique et scénarios partagés (Référentiel 2025).</p>
+</div>
+<div class="flex items-center gap-2 bg-white dark:bg-slate-800 p-1 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm">
+<button class="p-2 bg-primary/10 text-primary rounded md:px-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+<span class="hidden md:inline text-sm font-medium">Cartes</span>
+</button>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 rounded md:px-3 flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[20px]">table_rows</span>
+<span class="hidden md:inline text-sm font-medium">Liste</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Stats & Progression Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+<!-- Annual Progress -->
+<div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Progression Annuelle</p>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">35%</h3>
+</div>
+<span class="p-2 bg-green-100 text-green-700 rounded-lg material-symbols-outlined">trending_up</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 35%"></div>
+</div>
+<p class="text-xs text-slate-400 mt-2">Basé sur les blocs validés</p>
+</div>
+<!-- Scenarios -->
+<div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Scénarios Disponibles</p>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">24</h3>
+</div>
+<span class="p-2 bg-blue-100 text-primary rounded-lg material-symbols-outlined">inventory_2</span>
+</div>
+<div class="flex -space-x-2 mt-2">
+<img alt="User" class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw0oSCkm57UvX2b2lxRUFtRvaDkEv2-CdCWPMZyAcQklBoawUNHWOl9np043QTwRB_VtgX0yRMYxW-fgwgg5aqYYPpQSDoSDzDWbFIJJhdBmmRrIT-lZaxMatAsM_tscZHqpp3eu394SKaXHtGvGEYed1cmdsYf9SrsPXnxXzSheYDOFqfVsSHlFOT7rzu_gFVnQgD9q3j5R-TA1o4_jsESuVikIt-DdpjYLhesiE_YzLeKq5sM-bVJICz08s9bnBEktsTcfwR5fs"/>
+<img alt="User" class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPQFBjMe4pmQrOjXwvx2pgP29FsVy9xKtZZER6Y_7MOPAWGG0P3sj5JZCJJX_rWkLpzgVvGCqWqDikhUAgj_9Ms6wfH13gLl-OOAu6lYVsCYReC6y_Ul0Ys_G6N4jcBLUu7MF-iAEz9mMNsuGDcl2k4c69t_3HtxX1eFo8qYL7jITxpmfrNbKjYnhwETVYpgfQgwKGm38NRi0fi6qbkQnVDNAcXGg7lAiWEpTzckaZ4YoqTdWQEBja2UtQnMY5jShOrp1nO8s7Tmk"/>
+<img alt="User" class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSNY8IOxTxwhfY8Tc_gQiC3-AfPq1AjY_Zi39nZ1zeAD7LEZ0X3LyZkv4qXnJKEcPUIqhNmnr9jdD3SDGSV2h_SSFvm5TDCBCGC89WJOok5-jbTMDQ3zvUwS4WPGrxHk3MlsXpkoSUuPQxdU5hOAWVDAWT0j-AvkTcnBPJQrR-F7LT-N1_Ysv1fEusTccgfvT6XY0mIyUsspgiREz__48_GeGCDoKgj1M3F9OWBLB6M5j3CxPnRRaTV--pcBo713tXNhL5c-0kCBU"/>
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800 bg-slate-100 dark:bg-slate-700 text-xs flex items-center justify-center text-slate-500">+5</div>
+</div>
+</div>
+<!-- Skills Covered -->
+<div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Compétences Couvertes</p>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">12<span class="text-lg text-slate-400 font-normal">/18</span></h3>
+</div>
+<span class="p-2 bg-orange-100 text-orange-600 rounded-lg material-symbols-outlined">check_circle</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400">Prochaine: C1.2 Réceptionner</p>
+</div>
+<!-- Companies -->
+<div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Entreprises Partenaires</p>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">8</h3>
+</div>
+<span class="p-2 bg-purple-100 text-purple-600 rounded-lg material-symbols-outlined">domain</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400">Dernier ajout: Decathlon</p>
+</div>
+</div>
+<!-- Scenarios Grid -->
+<div class="mb-6 flex justify-between items-center">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Scénarios Récents</h3>
+<div class="flex gap-2">
+<select class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-sm rounded-lg focus:ring-primary focus:border-primary block p-2">
+<option>Trier par: Plus récent</option>
+<option>Trier par: Difficulté</option>
+<option>Trier par: Nom</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<article class="group bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-lg hover:border-primary/50 transition-all duration-200 flex flex-col">
+<div class="h-32 w-full bg-cover bg-center relative" data-alt="Warehouse shelves with boxes" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDvbgl0-UHC0BzHEVuryakPrNgEa-dbsl1vYCgg5v6zIMEuLMZBwPSN94uOLl5ap7ss-aTrvUUAQaIr9YcIpELUxu9TI1bqCkv6l8mOTxlFSfulB8k9J9_2PcAAa0wUZ-aC3Vj8bwuR3dMOSqao9PJYdl3R0MWN2aPjPx1msi4ko80qVbE8_nusG44IU3NA8qr_yGnmPrtRPQZTJvLjWmgMZsz4fHQj24gGEhlH6WYwfk_YheVR6LgPSMZ9vpKG1XcxudC9KVFalho');">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-4 right-4 flex justify-between items-end">
+<span class="px-2 py-1 bg-primary text-white text-xs font-bold rounded">Bloc 1</span>
+<span class="text-white text-xs flex items-center gap-1 bg-black/30 px-2 py-1 rounded backdrop-blur-sm">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 2h
+                            </span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h4 class="text-lg font-bold text-slate-900 dark:text-white line-clamp-2 group-hover:text-primary transition-colors">Réception de marchandises dangereuses</h4>
+<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4 line-clamp-2 flex-1">Scénario de mise en situation : Contrôle des documents et étiquetage ADR sur un quai de réception.</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs rounded border border-slate-200 dark:border-slate-600">Sécurité</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs rounded border border-slate-200 dark:border-slate-600">ADR</span>
+<span class="px-2 py-1 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 text-xs rounded border border-purple-100 dark:border-purple-800">DHL Case</span>
+</div>
+<div class="pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between mt-auto">
+<div class="flex items-center gap-2">
+<img alt="Author" class="w-6 h-6 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9aon_XXwAmcDEk3ldhj0uE27h9Y-dY5dGq3iiotpWlEestWTo_z3-_QtiwSvcp7abkfEOb6jNVfkgPc48TwLvOLE6AkIBuWcRQTDQv7Y4yXFBc6uvrTS_CZtvFLDjpQ8GOLuI6yV_bFAdzauS2KBKpm4iTgshXQGtpBMmK9j88A9RBIZTJnYuv3wFjCsWnZZArTEqjLQSzi1135vO4Zf6zC6TLQa8sp8iBRDbhB3xSADQJZW_AuOKLBgdYfq8XXZ9rV3PxiDzxFk"/>
+<span class="text-xs text-slate-500 font-medium">M. Dubois</span>
+</div>
+<div class="flex gap-2">
+<button class="p-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 rounded text-slate-400 hover:text-primary transition-colors" title="Télécharger">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+<button class="p-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 rounded text-slate-400 hover:text-primary transition-colors" title="Favoris">
+<span class="material-symbols-outlined text-[18px]">bookmark</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="group bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-lg hover:border-primary/50 transition-all duration-200 flex flex-col">
+<div class="h-32 w-full bg-cover bg-center relative" data-alt="Logistics worker with scanner" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCpGUsc35bxHXPawxODY4K0W96EtfFNIBciJsQouw7VFt8f2M1PwhJ-st15tNflw1Bajiz_zVAqz1mAVwMZTflX_FlsUUcPzecSJGgpV7Id3hFWCppKxkhXSbxbnU3DZe44sHf6fk6CH6CPFE2-dEYFZAIo7S2HV4u-Y2yQTZDcVQrs_Ap3-CNoco6qhHRjhAYa3fSFAmaz47dhFWTTycogf3Oax_tU6r2BM3YkBW6Hv5vNip2afTMlOp5DxGGIUiY03eGWc9JIXfQ');">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-4 right-4 flex justify-between items-end">
+<span class="px-2 py-1 bg-blue-500 text-white text-xs font-bold rounded">Bloc 2</span>
+<span class="text-white text-xs flex items-center gap-1 bg-black/30 px-2 py-1 rounded backdrop-blur-sm">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 4h
+                            </span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h4 class="text-lg font-bold text-slate-900 dark:text-white line-clamp-2 group-hover:text-primary transition-colors">Préparation de commandes vocale</h4>
+<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4 line-clamp-2 flex-1">Utilisation du système Voice Picking pour une commande multi-références urgente.</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs rounded border border-slate-200 dark:border-slate-600">Voice Picking</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs rounded border border-slate-200 dark:border-slate-600">Ergonomie</span>
+<span class="px-2 py-1 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 text-xs rounded border border-purple-100 dark:border-purple-800">Decathlon Case</span>
+</div>
+<div class="pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between mt-auto">
+<div class="flex items-center gap-2">
+<img alt="Author" class="w-6 h-6 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb_mryD3WqX85fAnzW6FUdkItSXzdv5Fp90YoD3cO294Qg868hmfid4uFMrHWaYVP7O8AaWiqXmKvGgX62MbeHeHP0a0w9z09n44JUvqW3IAyfWdkujDcIWGbYiDAGn62jaN8N1R5F7q6juEfxPe1umlOKdENw4qIZN7keQbzz5rd1OphbiWqNIDQy2l9NVLyAJTVMerx0H2I6_RHC1zq8g_us7FrLd22awvjfC-Y59SaFUJJFGs8I4onVijKA8ZSh85KRzCj7ngQ"/>
+<span class="text-xs text-slate-500 font-medium">Mme. Martin</span>
+</div>
+<div class="flex gap-2">
+<button class="p-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 rounded text-slate-400 hover:text-primary transition-colors" title="Télécharger">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+<button class="p-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 rounded text-slate-400 hover:text-primary transition-colors" title="Favoris">
+<span class="material-symbols-outlined text-[18px]">bookmark</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="group bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-lg hover:border-primary/50 transition-all duration-200 flex flex-col">
+<div class="h-32 w-full bg-cover bg-center relative" data-alt="Forklift in warehouse" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAfII775YAVpOhAE-K4slKucj46XYS-HfK6Fwj-bq_eaCcaywtjkLcIvM4lrPNokFO0qUZACfdOUJdafBqoBOpM5LU9QhTMLeydO6O7XpDIZRHO6XSRlyF3ClbZtTYGJkgi4oxm4NUyblMUWzLRVsq3CR6cKMoUBaTEVuuoTwjphEeGi6fku7AeQJvbmR9mZDXSrrtNGnrkvtBgULBddt2iNQRYjziq7EnZcSUxBdrxrTzG3NfXAf4jq29yF728td1-hftofPBe81U');">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-4 right-4 flex justify-between items-end">
+<span class="px-2 py-1 bg-indigo-500 text-white text-xs font-bold rounded">Bloc 4</span>
+<span class="text-white text-xs flex items-center gap-1 bg-black/30 px-2 py-1 rounded backdrop-blur-sm">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 3h
+                            </span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h4 class="text-lg font-bold text-slate-900 dark:text-white line-clamp-2 group-hover:text-primary transition-colors">Inventaire tournant annuel</h4>
+<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4 line-clamp-2 flex-1">Procédure de comptage et de régularisation des stocks en fin d'exercice comptable.</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs rounded border border-slate-200 dark:border-slate-600">Stock</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs rounded border border-slate-200 dark:border-slate-600">Comptabilité</span>
+<span class="px-2 py-1 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 text-xs rounded border border-purple-100 dark:border-purple-800">Amazon Case</span>
+</div>
+<div class="pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between mt-auto">
+<div class="flex items-center gap-2">
+<img alt="Author" class="w-6 h-6 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY-S-cJ1WiWGdJB3KXkhxWwOlx12X6pqSig-j9Xof8ClUKyHVSFa1Xwk-DP8AQTOqFIpKeUWJvtXDEtCkThMyH6RygEAmph6YcgIkbksFEKgjTMMOHYb7fR7tejVLnL7DvFXTMcV-AAdMG5MfoYAfDsd9yu7KnX3avvjRFT9fmHd0nbxjgHoJXzT315cr5trAeTfv5BErKEsvgxbnA2dcBV_P1kbg3UhBPUbGXtd_bLLc90WO2azo3vQ63bFtF3_3j1anWl0itUVo"/>
+<span class="text-xs text-slate-500 font-medium">M. Petit</span>
+</div>
+<div class="flex gap-2">
+<button class="p-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 rounded text-slate-400 hover:text-primary transition-colors" title="Télécharger">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+<button class="p-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 rounded text-slate-400 hover:text-primary transition-colors" title="Favoris">
+<span class="material-symbols-outlined text-[18px]">bookmark</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Add New Placeholder Card -->
+<button class="group border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-xl p-6 flex flex-col items-center justify-center text-center hover:border-primary hover:bg-primary/5 transition-colors cursor-pointer min-h-[340px]">
+<div class="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-4xl text-slate-400 group-hover:text-primary transition-colors">add</span>
+</div>
+<h4 class="text-lg font-bold text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Créer un scénario</h4>
+<p class="text-sm text-slate-500 mt-2 max-w-[200px]">Partagez vos ressources pédagogiques avec la communauté.</p>
+</button>
+</div>
+</section>
+</main>
+</body></html>

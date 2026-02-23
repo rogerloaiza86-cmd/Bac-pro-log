@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Plateforme Collaborative — Bac Pro métiers de la logistique</title>
+    <meta name="description"
+        content="Plateforme collaborative de mutualisation des scénarios pédagogiques pour le Bac Pro Métiers de la Logistique — Référentiel 2025." />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- App Shell -->
+    <div id="app" class="app-root">
+        <!-- Header -->
+        <header id="main-header" class="header">
+            <div class="header-inner">
+                <a href="#accueil" class="logo-link">
+                    <span class="material-symbols-outlined logo-icon">local_shipping</span>
+                    <span class="logo-text">Bac Pro métiers de la logistique</span>
+                </a>
+                <nav class="main-nav" id="main-nav">
+                    <a href="#accueil" class="nav-link active" data-page="accueil">Accueil</a>
+                    <a href="#seconde" class="nav-link" data-page="seconde">Seconde</a>
+                    <a href="#premiere" class="nav-link" data-page="premiere">Première</a>
+                    <a href="#terminale" class="nav-link" data-page="terminale">Terminale</a>
+                </nav>
+                <div class="header-actions">
+                    <button class="btn btn-primary btn-sm" onclick="navigateTo('formulaire')">
+                        <span class="material-symbols-outlined">add</span>
+                        <span class="btn-label">Contribuer</span>
+                    </button>
+                    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Nav -->
+            <div class="mobile-nav" id="mobile-nav">
+                <a href="#accueil" class="mobile-nav-link" data-page="accueil">Accueil</a>
+                <a href="#seconde" class="mobile-nav-link" data-page="seconde">Seconde</a>
+                <a href="#premiere" class="mobile-nav-link" data-page="premiere">Première</a>
+                <a href="#terminale" class="mobile-nav-link" data-page="terminale">Terminale</a>
+                <a href="#formulaire" class="mobile-nav-link" data-page="formulaire">+ Nouveau Scénario</a>
+            </div>
+        </header>
+
+        <!-- Page Container -->
+        <main id="page-container"></main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <span class="material-symbols-outlined">inventory_2</span>
+                            <span>Plateforme Logistique</span>
+                        </div>
+                        <p class="footer-desc">Initiative collaborative pour l'enseignement professionnel. Ressources
+                            pédagogiques libres de droits pour l'usage en classe.</p>
+                    </div>
+                    <div class="footer-links-col">
+                        <h4>Plateforme</h4>
+                        <ul>
+                            <li><a href="#accueil">Accueil</a></li>
+                            <li><a href="#seconde">Parcours Seconde</a></li>
+                            <li><a href="#premiere">Parcours Première</a></li>
+                            <li><a href="#terminale">Parcours Terminale</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-col">
+                        <h4>Référentiel</h4>
+                        <ul>
+                            <li><a href="#formulaire">Déposer un scénario</a></li>
+                            <li><a href="#">Compétences 2025</a></li>
+                            <li><a href="#">Blocs de compétences</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2025 Plateforme Bac Pro Logistique. Tous droits réservés.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

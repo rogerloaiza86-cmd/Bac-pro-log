@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Parcours Terminale - Bac Pro Logistique</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#137fec",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+            },
+            fontFamily: {
+              "display": ["Lexend", "sans-serif"]
+            },
+            borderRadius: {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-3xl">local_shipping</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Parcours Pro Logistique</h2>
+</div>
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Tableau de bord</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Seconde</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Première</a>
+<a class="text-primary text-sm font-bold leading-normal" href="#">Terminale</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Ressources</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Communauté</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="flex flex-col min-w-40 !h-10 max-w-64 hidden md:flex">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-slate-400 flex border-none bg-slate-100 dark:bg-slate-800 items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-slate-100 focus:outline-0 focus:ring-0 border-none bg-slate-100 dark:bg-slate-800 focus:border-none h-full placeholder:text-slate-400 px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Rechercher..." value=""/>
+</div>
+</label>
+<div class="flex items-center gap-3">
+<button class="relative text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 size-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-slate-100 dark:ring-slate-800" data-alt="Portrait d'un professeur souriant" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAiu2rskbMQ3HRCyc9Om4jQ72CCw9cp-ag-Te7QcOmKvzFfX2zG2qKAOxGeQ3QnnVCjXK1faTKawwlkx-UNKTr1ZPSGl3IPKPe4DxTJbL5d6pGmutt62dtcYD0sL-RFIfsYvxXDWkM2b-EXb0d8GlpyVS4PVYEwYpisKfVqeK4vYtkcrlolY5w2ftE2Kr5-Y_1AwlyLOzks27VeS2LiHJbaxrDNgC_PJ6PAEkS9U8x6iAeCcbsdi7sZcwLAtEunOt2os7jEX1ZRihk");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 px-4 md:px-10 py-8 max-w-[1440px] mx-auto w-full">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-3">
+<h1 class="text-slate-900 dark:text-white text-3xl md:text-4xl font-bold leading-tight tracking-[-0.033em]">Terminale Logistique</h1>
+<span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/20">Référentiel 2025</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-base font-normal max-w-2xl">
+                    Préparation intensive à l'examen. Maîtrise des scénarios complexes et validation des compétences terminales.
+                </p>
+</div>
+<div class="flex gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 rounded-lg h-10 px-4 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-sm font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-[20px]">print</span>
+<span class="truncate">Exporter Grille</span>
+</button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary hover:bg-primary/90 text-white text-sm font-bold transition-colors shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="truncate">Nouveau Scénario</span>
+</button>
+</div>
+</div>
+<!-- KPI Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+<!-- Card 1 -->
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Progression Annuelle</p>
+<span class="material-symbols-outlined text-primary bg-primary/10 p-1 rounded">trending_up</span>
+</div>
+<div class="flex items-end gap-2">
+<p class="text-slate-900 dark:text-white text-3xl font-bold leading-none">65%</p>
+<p class="text-emerald-600 text-sm font-medium mb-1">+5% cette semaine</p>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-1.5 mt-2">
+<div class="bg-primary h-1.5 rounded-full" style="width: 65%"></div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Scénarios Complexes</p>
+<span class="material-symbols-outlined text-orange-500 bg-orange-500/10 p-1 rounded">warning</span>
+</div>
+<div class="flex items-end gap-2">
+<p class="text-slate-900 dark:text-white text-3xl font-bold leading-none">12<span class="text-xl text-slate-400">/20</span></p>
+</div>
+<p class="text-slate-400 text-xs mt-2">Objectif examens blancs</p>
+</div>
+<!-- Card 3 -->
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Compétences Validées</p>
+<span class="material-symbols-outlined text-emerald-500 bg-emerald-500/10 p-1 rounded">check_circle</span>
+</div>
+<div class="flex items-end gap-2">
+<p class="text-slate-900 dark:text-white text-3xl font-bold leading-none">8<span class="text-xl text-slate-400">/12</span></p>
+<p class="text-emerald-600 text-sm font-medium mb-1">+1</p>
+</div>
+<p class="text-slate-400 text-xs mt-2">Blocs de compétences clés</p>
+</div>
+<!-- Card 4 -->
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden group">
+<div class="absolute right-0 top-0 w-24 h-24 bg-red-500/5 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<div class="flex items-center justify-between relative z-10">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Jours avant l'examen</p>
+<span class="material-symbols-outlined text-red-500 bg-red-500/10 p-1 rounded">event_available</span>
+</div>
+<div class="flex items-end gap-2 relative z-10">
+<p class="text-slate-900 dark:text-white text-3xl font-bold leading-none">145</p>
+<p class="text-red-500 text-sm font-medium mb-1">J-1</p>
+</div>
+<p class="text-slate-400 text-xs mt-2 relative z-10">Date prév: 15 Juin 2025</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Main Content Area: Scenarios List -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h2 class="text-slate-900 dark:text-white text-xl font-bold">Scénarios Transversaux &amp; Complexes</h2>
+<div class="flex gap-2">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">sort</span>
+</button>
+</div>
+</div>
+<!-- Scenario Item 1 -->
+<div class="flex flex-col sm:flex-row gap-4 p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-colors group cursor-pointer">
+<div class="w-full sm:w-48 h-32 rounded-lg bg-cover bg-center shrink-0 relative overflow-hidden" data-alt="Entrepôt logistique avec des cartons" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB-8WQ_1QdghqMQ3foo99HfM7QeH1w5FBRW166S-p3yeu9dYKEERV3mVInJllyDsMKmHyOFquRES_EXB9AeCDaJZsG3IRZ85_ho5Yk-tWpfycvhlfqwjq45AeAXhkM0DfuWCLSnAfJL82yDpRez65Hn52z0gpIwmqEd8aG1OEiL_gaiHmsGfIVqfqDIJHpxsCj8IQ2zi-61OA4LxgY6RFvoi1CfvZ5zEJgEYQkqNFt7GtiRMHHG-BkZNNjPrGx_MtHCS0oTKX4uPbA");'>
+<div class="absolute top-2 left-2 bg-white/90 dark:bg-slate-900/90 backdrop-blur px-2 py-0.5 rounded text-[10px] font-bold text-primary uppercase tracking-wide">Écrit</div>
+<div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/60 to-transparent"></div>
+</div>
+<div class="flex flex-col flex-1 justify-between gap-3">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Gestion d'un litige transport international</h3>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary">arrow_forward</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1 line-clamp-2">Simulation d'un retard de livraison critique avec avarie partielle. L'élève doit gérer la relation client, le dossier d'assurance et la réorganisation du flux.</p>
+</div>
+<div class="flex flex-wrap items-center gap-3 mt-1">
+<div class="flex -space-x-2">
+<img alt="Professeur 1" class="w-6 h-6 rounded-full border-2 border-white dark:border-slate-900" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhkd7SaFn4BBnuTSzu1qfGLVlR8QO16LY-mMFQkTjIzsf40ebcXxH4b-f3mJce9B6eRuM_QE9UgOCslFLs5cEspqFpXf2GnMu5kWm57D3noNy74qyyGi4Kh6BibU6CtUXSUdvFaVmKFmBuZSLHPSBMxwtON6j71DNW9PvFAIrFLPb6OCMPBrUuIw6LdwBnxudpln1CKBc2nwObA3qapiJqP-iSaZS3U3qbIyruJ2uVtLACpr0OO2DVxizw9dqQHS7qOEhfx_wXOS8"/>
+<img alt="Professeur 2" class="w-6 h-6 rounded-full border-2 border-white dark:border-slate-900" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_fN60qEU6kOKas2M_BLNhRIxE2UHYaUARwgWwEk_5SvLmPJNaNJ7qYv4Dyjxqt_8nQI3R9zACbFv9_A9BIC1bIevcwDD_juMbY6soXQ-x6q0DjTqyt2efj9Mz7DC2BG9b3Z-PlxzdlPT-N5ES1LVpQkC0iiA04KGc7ll5ZEsRunCIqsNc5PIwTnO60AkSDU7ub0hfPJYBWQ9uN9H2wyYcamV0UmoauKYXYyXlhO55L3tyntUVBXr_UaaOeIJ7bnanwkH2ZIWjUu0"/>
+</div>
+<span class="text-xs text-slate-400 font-medium">Collab: M. Dupont, Mme. Martin</span>
+<div class="flex-1"></div>
+<span class="px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium">Bloc 4: Relations</span>
+<span class="px-2 py-1 rounded bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-xs font-medium">Difficile</span>
+</div>
+</div>
+</div>
+<!-- Scenario Item 2 -->
+<div class="flex flex-col sm:flex-row gap-4 p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-colors group cursor-pointer">
+<div class="w-full sm:w-48 h-32 rounded-lg bg-cover bg-center shrink-0 relative overflow-hidden" data-alt="Rayonnages d'entrepôt vus d'en haut" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuASqGmAmuIUHD40odh8hKlQBBtqcQ4lHKSzJc_l-1jT3cC1Bl9TKdm8fVkFLUa42ZKdJFfQ_Zl4-cUOLL5gDSYkXtQGjWX9ShU3dPbqF7J2Lxmyf0ggwkonNTjmx9nDKw_gF-JXifQYMHotYDCbNT_6Y4Z6zGhUH7Gh5vx7JOGwahF2y4Z-QCMIUMa2vIAi5r6496G_7kJu5uaEl2MGlIICoQd16C7s0iHjEvXJuXTRrgVXvIZkef2VmZHfavJFxVSxUuk8ja3ssCk");'>
+<div class="absolute top-2 left-2 bg-white/90 dark:bg-slate-900/90 backdrop-blur px-2 py-0.5 rounded text-[10px] font-bold text-orange-500 uppercase tracking-wide">Oral</div>
+</div>
+<div class="flex flex-col flex-1 justify-between gap-3">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Réorganisation des zones de picking</h3>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary">arrow_forward</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1 line-clamp-2">Analyse ABC des stocks et proposition d'un nouveau plan d'implantation pour optimiser les chemins de préparation.</p>
+</div>
+<div class="flex flex-wrap items-center gap-3 mt-1">
+<div class="flex -space-x-2">
+<img alt="Professeur 3" class="w-6 h-6 rounded-full border-2 border-white dark:border-slate-900" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE_IL_gsqwC5tvIYVeR3r-h2t4d7pi4JEnFN-6G1r0WXEQX5uEVEoSR3QBxxrYUuihHsCCY4PcljsmLTFVzJCIm1g4YV-K14LEC9-dqy1sHGYSwDZwPbSC9PIRGL8Was7gB5UZRu4SZncJoeyZiYeIFPse3m0ymwTpVNX-K1IEs9QXwDrLH5dyIwNUIBRM5IPwV0bVSjL5F60dg-O9gbBXgWRZXdoTADl-Exc4c4zbc_dULwWmvCGr-09mUEechSJHVQMAPEWrOsw"/>
+</div>
+<span class="text-xs text-slate-400 font-medium">Créé par: M. Bernard</span>
+<div class="flex-1"></div>
+<span class="px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium">Bloc 3: Pilotage</span>
+<span class="px-2 py-1 rounded bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 text-xs font-medium">Intermédiaire</span>
+</div>
+</div>
+</div>
+<!-- Scenario Item 3 -->
+<div class="flex flex-col sm:flex-row gap-4 p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-colors group cursor-pointer">
+<div class="w-full sm:w-48 h-32 rounded-lg bg-cover bg-center shrink-0 relative overflow-hidden" data-alt="Tableau de bord logistique sur écran" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC2spJZKUxYBV5u0vLUtmW8cbgERGXLBalu8wHyN6Oekb2pttM7xBuTGgBPcbh6JCO8u2ZEZLHggWtXzgPM6H5vNoQwGtgWl6AgY9Mn7-ndqUgaAvdMrXXF_3eXZ3wULi0k2WSRr0WMgnPACZDm44pApiJXwYN1R8Y4hC17gf5yxuTdSsw8uo-MVE-E4ylicKflCQXDr5mEuL59OAXQJUuV227noDBp5LGyvilG2VFbGho3_FCbUm7mXSQBu1e68RtRDiBHi1k8xaU");'>
+<div class="absolute top-2 left-2 bg-white/90 dark:bg-slate-900/90 backdrop-blur px-2 py-0.5 rounded text-[10px] font-bold text-purple-500 uppercase tracking-wide">Numérique</div>
+</div>
+<div class="flex flex-col flex-1 justify-between gap-3">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Implémentation WMS : Réception</h3>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary">arrow_forward</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1 line-clamp-2">Paramétrage d'une nouvelle procédure de réception sur l'outil WMS école. Gestion des anomalies à la réception.</p>
+</div>
+<div class="flex flex-wrap items-center gap-3 mt-1">
+<div class="flex -space-x-2">
+<img alt="Professeur 4" class="w-6 h-6 rounded-full border-2 border-white dark:border-slate-900" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWSkBa_fpdToPAQwybzomjwpDjKW-s5dlvFWTS7LfLt6A66zNLcSg1gZNxNgIu2rLG6i9PGB6sDRxpSfsorwy-xd--cXjM5I3-sOpDI7DDapOG2RSE6_Rn4-bDSCkRjkP76YHsd-n4tHcmV_ubUQszkt6dHnr-4FQhW2k8o6Ppj66WJ4KNHzXoj4J15YkBwSUPfetdqTFY3Bheg90CRdiD-A-Nx6h-ImKIY22QtI68OfzZb8zMuc_TFzbyo3SYctc1HZaua9ARa6s"/>
+</div>
+<span class="text-xs text-slate-400 font-medium">Créé par: Mme. Dubois</span>
+<div class="flex-1"></div>
+<span class="px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium">Bloc 1: Flux Entrants</span>
+<span class="px-2 py-1 rounded bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 text-xs font-medium">Facile</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar: Analytics & Filters -->
+<div class="flex flex-col gap-6">
+<!-- Competency Alignment Chart -->
+<div class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold mb-1">Couverture Compétences</h3>
+<p class="text-slate-500 text-xs mb-6">Référentiel 2025 - Vue Globale</p>
+<div class="flex flex-col gap-5">
+<div class="group/bar">
+<div class="flex justify-between text-xs font-bold mb-1.5">
+<span class="text-slate-700 dark:text-slate-300">Bloc 1: Flux Entrants</span>
+<span class="text-primary">85%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full transition-all w-[85%] relative">
+<div class="absolute right-0 -top-1 w-2 h-4 bg-white/30 blur-sm rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="group/bar">
+<div class="flex justify-between text-xs font-bold mb-1.5">
+<span class="text-slate-700 dark:text-slate-300">Bloc 2: Flux Sortants</span>
+<span class="text-orange-500">45%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2">
+<div class="bg-orange-500 h-2 rounded-full transition-all w-[45%]"></div>
+</div>
+</div>
+<div class="group/bar">
+<div class="flex justify-between text-xs font-bold mb-1.5">
+<span class="text-slate-700 dark:text-slate-300">Bloc 3: Pilotage</span>
+<span class="text-emerald-500">60%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2">
+<div class="bg-emerald-500 h-2 rounded-full transition-all w-[60%]"></div>
+</div>
+</div>
+<div class="group/bar">
+<div class="flex justify-between text-xs font-bold mb-1.5">
+<span class="text-slate-700 dark:text-slate-300">Bloc 4: Relations</span>
+<span class="text-primary">75%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full transition-all w-[75%]"></div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
+<a class="flex items-center justify-center gap-2 text-primary text-sm font-bold hover:underline" href="#">
+                            Voir le détail complet
+                            <span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Quick Filters -->
+<div class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6">
+<h3 class="text-slate-900 dark:text-white text-base font-bold mb-4">Filtrer par activité</h3>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium transition-colors border border-transparent hover:border-slate-300">Oral</button>
+<button class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium transition-colors border border-transparent hover:border-slate-300">Écrit</button>
+<button class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium transition-colors border border-transparent hover:border-slate-300">Pratique</button>
+<button class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium transition-colors border border-transparent hover:border-slate-300">WMS / Numérique</button>
+<button class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium transition-colors border border-transparent hover:border-slate-300">Co-enseignement</button>
+</div>
+</div>
+<!-- Upcoming Events -->
+<div class="rounded-xl bg-primary/5 dark:bg-slate-900 border border-primary/20 dark:border-slate-800 p-6">
+<div class="flex items-center gap-3 mb-4">
+<div class="size-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">calendar_month</span>
+</div>
+<div>
+<h3 class="text-slate-900 dark:text-white text-sm font-bold">Prochain Examen Blanc</h3>
+<p class="text-slate-500 text-xs">J-15</p>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-start gap-3 p-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm">
+<div class="mt-1 size-2 rounded-full bg-orange-500 shrink-0"></div>
+<div>
+<p class="text-xs font-bold text-slate-900 dark:text-white">Épreuve E2 - Étude de cas</p>
+<p class="text-[10px] text-slate-500 mt-0.5">Mardi 24 Nov • 4h00</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-4 py-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-primary text-xs font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                         Voir le calendrier
+                     </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>
