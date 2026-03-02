@@ -223,7 +223,32 @@ const STORAGE_KEY = 'logistique2025_scenarios';
 const STORAGE_VERSION_KEY = 'logistique2025_version';
 const CURRENT_VERSION = '5.0'; // Bump when referential data changes
 
+// Stockage en mémoire comme fallback (si localStorage bloqué)
+let MEMORY_STORAGE = null;
+let LOCAL_STORAGE_AVAILABLE = true;
+
+// Test de disponibilité du localStorage
+try {
+    localStorage.setItem('__test__', 'test');
+    localStorage.removeItem('__test__');
+    console.log('%c[Storage] localStorage disponible ✓', 'color: #10b981;');
+} catch (e) {
+    LOCAL_STORAGE_AVAILABLE = false;
+    console.warn('%c[Storage] localStorage NON disponible - utilisation mémoire', 'background: #f59e0b; color: white; padding: 4px 8px;');
+    alert('ATTENTION: Le stockage local est désactivé sur votre navigateur. Les scénarios seront stockés temporairement en mémoire et seront perdus en quittant la page. Utilisez le bouton "Exporter JSON" pour sauvegarder vos données.');
+}
+
 function loadScenarios() {
+    // Utiliser le stockage mémoire si localStorage n'est pas disponible
+    if (!LOCAL_STORAGE_AVAILABLE) {
+        console.log('%c[loadScenarios] Utilisation du stockage mémoire', 'color: #f59e0b;');
+        if (MEMORY_STORAGE === null) {
+            MEMORY_STORAGE = JSON.parse(JSON.stringify(SAMPLE_SCENARIOS));
+            console.log(`%c[loadScenarios] ${MEMORY_STORAGE.length} scénarios chargés (mémoire)`, 'color: #f59e0b;');
+        }
+        return MEMORY_STORAGE;
+    }
+    
     try {
         const storedVersion = localStorage.getItem(STORAGE_VERSION_KEY);
         if (storedVersion !== CURRENT_VERSION) {
@@ -274,6 +299,14 @@ function loadScenarios() {
 
 function saveScenarios(scenarios) {
     console.log('[saveScenarios] Sauvegarde de', scenarios.length, 'scénarios');
+    
+    // Utiliser le stockage mémoire si localStorage n'est pas disponible
+    if (!LOCAL_STORAGE_AVAILABLE) {
+        MEMORY_STORAGE = [...scenarios];
+        console.log('%c[saveScenarios] ✅ Sauvegardé en mémoire', 'background: #f59e0b; color: white; padding: 4px 8px;');
+        return;
+    }
+    
     try {
         const json = JSON.stringify(scenarios);
         console.log('[saveScenarios] JSON length:', json.length, 'caractères');
