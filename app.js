@@ -755,6 +755,7 @@ function renderAccueil() {
                 <button class="btn btn-primary btn-lg" onclick="navigateTo('formulaire')">Ajouter un scénario</button>
                 <button class="btn btn-outline btn-lg" onclick="navigateTo('seconde')">Explorer les parcours</button>
             </div>
+            ${renderExportImportButtons()}
         </section>
     </div>
     `;
