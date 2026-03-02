@@ -162,47 +162,56 @@ const HERO_IMAGES = {
 const SAMPLE_SCENARIOS = [
     {
         id: 'sample-1', titre: 'Réception de marchandises dangereuses', entreprise: 'DHL',
-        niveau: 'seconde', description: 'Scénario de mise en situation : Contrôle des documents et étiquetage ADR sur un quai de réception. Identification des pictogrammes et des risques professionnels.',
+        niveau: 'seconde', problematique: 'Comment identifier et traiter les marchandises dangereuses lors de la réception tout en respectant la réglementation ADR ?',
+        description: 'Scénario de mise en situation : Contrôle des documents et étiquetage ADR sur un quai de réception. Identification des pictogrammes et des risques professionnels.',
         competences: ['C1.1', 'C1.2.1', 'C1.2.3', 'C7.1'], auteur: 'M. LOAIZA SOTO', date: '2025-01-15', duree: '2h'
     },
     {
         id: 'sample-2', titre: 'Préparation de commandes vocale', entreprise: 'Decathlon',
-        niveau: 'seconde', description: 'Utilisation du système Voice Picking pour une commande multi-références urgente. Constitution de l\'unité de charge et simulation 3D.',
+        niveau: 'seconde', problematique: 'Comment optimiser la préparation de commandes urgentes grâce au système de voice picking ?',
+        description: 'Utilisation du système Voice Picking pour une commande multi-références urgente. Constitution de l\'unité de charge et simulation 3D.',
         competences: ['C2.1.1', 'C2.2.1', 'C2.2.3', 'C6.1'], auteur: 'M. LOAIZA SOTO', date: '2025-01-20', duree: '4h'
     },
     {
         id: 'sample-3', titre: 'Inventaire tournant annuel', entreprise: 'Amazon',
-        niveau: 'seconde', description: 'Procédure de comptage et de régularisation des stocks en fin d\'exercice comptable. Mise à jour des données informatiques et calculs d\'écarts.',
+        niveau: 'seconde', problematique: 'Comment assurer l\'exactitude des stocks lors d\'un inventaire tournant tout en minimisant les interruptions d\'activité ?',
+        description: 'Procédure de comptage et de régularisation des stocks en fin d\'exercice comptable. Mise à jour des données informatiques et calculs d\'écarts.',
         competences: ['C1.6.1', 'C1.6.2', 'C6.3'], auteur: 'M. LOAIZA SOTO', date: '2025-02-01', duree: '3h'
     },
     {
         id: 'sample-4', titre: 'Gestion des stocks en flux tendu', entreprise: 'Carrefour',
-        niveau: 'premiere', description: 'Analyse des flux entrants et sortants pour optimiser la rotation des produits frais. Traçabilité et suivi des données informatisées.',
+        niveau: 'premiere', problematique: 'Comment optimiser la gestion des stocks en flux tendu pour les produits frais tout en respectant la traçabilité ?',
+        description: 'Analyse des flux entrants et sortants pour optimiser la rotation des produits frais. Traçabilité et suivi des données informatisées.',
         competences: ['C3.1', 'C3.2.2', 'C2.2.5'], auteur: 'M. LOAIZA SOTO', date: '2025-01-28', duree: '4h'
     },
     {
         id: 'sample-5', titre: 'Optimisation de l\'entreposage frigorifique', entreprise: 'Leclerc',
-        niveau: 'premiere', description: 'Réorganisation des zones de stockage froid pour respecter la chaîne du froid. Proposition d\'axes d\'amélioration RSE.',
+        niveau: 'premiere', problematique: 'Comment réorganiser un entrepôt frigorifique pour optimiser la chaîne du froid et réduire l\'impact environnemental ?',
+        description: 'Réorganisation des zones de stockage froid pour respecter la chaîne du froid. Proposition d\'axes d\'amélioration RSE.',
         competences: ['C1.5.1', 'C3.3.1', 'C3.3.2', 'C7.2', 'C5.1'], auteur: 'M. LOAIZA SOTO', date: '2025-02-05', duree: '3h'
     },
     {
         id: 'sample-6', titre: 'Traitement des litiges réception', entreprise: 'DB Schenker',
-        niveau: 'premiere', description: 'Gestion d\'un litige avec un fournisseur : émission de réserves, collecte des preuves et ouverture de dossier litige, analyse juridique simple.',
+        niveau: 'premiere', problematique: 'Comment gérer un litige de réception en respectant les procédures juridiques et commerciales ?',
+        description: 'Gestion d\'un litige avec un fournisseur : émission de réserves, collecte des preuves et ouverture de dossier litige, analyse juridique simple.',
         competences: ['C1.4.2', 'C2.6.2', 'C5.1', 'C5.3'], auteur: 'M. LOAIZA SOTO', date: '2025-02-10', duree: '2h'
     },
     {
         id: 'sample-7', titre: 'Organisation d\'une tournée de livraison', entreprise: 'Kuehne+Nagel',
-        niveau: 'terminale', description: 'Élaboration d\'un itinéraire optimisé, constitution du dossier de transport et gestion des temps de conduite (RSE).',
+        niveau: 'terminale', problematique: 'Comment organiser une tournée de livraison optimisée en respectant la réglementation sociale et les contraintes clients ?',
+        description: 'Élaboration d\'un itinéraire optimisé, constitution du dossier de transport et gestion des temps de conduite (RSE).',
         competences: ['C2.4.1', 'C2.4.2', 'C2.4.4', 'C6.2'], auteur: 'M. LOAIZA SOTO', date: '2025-02-12', duree: '4h'
     },
     {
         id: 'sample-8', titre: 'Coordination d\'équipe logistique', entreprise: 'IKEA',
-        niveau: 'terminale', description: 'Animation du réveil musculaire, transmission des consignes de prise de poste et gestion d\'un imprévu logistique avec inclusion.',
+        niveau: 'terminale', problematique: 'Comment coordonner une équipe logistique face à un imprévu tout en assurant la sécurité et l\'inclusion ?',
+        description: 'Animation du réveil musculaire, transmission des consignes de prise de poste et gestion d\'un imprévu logistique avec inclusion.',
         competences: ['C3.4.1', 'C3.4.2', 'C3.4.3', 'C3.4.4'], auteur: 'M. LOAIZA SOTO', date: '2025-02-08', duree: '3h'
     },
     {
         id: 'sample-9', titre: 'Conduite d\'engins CACES R489', entreprise: 'Geodis',
-        niveau: 'terminale', description: 'Mise en service d\'un chariot élévateur cat. 3, vérifications de sécurité, manœuvres et opérations de fin de poste.',
+        niveau: 'terminale', problematique: 'Comment conduire un chariot élévateur en toute sécurité tout en optimisant les manœuvres de stockage ?',
+        description: 'Mise en service d\'un chariot élévateur cat. 3, vérifications de sécurité, manœuvres et opérations de fin de poste.',
         competences: ['C4.1.2', 'C4.3.2', 'C4.4.1', 'C7.3'], auteur: 'M. LOAIZA SOTO', date: '2025-02-15', duree: '4h'
     },
 ];
@@ -212,37 +221,64 @@ const SAMPLE_SCENARIOS = [
 // =============================================
 const STORAGE_KEY = 'logistique2025_scenarios';
 const STORAGE_VERSION_KEY = 'logistique2025_version';
-const CURRENT_VERSION = '4.0'; // Bump when referential data changes
+const CURRENT_VERSION = '5.0'; // Bump when referential data changes
 
 function loadScenarios() {
-    const storedVersion = localStorage.getItem(STORAGE_VERSION_KEY);
-    if (storedVersion !== CURRENT_VERSION) {
-        // Referential data changed — reset to new sample scenarios
+    try {
+        const storedVersion = localStorage.getItem(STORAGE_VERSION_KEY);
+        if (storedVersion !== CURRENT_VERSION) {
+            // Referential data changed — reset to new sample scenarios
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(SAMPLE_SCENARIOS));
+            localStorage.setItem(STORAGE_VERSION_KEY, CURRENT_VERSION);
+            return JSON.parse(JSON.stringify(SAMPLE_SCENARIOS));
+        }
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+            const parsed = JSON.parse(stored);
+            // S'assurer que c'est bien un tableau
+            if (Array.isArray(parsed)) {
+                return parsed;
+            }
+        }
+        // First load — seed with samples
         localStorage.setItem(STORAGE_KEY, JSON.stringify(SAMPLE_SCENARIOS));
         localStorage.setItem(STORAGE_VERSION_KEY, CURRENT_VERSION);
-        return [...SAMPLE_SCENARIOS];
+        return JSON.parse(JSON.stringify(SAMPLE_SCENARIOS));
+    } catch (error) {
+        console.error('Erreur lors du chargement des scénarios:', error);
+        return JSON.parse(JSON.stringify(SAMPLE_SCENARIOS));
     }
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) return JSON.parse(stored);
-    // First load — seed with samples
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(SAMPLE_SCENARIOS));
-    localStorage.setItem(STORAGE_VERSION_KEY, CURRENT_VERSION);
-    return [...SAMPLE_SCENARIOS];
 }
 
 function saveScenarios(scenarios) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(scenarios));
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(scenarios));
+    } catch (error) {
+        console.error('Erreur lors de la sauvegarde des scénarios:', error);
+        if (error.name === 'QuotaExceededError') {
+            alert('Le stockage local est plein. Impossible d\'enregistrer le scénario.');
+        }
+    }
 }
 
 function addScenario(scenario) {
-    const scenarios = loadScenarios();
-    scenario.id = 'sc-' + Date.now();
-    scenario.date = new Date().toISOString().split('T')[0];
-    scenario.auteur = scenario.auteur || 'Contributeur';
-    scenario.duree = scenario.duree || '2h';
-    scenarios.push(scenario);
-    saveScenarios(scenarios);
-    return scenario;
+    try {
+        const scenarios = loadScenarios();
+        const newScenario = {
+            ...scenario,
+            id: 'sc-' + Date.now(),
+            date: new Date().toISOString().split('T')[0],
+            auteur: scenario.auteur || 'Contributeur',
+            duree: scenario.duree || '2h'
+        };
+        scenarios.push(newScenario);
+        saveScenarios(scenarios);
+        return newScenario;
+    } catch (error) {
+        console.error('Erreur lors de l\'enregistrement du scénario:', error);
+        alert('Une erreur est survenue lors de l\'enregistrement. Veuillez réessayer.');
+        return null;
+    }
 }
 
 function deleteScenario(id) {
@@ -253,6 +289,49 @@ function deleteScenario(id) {
 
 function getScenariosByLevel(level) {
     return loadScenarios().filter(s => s.niveau === level);
+}
+
+function searchScenarios(query) {
+    const scenarios = loadScenarios();
+    if (!query || query.trim() === '') return scenarios;
+    
+    const lowerQuery = query.toLowerCase().trim();
+    return scenarios.filter(s => 
+        (s.titre && s.titre.toLowerCase().includes(lowerQuery)) ||
+        (s.description && s.description.toLowerCase().includes(lowerQuery)) ||
+        (s.problematique && s.problematique.toLowerCase().includes(lowerQuery)) ||
+        (s.entreprise && s.entreprise.toLowerCase().includes(lowerQuery)) ||
+        (s.auteur && s.auteur.toLowerCase().includes(lowerQuery)) ||
+        (s.competences && s.competences.some(c => c.toLowerCase().includes(lowerQuery)))
+    );
+}
+
+function filterScenariosByCompetence(competenceCode) {
+    const scenarios = loadScenarios();
+    if (!competenceCode) return scenarios;
+    return scenarios.filter(s => s.competences && s.competences.includes(competenceCode));
+}
+
+function getTopContributors(limit = 5) {
+    const scenarios = loadScenarios();
+    const contributors = {};
+    
+    scenarios.forEach(s => {
+        const auteur = s.auteur || 'Anonyme';
+        if (!contributors[auteur]) {
+            contributors[auteur] = {
+                name: auteur,
+                count: 0,
+                scenarios: []
+            };
+        }
+        contributors[auteur].count++;
+        contributors[auteur].scenarios.push(s);
+    });
+    
+    return Object.values(contributors)
+        .sort((a, b) => b.count - a.count)
+        .slice(0, limit);
 }
 
 function getCompetencyInfo(code) {
@@ -318,6 +397,10 @@ function renderScenarioCard(scenario) {
     const blocColor = blocInfo ? blocInfo.bloc.couleur : '#137fec';
     const initials = scenario.auteur.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
 
+    // Afficher la problématique si elle existe, sinon la description
+    const displayText = scenario.problematique || scenario.description || '';
+    const isProblematique = !!scenario.problematique;
+
     return `
         <div class="card" data-scenario-id="${scenario.id}">
             <div class="card-img" style="background-image: url('${getRandomImage()}')">
@@ -326,6 +409,7 @@ function renderScenarioCard(scenario) {
             </div>
             <div class="card-body">
                 <h4 class="card-title">${escapeHtml(scenario.titre)}</h4>
+                ${isProblematique ? `<div class="card-problematique"><span class="problematique-label">Problématique :</span> ${escapeHtml(scenario.problematique)}</div>` : ''}
                 <p class="card-desc">${escapeHtml(scenario.description)}</p>
                 <div class="card-tags">
                     ${competencyTags}
@@ -434,6 +518,48 @@ function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+}
+
+function renderTopContributors() {
+    const contributors = getTopContributors(5);
+    
+    if (contributors.length === 0) {
+        return '';
+    }
+    
+    const podiumColors = ['#FFD700', '#C0C0C0', '#CD7F32']; // Or, Argent, Bronze
+    
+    const contributorsHTML = contributors.map((c, index) => {
+        const initials = c.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+        const rank = index + 1;
+        const medalColor = index < 3 ? podiumColors[index] : 'transparent';
+        const showMedal = index < 3;
+        
+        return `
+            <div class="contributor-item">
+                <div class="contributor-rank">${showMedal ? `<span class="medal" style="background:${medalColor}">${rank}</span>` : rank}</div>
+                <div class="contributor-avatar">${initials}</div>
+                <div class="contributor-info">
+                    <div class="contributor-name">${escapeHtml(c.name)}</div>
+                    <div class="contributor-count">${c.count} scénario${c.count > 1 ? 's' : ''}</div>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    return `
+        <section class="contributors-section">
+            <div class="contributors-inner">
+                <div class="contributors-header">
+                    <h2><span class="material-symbols-outlined">emoji_events</span> Meilleurs Contributeurs</h2>
+                    <p>Remercions les enseignants qui enrichissent la plateforme en partageant leurs scénarios pédagogiques.</p>
+                </div>
+                <div class="contributors-list">
+                    ${contributorsHTML}
+                </div>
+            </div>
+        </section>
+    `;
 }
 
 // =============================================
@@ -567,6 +693,9 @@ function renderAccueil() {
                 <div class="quote-role">professeur Logistique - Académie de Versailles</div>
             </div>
         </section>
+
+        <!-- Top Contributors -->
+        ${renderTopContributors()}
 
         <!-- CTA -->
         <section class="cta-section">
@@ -728,6 +857,11 @@ function renderFormulaire() {
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="form-label" for="f-problematique">Problématique <span class="required">*</span></label>
+                                <input class="form-input" type="text" id="f-problematique" placeholder="Ex : Comment optimiser la réception des marchandises en respectant les normes de sécurité ?" required />
+                                <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px">La question centrale que les élèves vont devoir résoudre.</p>
+                            </div>
+                            <div class="form-group">
                                 <label class="form-label" for="f-description">Description courte</label>
                                 <textarea class="form-textarea" id="f-description" placeholder="Décrivez brièvement le contexte, les objectifs et le déroulement de la séance..." maxlength="500" oninput="updateCharCount()"></textarea>
                                 <div class="form-char-count"><span id="char-count">0</span> / 500 caractères</div>
@@ -806,6 +940,7 @@ function submitForm() {
     const niveau = document.getElementById('f-niveau').value;
     const auteur = document.getElementById('f-auteur').value.trim();
     const duree = document.getElementById('f-duree').value.trim();
+    const problematique = document.getElementById('f-problematique').value.trim();
     const description = document.getElementById('f-description').value.trim();
     const checkboxes = document.querySelectorAll('input[name="competences"]:checked');
     const competences = Array.from(checkboxes).map(cb => cb.value);
@@ -813,11 +948,18 @@ function submitForm() {
     if (!titre) { alert('Veuillez saisir un titre pour le scénario.'); return; }
     if (!niveau) { alert('Veuillez sélectionner un niveau de classe.'); return; }
     if (!auteur) { alert('Veuillez saisir votre nom.'); return; }
+    if (!problematique) { alert('Veuillez saisir une problématique.'); return; }
     if (competences.length === 0) { alert('Veuillez sélectionner au moins une compétence.'); return; }
 
-    addScenario({ titre, entreprise, niveau, auteur, duree: duree || '2h', description, competences });
-    showToast('Scénario publié avec succès !');
-    setTimeout(() => navigateTo(niveau), 500);
+    const result = addScenario({ titre, entreprise, niveau, auteur, duree: duree || '2h', problematique, description, competences });
+    
+    if (result) {
+        showToast('Scénario publié avec succès !');
+        // Réinitialiser le formulaire avant la navigation
+        resetForm();
+        // Navigation après un délai pour laisser le temps au toast de s'afficher
+        setTimeout(() => navigateTo(niveau), 800);
+    }
 }
 
 function resetForm() {
