@@ -258,6 +258,7 @@ function loadScenarios() {
             const parsed = JSON.parse(stored);
             // S'assurer que c'est bien un tableau
             if (Array.isArray(parsed)) {
+                console.log(`%c[loadScenarios] ${parsed.length} scénarios chargés`, 'color: #f59e0b;');
                 return parsed;
             }
         }
@@ -290,10 +291,10 @@ function saveScenarios(scenarios) {
 }
 
 function addScenario(scenario) {
-    console.log('[addScenario] Début avec:', scenario);
+    console.log('%c[addScenario] DÉBUT', 'background: #137fec; color: white; padding: 4px 8px; border-radius: 4px;', scenario);
     try {
         const scenarios = loadScenarios();
-        console.log('[addScenario] Scénarios chargés:', scenarios.length);
+        console.log('%c[addScenario] Scénarios chargés:', 'color: #137fec;', scenarios.length);
         
         const newScenario = {
             ...scenario,
@@ -302,27 +303,28 @@ function addScenario(scenario) {
             auteur: scenario.auteur || 'Contributeur',
             duree: scenario.duree || '2h'
         };
-        console.log('[addScenario] Nouveau scénario:', newScenario);
+        console.log('%c[addScenario] Nouveau scénario:', 'color: #137fec;', newScenario);
         
         scenarios.push(newScenario);
-        console.log('[addScenario] Scénarios après push:', scenarios.length);
+        console.log('%c[addScenario] Scénarios après push:', 'color: #137fec;', scenarios.length);
         
         saveScenarios(scenarios);
         
         // Vérification immédiate
         const verify = localStorage.getItem(STORAGE_KEY);
         const parsed = JSON.parse(verify);
-        console.log('[addScenario] Vérification après sauvegarde:', parsed.length, 'scénarios');
+        console.log('%c[addScenario] Vérification après sauvegarde:', 'color: #137fec;', parsed.length, 'scénarios');
         
         if (parsed.find(s => s.id === newScenario.id)) {
-            console.log('[addScenario] ✅ Scénario confirmé dans localStorage');
+            console.log('%c[addScenario] ✅ SCÉNARIO CONFIRMÉ DANS LOCALSTORAGE', 'background: #10b981; color: white; padding: 4px 8px; border-radius: 4px;');
             return newScenario;
         } else {
-            console.error('[addScenario] ❌ Scénario non trouvé après sauvegarde');
+            console.error('%c[addScenario] ❌ SCÉNARIO NON TROUVÉ APRÈS SAUVEGARDE', 'background: #ef4444; color: white; padding: 4px 8px; border-radius: 4px;');
+            alert('ERREUR: Le scénario a été sauvegardé mais ne peut pas être retrouvé. Vérifiez la console.');
             return null;
         }
     } catch (error) {
-        console.error('[addScenario] ❌ Erreur:', error);
+        console.error('%c[addScenario] ❌ ERREUR:', 'background: #ef4444; color: white; padding: 4px 8px; border-radius: 4px;', error);
         alert('Une erreur est survenue lors de l\'enregistrement: ' + error.message);
         return null;
     }
