@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Stockage Scénarios</title>
+    <style>
+        body { font-family: system-ui, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+        .test-btn { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        .log { background: #f5f5f5; padding: 10px; margin: 5px 0; border-radius: 4px; font-family: monospace; font-size: 12px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .warning { background: #fff3cd; color: #856404; }
+        pre { background: #f8f9fa; padding: 10px; overflow: auto; max-height: 300px; font-size: 11px; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Test du stockage localStorage</h1>
+    
+    <h2>Tests automatiques</h2>
+    <button class="test-btn" onclick="runAllTests()">Lancer tous les tests</button>
+    <button class="test-btn" onclick="clearLogs()">Effacer les logs</button>
+    
+    <h2>Actions manuelles</h2>
+    <button class="test-btn" onclick="testAddScenario()">Ajouter un scénario test</button>
+    <button class="test-btn" onclick="showStorage()">Afficher le stockage</button>
+    <button class="test-btn" onclick="clearStorage()">Vider le stockage</button>
+    <button class="test-btn" onclick="simulateRealAdd()">Simuler ajout réel</button>
+    
+    <h2>Logs</h2>
+    <div id="logs"></div>
+    
+    <h2>Contenu du localStorage</h2>
+    <pre id="storage">Cliquez sur "Afficher le stockage" pour voir le contenu</pre>
+
+    <script>
+        const STORAGE_KEY = 'logistique2025_scenarios';
+        const STORAGE_VERSION_KEY = 'logistique2025_version';
+        
+        function log(msg, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `log ${type}`;
+            div.innerHTML = `<strong>[${new Date().toLocaleTimeString()}]</strong> ${msg}`;
+            document.getElementById('logs').prepend(div);
+            console.log(`[${type}]`, msg);
+        }
+        
+        function clearLogs() {
+            document.getElementById('logs').innerHTML = '';
+        }
+        
+        function runAllTests() {
+            clearLogs();
+            log('=== DÉBUT DES TESTS ===');
+            
+            // Test 1: localStorage disponible
+            try {
+                localStorage.setItem('__test__', 'test');
+                localStorage.removeItem('__test__');
+                log('✅ localStorage accessible', 'success');
+            } catch (e) {
+                log(`❌ localStorage inaccessible: ${e.message}`, 'error');
+                return;
+            }
+            
+            // Test 2: Vérifier les clés
+            const version = localStorage.getItem(STORAGE_VERSION_KEY);
+            const data = localStorage.getItem(STORAGE_KEY);
+            log(`Version stockée: ${version || 'aucune'}`);
+            log(`Données présentes: ${data ? 'OUI' : 'NON'}`);
+            
+            // Test 3: Parser les données
+            if (data) {
+                try {
+                    const parsed = JSON.parse(data);
+                    if (Array.isArray(parsed)) {
+                        log(`${parsed.length} scénarios trouvés`, 'success');
+                        
+                        // Vérifier les IDs
+                        const ids = parsed.map(s => s.id);
+                        log(`IDs: ${ids.join(', ')}`);
+                    } else {
+                        log('❌ Les données ne sont pas un tableau', 'error');
+                    }
+                } catch (e) {
+                    log(`❌ Données corrompues: ${e.message}`, 'error');
+                }
+            }
+            
+            // Test 4: Capacité de stockage
+            try {
+                let testData = 'x'.repeat(1024 * 1024); // 1MB
+                localStorage.setItem('__capacity_test__', testData);
+                localStorage.removeItem('__capacity_test__');
+                log('✅ Capacité de stockage OK (>1MB)', 'success');
+            } catch (e) {
+                log(`⚠️ Capacité limitée: ${e.message}`, 'warning');
+            }
+            
+            log('=== FIN DES TESTS ===');
+        }
+        
+        function testAddScenario() {
+            log('Tentative d\'ajout d\'un scénario...');
+            
+            try {
+                const scenarios = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+                log(`${scenarios.length} scénarios avant ajout`);
+                
+                const newScenario = {
+                    id: 'sc-' + Date.now(),
+                    titre: 'Test ' + new Date().toLocaleTimeString(),
+                    entreprise: 'Test Corp',
+                    niveau: 'seconde',
+                    problematique: 'Comment tester?',
+                    description: 'Test de description',
+                    competences: ['C1.1'],
+                    auteur: 'Test User',
+                    date: new Date().toISOString().split('T')[0],
+                    duree: '2h'
+                };
+                
+                scenarios.push(newScenario);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(scenarios));
+                
+                // Vérifier immédiatement
+                const verify = JSON.parse(localStorage.getItem(STORAGE_KEY));
+                if (verify.find(s => s.id === newScenario.id)) {
+                    log(`✅ Scénario ajouté avec ID: ${newScenario.id}`, 'success');
+                    log(`${verify.length} scénarios après ajout`);
+                } else {
+                    log('❌ Scénario non trouvé après ajout', 'error');
+                }
+                
+                showStorage();
+            } catch (e) {
+                log(`❌ Erreur: ${e.message}`, 'error');
+            }
+        }
+        
+        function simulateRealAdd() {
+            log('=== Simulation de l\'ajout réel ===');
+            
+            // Simuler les valeurs du formulaire
+            const scenario = {
+                titre: 'Test Simulation',
+                entreprise: 'Test',
+                niveau: 'seconde',
+                auteur: 'Test',
+                duree: '2h',
+                problematique: 'Test?',
+                description: 'Test',
+                competences: ['C1.1']
+            };
+            
+            log('Données: ' + JSON.stringify(scenario));
+            
+            try {
+                const scenarios = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+                log(`${scenarios.length} scénarios existants`);
+                
+                const newScenario = {
+                    ...scenario,
+                    id: 'sc-' + Date.now(),
+                    date: new Date().toISOString().split('T')[0],
+                    auteur: scenario.auteur || 'Contributeur',
+                    duree: scenario.duree || '2h'
+                };
+                
+                scenarios.push(newScenario);
+                log(`Scénario préparé, ${scenarios.length} total`);
+                
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(scenarios));
+                log('Sauvegarde effectuée');
+                
+                // Vérification
+                const stored = localStorage.getItem(STORAGE_KEY);
+                const parsed = JSON.parse(stored);
+                log(`${parsed.length} scénarios après sauvegarde`, parsed.length > 0 ? 'success' : 'error');
+                
+                showStorage();
+            } catch (e) {
+                log(`❌ ERREUR: ${e.message}`, 'error');
+                log(`Type: ${e.name}`, 'error');
+            }
+        }
+        
+        function showStorage() {
+            const data = localStorage.getItem(STORAGE_KEY);
+            const version = localStorage.getItem(STORAGE_VERSION_KEY);
+            
+            const output = {
+                [STORAGE_VERSION_KEY]: version,
+                [STORAGE_KEY]: data ? JSON.parse(data) : null
+            };
+            
+            document.getElementById('storage').textContent = JSON.stringify(output, null, 2);
+            log('Stockage affiché');
+        }
+        
+        function clearStorage() {
+            localStorage.removeItem(STORAGE_KEY);
+            localStorage.removeItem(STORAGE_VERSION_KEY);
+            log('🗑️ Stockage vidé', 'warning');
+            showStorage();
+        }
+        
+        // Lancer les tests au chargement
+        window.onload = runAllTests;
+    </script>
+</body>
+</html>

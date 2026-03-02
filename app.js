@@ -272,19 +272,29 @@ function loadScenarios() {
 }
 
 function saveScenarios(scenarios) {
+    console.log('[saveScenarios] Sauvegarde de', scenarios.length, 'scénarios');
     try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(scenarios));
+        const json = JSON.stringify(scenarios);
+        console.log('[saveScenarios] JSON length:', json.length, 'caractères');
+        localStorage.setItem(STORAGE_KEY, json);
+        console.log('[saveScenarios] ✅ Sauvegarde réussie');
     } catch (error) {
-        console.error('Erreur lors de la sauvegarde des scénarios:', error);
+        console.error('[saveScenarios] ❌ Erreur:', error);
         if (error.name === 'QuotaExceededError') {
             alert('Le stockage local est plein. Impossible d\'enregistrer le scénario.');
+        } else {
+            alert('Erreur de sauvegarde: ' + error.message);
         }
+        throw error;
     }
 }
 
 function addScenario(scenario) {
+    console.log('[addScenario] Début avec:', scenario);
     try {
         const scenarios = loadScenarios();
+        console.log('[addScenario] Scénarios chargés:', scenarios.length);
+        
         const newScenario = {
             ...scenario,
             id: 'sc-' + Date.now(),
@@ -292,12 +302,28 @@ function addScenario(scenario) {
             auteur: scenario.auteur || 'Contributeur',
             duree: scenario.duree || '2h'
         };
+        console.log('[addScenario] Nouveau scénario:', newScenario);
+        
         scenarios.push(newScenario);
+        console.log('[addScenario] Scénarios après push:', scenarios.length);
+        
         saveScenarios(scenarios);
-        return newScenario;
+        
+        // Vérification immédiate
+        const verify = localStorage.getItem(STORAGE_KEY);
+        const parsed = JSON.parse(verify);
+        console.log('[addScenario] Vérification après sauvegarde:', parsed.length, 'scénarios');
+        
+        if (parsed.find(s => s.id === newScenario.id)) {
+            console.log('[addScenario] ✅ Scénario confirmé dans localStorage');
+            return newScenario;
+        } else {
+            console.error('[addScenario] ❌ Scénario non trouvé après sauvegarde');
+            return null;
+        }
     } catch (error) {
-        console.error('Erreur lors de l\'enregistrement du scénario:', error);
-        alert('Une erreur est survenue lors de l\'enregistrement. Veuillez réessayer.');
+        console.error('[addScenario] ❌ Erreur:', error);
+        alert('Une erreur est survenue lors de l\'enregistrement: ' + error.message);
         return null;
     }
 }
@@ -959,15 +985,19 @@ function renderFormulaire() {
 // FORM HANDLERS
 // =============================================
 function submitForm() {
-    const titre = document.getElementById('f-titre').value.trim();
-    const entreprise = document.getElementById('f-entreprise').value.trim();
-    const niveau = document.getElementById('f-niveau').value;
-    const auteur = document.getElementById('f-auteur').value.trim();
-    const duree = document.getElementById('f-duree').value.trim();
-    const problematique = document.getElementById('f-problematique').value.trim();
-    const description = document.getElementById('f-description').value.trim();
+    console.log('[submitForm] Début de la soumission...');
+    
+    const titre = document.getElementById('f-titre')?.value.trim();
+    const entreprise = document.getElementById('f-entreprise')?.value.trim();
+    const niveau = document.getElementById('f-niveau')?.value;
+    const auteur = document.getElementById('f-auteur')?.value.trim();
+    const duree = document.getElementById('f-duree')?.value.trim();
+    const problematique = document.getElementById('f-problematique')?.value.trim();
+    const description = document.getElementById('f-description')?.value.trim();
     const checkboxes = document.querySelectorAll('input[name="competences"]:checked');
     const competences = Array.from(checkboxes).map(cb => cb.value);
+    
+    console.log('[submitForm] Données récupérées:', { titre, niveau, auteur, problematique, competences: competences.length });
 
     if (!titre) { alert('Veuillez saisir un titre pour le scénario.'); return; }
     if (!niveau) { alert('Veuillez sélectionner un niveau de classe.'); return; }
@@ -975,14 +1005,19 @@ function submitForm() {
     if (!problematique) { alert('Veuillez saisir une problématique.'); return; }
     if (competences.length === 0) { alert('Veuillez sélectionner au moins une compétence.'); return; }
 
+    console.log('[submitForm] Validation OK, appel de addScenario...');
     const result = addScenario({ titre, entreprise, niveau, auteur, duree: duree || '2h', problematique, description, competences });
     
     if (result) {
+        console.log('[submitForm] ✅ Scénario créé:', result.id);
         showToast('Scénario publié avec succès !');
         // Réinitialiser le formulaire avant la navigation
         resetForm();
         // Navigation après un délai pour laisser le temps au toast de s'afficher
         setTimeout(() => navigateTo(niveau), 800);
+    } else {
+        console.error('[submitForm] ❌ Échec de la création');
+        alert('Le scénario n\'a pas pu être enregistré. Vérifiez la console pour plus de détails.');
     }
 }
 
