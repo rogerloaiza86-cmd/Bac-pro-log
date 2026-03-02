@@ -227,10 +227,31 @@ function loadScenarios() {
     try {
         const storedVersion = localStorage.getItem(STORAGE_VERSION_KEY);
         if (storedVersion !== CURRENT_VERSION) {
-            // Referential data changed — reset to new sample scenarios
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(SAMPLE_SCENARIOS));
+            // Referential data changed — migrer les données existantes si possible
+            const existingData = localStorage.getItem(STORAGE_KEY);
+            let scenarios = [];
+            
+            if (existingData) {
+                try {
+                    const parsed = JSON.parse(existingData);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        // Conserver les scénarios existants
+                        scenarios = parsed;
+                        console.log(`${scenarios.length} scénarios existants migrés vers la version ${CURRENT_VERSION}`);
+                    }
+                } catch (e) {
+                    console.warn('Données existantes corrompues, utilisation des samples');
+                }
+            }
+            
+            // Si aucun scénario existant, utiliser les samples
+            if (scenarios.length === 0) {
+                scenarios = JSON.parse(JSON.stringify(SAMPLE_SCENARIOS));
+            }
+            
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(scenarios));
             localStorage.setItem(STORAGE_VERSION_KEY, CURRENT_VERSION);
-            return JSON.parse(JSON.stringify(SAMPLE_SCENARIOS));
+            return scenarios;
         }
         const stored = localStorage.getItem(STORAGE_KEY);
         if (stored) {
@@ -402,7 +423,7 @@ function renderScenarioCard(scenario) {
     const isProblematique = !!scenario.problematique;
 
     return `
-        <div class="card" data-scenario-id="${scenario.id}">
+        <div class="card" data-scenario-id="${scenario.id}" onclick="openScenarioModal('${scenario.id}')">
             <div class="card-img" style="background-image: url('${getRandomImage()}')">
                 <span class="card-img-badge" style="background:${blocColor}">${blocLabel}</span>
                 <span class="card-img-time"><span class="material-symbols-outlined">schedule</span>${scenario.duree}</span>
@@ -421,7 +442,10 @@ function renderScenarioCard(scenario) {
                         <span>${escapeHtml(scenario.auteur)}</span>
                     </div>
                     <div class="card-actions">
-                        <button class="card-delete-btn" onclick="handleDelete('${scenario.id}')" title="Supprimer">
+                        <button class="card-view-btn" onclick="event.stopPropagation(); openScenarioModal('${scenario.id}')" title="Ouvrir">
+                            <span class="material-symbols-outlined">visibility</span>
+                        </button>
+                        <button class="card-delete-btn" onclick="event.stopPropagation(); handleDelete('${scenario.id}')" title="Supprimer">
                             <span class="material-symbols-outlined">delete</span>
                         </button>
                     </div>
@@ -985,6 +1009,129 @@ function handleDelete(id) {
         showToast('Scénario supprimé.');
     }
 }
+
+// =============================================
+// SCENARIO MODAL
+// =============================================
+function openScenarioModal(id) {
+    const scenarios = loadScenarios();
+    const scenario = scenarios.find(s => s.id === id);
+    if (!scenario) return;
+    
+    // Créer ou mettre à jour la modal
+    let modal = document.getElementById('scenario-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'scenario-modal';
+        modal.className = 'modal';
+        document.body.appendChild(modal);
+    }
+    
+    modal.innerHTML = renderScenarioModal(scenario);
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    const modal = document.getElementById('scenario-modal');
+    if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+}
+
+function renderScenarioModal(scenario) {
+    const competencyDetails = scenario.competences.map(code => {
+        const info = getCompetencyInfo(code);
+        if (!info) return '';
+        const color = info.bloc.couleur;
+        return `
+            <div class="modal-competency" style="border-left-color: ${color}">
+                <div class="modal-competency-code" style="color: ${color}">${code}</div>
+                <div class="modal-competency-name">${info.nom}</div>
+                <div class="modal-competency-desc">${info.desc}</div>
+            </div>
+        `;
+    }).join('');
+    
+    const blocInfo = getCompetencyInfo(scenario.competences[0]);
+    const blocColor = blocInfo ? blocInfo.bloc.couleur : '#137fec';
+    const initials = scenario.auteur.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+    
+    const niveauLabel = {
+        'seconde': 'Seconde Bac Pro',
+        'premiere': 'Première Bac Pro',
+        'terminale': 'Terminale Bac Pro'
+    }[scenario.niveau] || scenario.niveau;
+    
+    return `
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            
+            <div class="modal-header" style="background: linear-gradient(135deg, ${blocColor}15, ${blocColor}05)">
+                <div class="modal-badges">
+                    <span class="modal-badge" style="background: ${blocColor}">
+                        <span class="material-symbols-outlined">school</span>
+                        ${niveauLabel}
+                    </span>
+                    <span class="modal-badge" style="background: rgba(107, 114, 128, 0.9)">
+                        <span class="material-symbols-outlined">schedule</span>
+                        ${scenario.duree}
+                    </span>
+                    ${scenario.entreprise ? `
+                    <span class="modal-badge" style="background: rgba(147, 51, 234, 0.9)">
+                        <span class="material-symbols-outlined">business</span>
+                        ${escapeHtml(scenario.entreprise)}
+                    </span>
+                    ` : ''}
+                </div>
+                <h2 class="modal-title">${escapeHtml(scenario.titre)}</h2>
+                <div class="modal-meta">
+                    <div class="modal-author">
+                        <div class="modal-author-avatar">${initials}</div>
+                        <span>${escapeHtml(scenario.auteur)}</span>
+                    </div>
+                    <span class="modal-date">Créé le ${scenario.date}</span>
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3><span class="material-symbols-outlined">help_outline</span> Problématique</h3>
+                    <p class="modal-problematique">${escapeHtml(scenario.problematique || 'Aucune problématique définie.')}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3><span class="material-symbols-outlined">description</span> Description</h3>
+                    <p class="modal-description">${escapeHtml(scenario.description || 'Aucune description disponible.')}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3><span class="material-symbols-outlined">verified</span> Compétences visées (${scenario.competences.length})</h3>
+                    <div class="modal-competencies">
+                        ${competencyDetails}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal()">Fermer</button>
+                <button class="btn btn-primary" onclick="closeModal(); navigateTo('formulaire')">
+                    <span class="material-symbols-outlined">add</span>
+                    Créer un scénario similaire
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+// Fermer la modal avec la touche Escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+});
 
 // =============================================
 // MAIN ROUTER
