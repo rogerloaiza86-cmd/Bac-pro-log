@@ -15,19 +15,17 @@ const REFERENTIEL = {
                 { code: 'C1.1', nom: 'Positionner des activités logistiques dans la supply chain', desc: 'Identifier les étapes, acteurs, zones logistiques et flux.' },
                 { code: 'C1.2', nom: 'Mettre en œuvre les règles de sécurité', desc: 'Prévention des risques et des dangers dans l\'environnement de travail.' },
                 { code: 'C1.2.1', nom: 'Repérer les dangers et les risques dans un contexte donné', desc: 'Identification des risques professionnels matériels et humains.' },
-                { code: 'C1.2.2', nom: 'Contribuer à l\'application des protocoles et procédures de sécurité', desc: 'Compréhension et capacité à appliquer les procédures de sécurité.' },
-                { code: 'C1.2.3', nom: 'Prendre en compte les risques liés à une activité logistique', desc: 'Identification de situations à risques et restitution d\'informations.' },
+                
                 { code: 'C1.3', nom: 'Préparer l\'action de réception', desc: 'Planifier les moyens pour la réception des marchandises.' },
-                { code: 'C1.3.1', nom: 'Planifier les moyens humains et matériels nécessaires à la réception', desc: 'Collecte des données et utilisation de planigramme.' },
-                { code: 'C1.3.2', nom: 'Adapter l\'organisation de la réception selon les aléas et incidents', desc: 'Accueil conducteur, collecte et vérification des documents.' },
+                { code: 'C1.3.1', nom: 'Planifier les moyens pour la réception', desc: 'Collecte des données et utilisation de planigramme.' },
+                { code: 'C1.3.2', nom: 'Adapter l\'organisation de la réception selon les aléas', desc: 'Accueil conducteur, collecte et vérification des documents.' },
                 { code: 'C1.4', nom: 'Traiter les opérations de réception de produits selon les procédures', desc: 'Déchargement, contrôle, réserves, gestion des déchets.' },
-                { code: 'C1.4.1', nom: 'Mettre en œuvre les procédures de réception des produits', desc: 'Contrôles quantitatifs/qualitatifs et application des protocoles.' },
-                { code: 'C1.4.2', nom: 'Contribuer à l\'ouverture d\'un dossier litige', desc: 'Identification de l\'objet du litige et collecte des preuves.' },
+                { code: 'C1.4.1', nom: 'Mettre en œuvre les procédures de réception', desc: 'Contrôles quantitatifs/qualitatifs et application des protocoles.' },
                 { code: 'C1.5', nom: 'Mettre en stock les produits', desc: 'Transfert et stockage en sécurité, dégroupage et reconditionnement.' },
                 { code: 'C1.5.1', nom: 'Transférer et stocker les produits en sécurité', desc: 'Repérage des zones et rotation selon les critères de conservation.' },
                 { code: 'C1.5.2', nom: 'Dégrouper et/ou reconditionner les produits', desc: 'Réalisation d\'activités de dégroupage ou reconditionnement.' },
                 { code: 'C1.6', nom: 'Gérer le suivi des stocks', desc: 'Suivi des flux d\'information et participation aux inventaires.' },
-                { code: 'C1.6.1', nom: 'Assurer le suivi des flux d\'information associés aux flux entrants', desc: 'Actualisation de la base de données informatique.' },
+                { code: 'C1.6.1', nom: 'Assurer le suivi des flux d\'information', desc: 'Actualisation de la base de données informatique.' },
                 { code: 'C1.6.2', nom: 'Participer aux activités d\'inventaire', desc: 'Application du protocole de comptage et sécurisation de zone.' },
             ]
         },
@@ -53,10 +51,10 @@ const REFERENTIEL = {
                 { code: 'C2.4.2', nom: 'Déterminer les temps de conduite, de repos et de travail', desc: 'Application de la réglementation sociale (RSE).' },
                 { code: 'C2.4.3', nom: 'Élaborer un plan de chargement', desc: 'Sélection du véhicule et optimisation du chargement.' },
                 { code: 'C2.4.4', nom: 'Constituer le dossier de transport', desc: 'Renseignement et actualisation des données de transport.' },
-                { code: 'C2.5', nom: 'Traiter les retours des supports de charge et/ou des contenants', desc: 'Suivi, traçabilité et contrôle des supports consignés.' },
+                { code: 'C2.5', nom: 'Traiter les retours des supports de charges', desc: 'Suivi, traçabilité et contrôle des supports consignés.' },
                 { code: 'C2.6', nom: 'Confier l\'expédition à un prestataire de transport externe', desc: 'Choisir un transporteur et échanger informations.' },
                 { code: 'C2.6.1', nom: 'Choisir un transporteur dans une liste référencée', desc: 'Contrôle de l\'adéquation et identification des obligations.' },
-                { code: 'C2.6.2', nom: 'Échanger les informations, documents et instructions', desc: 'Transmission efficace via le moyen adapté.' },
+                { code: 'C2.6.2', nom: 'Échanger informations et documents', desc: 'Transmission efficace via le moyen adapté.' },
             ]
         },
         {
@@ -66,18 +64,18 @@ const REFERENTIEL = {
             competences: [
                 { code: 'C3.1', nom: 'Adapter le processus logistique selon le type de produit ou de flux', desc: 'Prise en compte des spécificités et environnements.' },
                 { code: 'C3.2', nom: 'Mettre en œuvre le processus de traçabilité', desc: 'Application des processus de traçabilité dans la chaîne.' },
-                { code: 'C3.2.1', nom: 'Prendre part au processus qualité lié à la manipulation du produit', desc: 'Contrôle de conformité et analyse de situation.' },
+                { code: 'C3.2.1', nom: 'Prendre part au processus qualité', desc: 'Contrôle de conformité et analyse de situation.' },
                 { code: 'C3.2.2', nom: 'Assurer le suivi des produits à l\'aide de données', desc: 'Mise à jour des données dans un référentiel de suivi.' },
                 { code: 'C3.2.3', nom: 'Identifier la procédure applicable selon le type de retour', desc: 'Caractérisation du retour et procédure adaptée.' },
                 { code: 'C3.2.4', nom: 'Valoriser les déchets', desc: 'Identification des zones et tri dans les bacs dédiés.' },
-                { code: 'C3.3', nom: 'Proposer des axes d\'amélioration dans une démarche RSE', desc: 'Contribution à l\'amélioration sociétale et environnementale.' },
+                { code: 'C3.3', nom: 'Proposer des axes d\'amélioration logistique (RSE)', desc: 'Contribution à l\'amélioration sociétale et environnementale.' },
                 { code: 'C3.3.1', nom: 'Analyser une situation professionnelle courante', desc: 'Diagnostic et repérage des incidences sur la chaîne.' },
-                { code: 'C3.3.2', nom: 'Proposer des axes d\'amélioration de la situation professionnelle', desc: 'Actions adaptées RSE pour améliorer l\'environnement.' },
+                { code: 'C3.3.2', nom: 'Proposer des axes d\'amélioration', desc: 'Actions adaptées RSE pour améliorer l\'environnement.' },
                 { code: 'C3.3.3', nom: 'Évaluer les impacts de l\'organisation du poste de travail', desc: 'Mesure d\'impacts et interprétation d\'indicateurs.' },
                 { code: 'C3.4', nom: 'Coordonner une petite équipe logistique', desc: 'Transmission d\'infos, gestion d\'imprévus, animation.' },
-                { code: 'C3.4.1', nom: 'Assurer le partage d\'informations dans l\'équipe', desc: 'Communication orale ou écrite lors de la prise de poste.' },
+                { code: 'C3.4.1', nom: 'Assurer le partage d\'informations', desc: 'Communication orale ou écrite lors de la prise de poste.' },
                 { code: 'C3.4.2', nom: 'Traiter des situations imprévues', desc: 'Proposition d\'actions pour répondre aux imprévus.' },
-                { code: 'C3.4.3', nom: 'Contribuer à l\'efficacité du service par l\'animation d\'équipe', desc: 'Animation, suivi et prise en compte de la sécurité.' },
+                { code: 'C3.4.3', nom: 'Contribuer à l\'efficacité du service logistique', desc: 'Animation, suivi et prise en compte de la sécurité.' },
                 { code: 'C3.4.4', nom: 'Veiller à l\'inclusion, au bien-être et à la sécurité', desc: 'Mise en place de l\'inclusion et vigilance bien-être.' },
             ]
         },
@@ -87,56 +85,24 @@ const REFERENTIEL = {
             couleur: '#f59e0b',
             competences: [
                 { code: 'C4.1', nom: 'Mettre en service un engin de manutention en sécurité', desc: 'Vérification de l\'adéquation et du bon fonctionnement.' },
-                { code: 'C4.1.1', nom: 'Vérifier l\'adéquation d\'un engin à l\'opération envisagée', desc: 'Identification des caractéristiques du transfert de charge.' },
+                { code: 'C4.1.1', nom: 'Vérifier l\'adéquation d\'un engin de manutention', desc: 'Identification des caractéristiques du transfert de charge.' },
                 { code: 'C4.1.2', nom: 'Vérifier le bon fonctionnement des dispositifs de sécurité', desc: 'Réglages du poste et contrôle visuel de l\'engin.' },
-                { code: 'C4.1.3', nom: 'Vérifier la présence et la validité des documents réglementaires', desc: 'Exploitation des documents de l\'engin de manutention.' },
+                { code: 'C4.1.3', nom: 'Vérifier la présence et validité des documents réglementaires', desc: 'Exploitation des documents de l\'engin de manutention.' },
                 { code: 'C4.2', nom: 'Conduire un engin de manutention', desc: 'Circulation à vide/charge, gestion des plans inclinés.' },
-                { code: 'C4.2.1', nom: 'Circuler à vide ou en charge', desc: 'Circulation en avant, arrière, virage et en allée.' },
+                { code: 'C4.2.1', nom: 'Circuler à vide', desc: 'Circulation en avant, arrière, virage et en allée.' },
+                { code: 'C4.2.2', nom: 'Circuler en charge', desc: 'Circulation avec charge en toute sécurité.' },
                 { code: 'C4.2.3', nom: 'Circuler sur un plan incliné', desc: 'Conduite en toute sécurité sur rampe d\'accès.' },
-                { code: 'C4.2.4', nom: 'Respecter les règles de circulation', desc: 'Compréhension de la signalisation et conduite éco.' },
-                { code: 'C4.2.5', nom: 'Conduire avec assurance en sécurité', desc: 'Conduite sans heurts, sans chocs ou brutalité.' },
-                { code: 'C4.2.6', nom: 'Respecter les prescriptions en temps', desc: 'Respect des contraintes de temps garantissant la sécurité.' },
+                { code: 'C4.2.4', nom: 'Respecter les règles de circulation Compréhension de la signalisation', desc: 'Compréhension de la signalisation et conduite éco.' },
+                { code: 'C4.2.5', nom: 'Conduire avec assurance en sécurité Conduite sans heurts, sans chocs ou brutalité', desc: 'Conduite sans heurts, sans chocs ou brutalité.' },
+                { code: 'C4.2.6', nom: 'Respecter les prescriptions en temps de l\'opération en garantissant la sécurité', desc: 'Respect des contraintes de temps garantissant la sécurité.' },
                 { code: 'C4.3', nom: 'Manœuvrer un engin de manutention (1B 3 5)', desc: 'Manœuvre selon recommandations R489.' },
-                { code: 'C4.3.1', nom: 'Manœuvrer un engin de catégorie 1B — R489', desc: 'Prise, déplacement et stockage jusqu\'à 2.90m.' },
-                { code: 'C4.3.2', nom: 'Manœuvrer un engin de catégorie 3 — R489', desc: 'Prise, déplacement et stockage jusqu\'à 3.30m.' },
-                { code: 'C4.3.3', nom: 'Manœuvrer un engin de catégorie 5 — R489', desc: 'Prise, déplacement et stockage jusqu\'à 6.00m.' },
+                { code: 'C4.3.1', nom: 'Manœuvrer un engin de catégorie 1B-R489', desc: 'Prise, déplacement et stockage jusqu\'à 2.90m.' },
+                { code: 'C4.3.2', nom: 'Manœuvrer un engin de catégorie 3 –R489', desc: 'Prise, déplacement et stockage jusqu\'à 3.30m.' },
+                { code: 'C4.3.3', nom: 'Manœuvrer un engin de catégorie 5 –R489', desc: 'Prise, déplacement et stockage jusqu\'à 6.00m.' },
                 { code: 'C4.4', nom: 'Effectuer les opérations de fin de poste', desc: 'Stationnement, maintenance 1er niveau et compte-rendu.' },
-                { code: 'C4.4.1', nom: 'Stationner l\'engin de manutention à son emplacement', desc: 'Mise en stationnement selon le protocole.' },
-                { code: 'C4.4.2', nom: 'Effectuer les opérations de maintenance de premier niveau', desc: 'Maintenance préventive si nécessaire.' },
+                { code: 'C4.4.1', nom: 'Stationner l\'engin de manutention à son emplacement en sécurité', desc: 'Mise en stationnement selon le protocole.' },
+                { code: 'C4.4.2', nom: 'Effectuer les opérations de maintenance de premier niveau si nécessaire', desc: 'Maintenance préventive si nécessaire.' },
                 { code: 'C4.4.3', nom: 'Rendre compte des anomalies relevées', desc: 'Précision des comptes rendus sur le déroulé.' },
-            ]
-        },
-        {
-            id: 'bloc5',
-            nom: 'Bloc 5 — Économie — Droit',
-            couleur: '#ef4444',
-            competences: [
-                { code: 'C5.1', nom: 'Exploiter et analyser des documents économiques et juridiques', desc: 'Analyse de documents de nature économique et juridique.' },
-                { code: 'C5.2', nom: 'Sélectionner des informations pour une réponse argumentée', desc: 'Construction d\'une réponse structurée à une problématique.' },
-                { code: 'C5.3', nom: 'Mobiliser les savoirs associés et le vocabulaire spécifique', desc: 'Rdaction en utilisant le lexique adapté.' },
-            ]
-        },
-        {
-            id: 'bloc6',
-            nom: 'Bloc 6 — Mathématiques',
-            couleur: '#8b5cf6',
-            competences: [
-                { code: 'C6.1', nom: 'S’approprier : rechercher, extraire et organiser l’information', desc: 'Compréhension de l\'énoncé et des données.' },
-                { code: 'C6.2', nom: 'Analyser/raisonner : choisir une méthode de résolution', desc: 'Élaboration d\'une stratégie ou d\'un algorithme.' },
-                { code: 'C6.3', nom: 'Réaliser : mettre en œuvre une méthode, des algorithmes', desc: 'Calculer, expérimenter, simuler, représenter.' },
-                { code: 'C6.4', nom: 'Valider : critiquer un résultat, argumenter', desc: 'Contrôler la vraisemblance et établir une conclusion.' },
-                { code: 'C6.5', nom: 'Communiquer : rendre compte d’une démarche', desc: 'Explication à l\'oral ou à l\'écrit avec les outils adaptés.' },
-            ]
-        },
-        {
-            id: 'bloc7',
-            nom: 'Bloc 7 — Prévention — Santé — Environnement',
-            couleur: '#06b6d4',
-            competences: [
-                { code: 'C7.1', nom: 'Mettre en œuvre une démarche d’analyse', desc: 'Analyse d\'une situation donnée.' },
-                { code: 'C7.2', nom: 'Expliquer un phénomène ou un enjeu', desc: 'Lien avec la démarche de prévention.' },
-                { code: 'C7.3', nom: 'Proposer une solution pour résoudre un problème', desc: 'Réponse à une problématique de santé ou sécurité.' },
-                { code: 'C7.4', nom: 'Argumenter un choix et communiquer', desc: 'Écrit clair avec un vocabulaire adapté.' },
             ]
         }
     ]
@@ -164,19 +130,19 @@ const SAMPLE_SCENARIOS = [
         id: 'sample-1', titre: 'Réception de marchandises dangereuses', entreprise: 'DHL',
         niveau: 'seconde', problematique: 'Comment identifier et traiter les marchandises dangereuses lors de la réception tout en respectant la réglementation ADR ?',
         description: 'Scénario de mise en situation : Contrôle des documents et étiquetage ADR sur un quai de réception. Identification des pictogrammes et des risques professionnels.',
-        competences: ['C1.1', 'C1.2.1', 'C1.2.3', 'C7.1'], auteur: 'M. LOAIZA SOTO', date: '2025-01-15', duree: '2h'
+        competences: ['C1.1', 'C1.2', 'C1.2.1'], auteur: 'M. LOAIZA SOTO', date: '2025-01-15', duree: '2h'
     },
     {
         id: 'sample-2', titre: 'Préparation de commandes vocale', entreprise: 'Decathlon',
         niveau: 'seconde', problematique: 'Comment optimiser la préparation de commandes urgentes grâce au système de voice picking ?',
         description: 'Utilisation du système Voice Picking pour une commande multi-références urgente. Constitution de l\'unité de charge et simulation 3D.',
-        competences: ['C2.1.1', 'C2.2.1', 'C2.2.3', 'C6.1'], auteur: 'M. LOAIZA SOTO', date: '2025-01-20', duree: '4h'
+        competences: ['C2.1.1', 'C2.2', 'C2.2.1', 'C2.2.3'], auteur: 'M. LOAIZA SOTO', date: '2025-01-20', duree: '4h'
     },
     {
         id: 'sample-3', titre: 'Inventaire tournant annuel', entreprise: 'Amazon',
         niveau: 'seconde', problematique: 'Comment assurer l\'exactitude des stocks lors d\'un inventaire tournant tout en minimisant les interruptions d\'activité ?',
         description: 'Procédure de comptage et de régularisation des stocks en fin d\'exercice comptable. Mise à jour des données informatiques et calculs d\'écarts.',
-        competences: ['C1.6.1', 'C1.6.2', 'C6.3'], auteur: 'M. LOAIZA SOTO', date: '2025-02-01', duree: '3h'
+        competences: ['C1.6', 'C1.6.1', 'C1.6.2'], auteur: 'M. LOAIZA SOTO', date: '2025-02-01', duree: '3h'
     },
     {
         id: 'sample-4', titre: 'Gestion des stocks en flux tendu', entreprise: 'Carrefour',
@@ -188,19 +154,19 @@ const SAMPLE_SCENARIOS = [
         id: 'sample-5', titre: 'Optimisation de l\'entreposage frigorifique', entreprise: 'Leclerc',
         niveau: 'premiere', problematique: 'Comment réorganiser un entrepôt frigorifique pour optimiser la chaîne du froid et réduire l\'impact environnemental ?',
         description: 'Réorganisation des zones de stockage froid pour respecter la chaîne du froid. Proposition d\'axes d\'amélioration RSE.',
-        competences: ['C1.5.1', 'C3.3.1', 'C3.3.2', 'C7.2', 'C5.1'], auteur: 'M. LOAIZA SOTO', date: '2025-02-05', duree: '3h'
+        competences: ['C1.5', 'C1.5.1', 'C3.3', 'C3.3.1', 'C3.3.2'], auteur: 'M. LOAIZA SOTO', date: '2025-02-05', duree: '3h'
     },
     {
         id: 'sample-6', titre: 'Traitement des litiges réception', entreprise: 'DB Schenker',
         niveau: 'premiere', problematique: 'Comment gérer un litige de réception en respectant les procédures juridiques et commerciales ?',
         description: 'Gestion d\'un litige avec un fournisseur : émission de réserves, collecte des preuves et ouverture de dossier litige, analyse juridique simple.',
-        competences: ['C1.4.2', 'C2.6.2', 'C5.1', 'C5.3'], auteur: 'M. LOAIZA SOTO', date: '2025-02-10', duree: '2h'
+        competences: ['C1.4', 'C1.4.1', 'C2.6', 'C2.6.1', 'C2.6.2'], auteur: 'M. LOAIZA SOTO', date: '2025-02-10', duree: '2h'
     },
     {
         id: 'sample-7', titre: 'Organisation d\'une tournée de livraison', entreprise: 'Kuehne+Nagel',
         niveau: 'terminale', problematique: 'Comment organiser une tournée de livraison optimisée en respectant la réglementation sociale et les contraintes clients ?',
         description: 'Élaboration d\'un itinéraire optimisé, constitution du dossier de transport et gestion des temps de conduite (RSE).',
-        competences: ['C2.4.1', 'C2.4.2', 'C2.4.4', 'C6.2'], auteur: 'M. LOAIZA SOTO', date: '2025-02-12', duree: '4h'
+        competences: ['C2.4', 'C2.4.1', 'C2.4.2', 'C2.4.4'], auteur: 'M. LOAIZA SOTO', date: '2025-02-12', duree: '4h'
     },
     {
         id: 'sample-8', titre: 'Coordination d\'équipe logistique', entreprise: 'IKEA',
@@ -212,7 +178,7 @@ const SAMPLE_SCENARIOS = [
         id: 'sample-9', titre: 'Conduite d\'engins CACES R489', entreprise: 'Geodis',
         niveau: 'terminale', problematique: 'Comment conduire un chariot élévateur en toute sécurité tout en optimisant les manœuvres de stockage ?',
         description: 'Mise en service d\'un chariot élévateur cat. 3, vérifications de sécurité, manœuvres et opérations de fin de poste.',
-        competences: ['C4.1.2', 'C4.3.2', 'C4.4.1', 'C7.3'], auteur: 'M. LOAIZA SOTO', date: '2025-02-15', duree: '4h'
+        competences: ['C4.1', 'C4.1.2', 'C4.3', 'C4.3.2', 'C4.4', 'C4.4.1'], auteur: 'M. LOAIZA SOTO', date: '2025-02-15', duree: '4h'
     },
 ];
 
@@ -382,6 +348,8 @@ function searchScenarios(query) {
         (s.titre && s.titre.toLowerCase().includes(lowerQuery)) ||
         (s.description && s.description.toLowerCase().includes(lowerQuery)) ||
         (s.problematique && s.problematique.toLowerCase().includes(lowerQuery)) ||
+        (s.miseEnSituation && s.miseEnSituation.toLowerCase().includes(lowerQuery)) ||
+        (s.magasinPedagogique && s.magasinPedagogique.toLowerCase().includes(lowerQuery)) ||
         (s.entreprise && s.entreprise.toLowerCase().includes(lowerQuery)) ||
         (s.auteur && s.auteur.toLowerCase().includes(lowerQuery)) ||
         (s.competences && s.competences.some(c => c.toLowerCase().includes(lowerQuery)))
@@ -952,6 +920,16 @@ function renderFormulaire() {
                                 <textarea class="form-textarea" id="f-description" placeholder="Décrivez brièvement le contexte, les objectifs et le déroulement de la séance..." maxlength="500" oninput="updateCharCount()"></textarea>
                                 <div class="form-char-count"><span id="char-count">0</span> / 500 caractères</div>
                             </div>
+                            <div class="form-group">
+                                <label class="form-label" for="f-mise-en-situation">Mise en situation</label>
+                                <textarea class="form-textarea" id="f-mise-en-situation" placeholder="Décrivez la mise en situation professionnelle : contexte, rôles des élèves, situation initiale..." maxlength="1000" oninput="updateCharCount('f-mise-en-situation', 'char-count-situation')"></textarea>
+                                <div class="form-char-count"><span id="char-count-situation">0</span> / 1000 caractères</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="f-magasin-pedagogique">Utilisation du magasin pédagogique</label>
+                                <textarea class="form-textarea" id="f-magasin-pedagogique" placeholder="Décrivez les ressources du magasin pédagogique nécessaires : matériel, documents, supports, consommables..." maxlength="800" oninput="updateCharCount('f-magasin-pedagogique', 'char-count-magasin')"></textarea>
+                                <div class="form-char-count"><span id="char-count-magasin">0</span> / 800 caractères</div>
+                            </div>
                         </div>
 
                         <!-- Competencies -->
@@ -981,7 +959,8 @@ function renderFormulaire() {
                             <ul>
                                 <li>Intégrez des documents "élèves" et "professeurs" séparés si possible.</li>
                                 <li>Mentionnez si le scénario nécessite des logiciels spécifiques (EBP, Odoo, WMS...).</li>
-                                <li>Décrivez le contexte professionnel de manière réaliste.</li>
+                                <li>Décrivez le contexte professionnel de manière réaliste dans la mise en situation.</li>
+                                <li>Détaillez les ressources du magasin pédagogique nécessaires (matériel, documents, supports).</li>
                                 <li>Précisez les prérequis nécessaires pour les élèves.</li>
                                 <li>Vérifiez que les logos d'entreprises sont utilisés à des fins pédagogiques.</li>
                             </ul>
@@ -1030,6 +1009,8 @@ function submitForm() {
     const duree = document.getElementById('f-duree')?.value.trim();
     const problematique = document.getElementById('f-problematique')?.value.trim();
     const description = document.getElementById('f-description')?.value.trim();
+    const miseEnSituation = document.getElementById('f-mise-en-situation')?.value.trim();
+    const magasinPedagogique = document.getElementById('f-magasin-pedagogique')?.value.trim();
     const checkboxes = document.querySelectorAll('input[name="competences"]:checked');
     const competences = Array.from(checkboxes).map(cb => cb.value);
     
@@ -1042,7 +1023,7 @@ function submitForm() {
     if (competences.length === 0) { alert('Veuillez sélectionner au moins une compétence.'); return; }
 
     console.log('[submitForm] Validation OK, appel de addScenario...');
-    const result = addScenario({ titre, entreprise, niveau, auteur, duree: duree || '2h', problematique, description, competences });
+    const result = addScenario({ titre, entreprise, niveau, auteur, duree: duree || '2h', problematique, description, miseEnSituation, magasinPedagogique, competences });
     
     if (result) {
         console.log('[submitForm] ✅ Scénario créé:', result.id);
@@ -1065,9 +1046,9 @@ function resetForm() {
     }
 }
 
-function updateCharCount() {
-    const textarea = document.getElementById('f-description');
-    const counter = document.getElementById('char-count');
+function updateCharCount(textareaId = 'f-description', counterId = 'char-count') {
+    const textarea = document.getElementById(textareaId);
+    const counter = document.getElementById(counterId);
     if (textarea && counter) {
         counter.textContent = textarea.value.length;
     }
@@ -1178,6 +1159,16 @@ function renderScenarioModal(scenario) {
                 <div class="modal-section">
                     <h3><span class="material-symbols-outlined">description</span> Description</h3>
                     <p class="modal-description">${escapeHtml(scenario.description || 'Aucune description disponible.')}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3><span class="material-symbols-outlined">theater_comedy</span> Mise en situation</h3>
+                    <p class="modal-mise-en-situation">${escapeHtml(scenario.miseEnSituation || 'Aucune mise en situation définie.')}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3><span class="material-symbols-outlined">inventory_2</span> Utilisation du magasin pédagogique</h3>
+                    <p class="modal-magasin">${escapeHtml(scenario.magasinPedagogique || 'Aucune ressource du magasin pédagogique spécifiée.')}</p>
                 </div>
                 
                 <div class="modal-section">
