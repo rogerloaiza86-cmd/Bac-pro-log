@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Stockage - Plateforme Logistique</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 900px; margin: 40px auto; padding: 20px; line-height: 1.6; }
+        h1 { color: #333; }
+        .section { background: #f5f5f5; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .success { color: #10b981; font-weight: bold; }
+        .error { color: #ef4444; font-weight: bold; }
+        .warning { color: #f59e0b; font-weight: bold; }
+        pre { background: #1e293b; color: #e2e8f0; padding: 15px; border-radius: 6px; overflow-x: auto; font-size: 12px; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; border-radius: 6px; border: 1px solid #ccc; }
+        button:hover { background: #e5e5e5; }
+        .log { font-family: monospace; font-size: 12px; margin: 2px 0; }
+        .test-result { padding: 10px; margin: 10px 0; border-radius: 4px; }
+        .test-pass { background: #d1fae5; border-left: 4px solid #10b981; }
+        .test-fail { background: #fee2e2; border-left: 4px solid #ef4444; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { text-align: left; padding: 8px; border-bottom: 1px solid #ddd; }
+        th { background: #e5e5e5; }
+    </style>
+</head>
+<body>
+    <h1>🔧 Diagnostic de Stockage</h1>
+    <p>Cette page teste le fonctionnement du localStorage et identifie les problèmes potentiels.</p>
+    
+    <div class="section">
+        <h2>📊 État du Stockage</h2>
+        <div id="storage-status">Chargement...</div>
+    </div>
+
+    <div class="section">
+        <h2>🧪 Tests Automatiques</h2>
+        <div id="test-results">En cours...</div>
+    </div>
+
+    <div class="section">
+        <h2>🎮 Actions de Test</h2>
+        <button onclick="testWrite()">Tester Écriture</button>
+        <button onclick="testRead()">Tester Lecture</button>
+        <button onclick="testClear()">Vider le stockage</button>
+        <button onclick="addTestScenario()">Ajouter un scénario test</button>
+        <button onclick="showAllData()">Afficher toutes les données</button>
+        <div id="action-results"></div>
+    </div>
+
+    <div class="section">
+        <h2>📋 Données Actuelles</h2>
+        <div id="current-data">Chargement...</div>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'logistique2025_scenarios';
+        const STORAGE_VERSION_KEY = 'logistique2025_version';
+        const CURRENT_VERSION = '5.0';
+
+        const SAMPLE_SCENARIOS = [
+            {
+                id: 'sample-1', titre: 'Test - Réception de marchandises', entreprise: 'Test Co',
+                niveau: 'seconde', problematique: 'Test problématique',
+                description: 'Test description',
+                competences: ['C1.1'], auteur: 'Test', date: '2025-01-15', duree: '2h'
+            }
+        ];
+
+        function log(msg, type = 'info') {
+            console.log(`[${type}]`, msg);
+        }
+
+        function checkStorageAvailability() {
+            try {
+                const test = '__test__';
+                localStorage.setItem(test, test);
+                localStorage.removeItem(test);
+                return { available: true, mode: 'localStorage' };
+            } catch (e) {
+                return { available: false, error: e.message, mode: 'none' };
+            }
+        }
+
+        function getStorageInfo() {
+            let total = 0;
+            let items = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const value = localStorage.getItem(key);
+                const size = new Blob([value]).size;
+                total += size;
+                items.push({ key, size, length: value?.length || 0 });
+            }
+            return { total, items, count: localStorage.length };
+        }
+
+        function renderStorageStatus() {
+            const status = checkStorageAvailability();
+            const info = getStorageInfo();
+            
+            let html = '<table>';
+            html += '<tr><th>Propriété</th><th>Valeur</th></tr>';
+            html += `<tr><td>localStorage disponible</td><td class="${status.available ? 'success' : 'error'}">${status.available ? '✅ Oui' : '❌ Non'}</td></tr>`;
+            html += `<tr><td>Mode de stockage</td><td>${status.mode}</td></tr>`;
+            if (status.error) {
+                html += `<tr><td>Erreur</td><td class="error">${status.error}</td></tr>`;
+            }
+            html += `<tr><td>Nombre d'entrées</td><td>${info.count}</td></tr>`;
+            html += `<tr><td>Taille totale</td><td>${(info.total / 1024).toFixed(2)} KB</td></tr>`;
+            html += `<tr><td>Clefs présentes</td><td>${info.items.map(i => i.key).join(', ') || 'Aucune'}</td></tr>`;
+            html += '</table>';
+            
+            document.getElementById('storage-status').innerHTML = html;
+        }
+
+        function runTests() {
+            const results = [];
+            
+            // Test 1: Disponibilité
+            const status = checkStorageAvailability();
+            results.push({
+                name: 'localStorage disponible',
+                pass: status.available,
+                message: status.available ? 'Le localStorage est accessible' : `Erreur: ${status.error}`
+            });
+
+            // Test 2: Écriture
+            try {
+                localStorage.setItem('__test_write__', 'test_value_123');
+                const read = localStorage.getItem('__test_write__');
+                const pass = read === 'test_value_123';
+                results.push({
+                    name: 'Écriture/Lecture simple',
+                    pass: pass,
+                    message: pass ? 'Écriture et lecture OK' : `Valeur lue: ${read}`
+                });
+                localStorage.removeItem('__test_write__');
+            } catch (e) {
+                results.push({ name: 'Écriture/Lecture simple', pass: false, message: e.message });
+            }
+
+            // Test 3: Données applicatives
+            const hasAppData = localStorage.getItem(STORAGE_KEY) !== null;
+            results.push({
+                name: 'Données applicatives présentes',
+                pass: true, // Info, pas un échec
+                message: hasAppData ? 'Des scénarios sont stockés' : 'Aucun scénario stocké (première visite ?)',
+                info: true
+            });
+
+            // Test 4: Version
+            const version = localStorage.getItem(STORAGE_VERSION_KEY);
+            results.push({
+                name: 'Version du stockage',
+                pass: version === CURRENT_VERSION,
+                message: version ? `Version: ${version} (attendue: ${CURRENT_VERSION})` : 'Aucune version définie',
+                info: version !== CURRENT_VERSION
+            });
+
+            // Test 5: JSON valide
+            try {
+                const data = localStorage.getItem(STORAGE_KEY);
+                if (data) {
+                    const parsed = JSON.parse(data);
+                    const isArray = Array.isArray(parsed);
+                    results.push({
+                        name: 'Données JSON valides',
+                        pass: isArray,
+                        message: isArray ? `Tableau de ${parsed.length} éléments` : 'Les données ne sont pas un tableau'
+                    });
+                }
+            } catch (e) {
+                results.push({ name: 'Données JSON valides', pass: false, message: `JSON invalide: ${e.message}` });
+            }
+
+            // Afficher les résultats
+            let html = '';
+            results.forEach(r => {
+                const cssClass = r.info ? 'test-pass' : (r.pass ? 'test-pass' : 'test-fail');
+                const icon = r.info ? 'ℹ️' : (r.pass ? '✅' : '❌');
+                html += `<div class="test-result ${cssClass}">${icon} <strong>${r.name}</strong><br>${r.message}</div>`;
+            });
+            document.getElementById('test-results').innerHTML = html;
+        }
+
+        function testWrite() {
+            try {
+                localStorage.setItem('__manual_test__', JSON.stringify({ test: true, time: Date.now() }));
+                showActionResult('✅ Écriture réussie', 'success');
+                refreshAll();
+            } catch (e) {
+                showActionResult(`❌ Échec: ${e.message}`, 'error');
+            }
+        }
+
+        function testRead() {
+            try {
+                const data = localStorage.getItem('__manual_test__');
+                showActionResult(data ? `✅ Lu: ${data}` : 'ℹ️ Aucune donnée', 'success');
+            } catch (e) {
+                showActionResult(`❌ Erreur: ${e.message}`, 'error');
+            }
+        }
+
+        function testClear() {
+            if (confirm('Vider TOUT le localStorage ?')) {
+                localStorage.clear();
+                showActionResult('🗑️ Stockage vidé', 'warning');
+                refreshAll();
+            }
+        }
+
+        function addTestScenario() {
+            try {
+                const existing = localStorage.getItem(STORAGE_KEY);
+                let scenarios = existing ? JSON.parse(existing) : [];
+                if (!Array.isArray(scenarios)) scenarios = [];
+                
+                const newScenario = {
+                    id: 'test-' + Date.now(),
+                    titre: 'Scénario Test ' + new Date().toLocaleTimeString(),
+                    entreprise: 'Test Auto',
+                    niveau: 'seconde',
+                    problematique: 'Test de sauvegarde',
+                    description: 'Ce scénario a été créé pour tester le stockage',
+                    competences: ['C1.1'],
+                    auteur: 'Système',
+                    date: new Date().toISOString().split('T')[0],
+                    duree: '1h'
+                };
+                
+                scenarios.push(newScenario);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(scenarios));
+                localStorage.setItem(STORAGE_VERSION_KEY, CURRENT_VERSION);
+                
+                showActionResult(`✅ Scénario ajouté (total: ${scenarios.length})`, 'success');
+                refreshAll();
+            } catch (e) {
+                showActionResult(`❌ Erreur: ${e.message}`, 'error');
+            }
+        }
+
+        function showAllData() {
+            const info = getStorageInfo();
+            let html = '<h3>Toutes les entrées localStorage:</h3>';
+            info.items.forEach(item => {
+                html += `<h4>${item.key} (${item.size} bytes)</h4>`;
+                try {
+                    const parsed = JSON.parse(localStorage.getItem(item.key));
+                    html += `<pre>${JSON.stringify(parsed, null, 2).substring(0, 2000)}${JSON.stringify(parsed).length > 2000 ? '...' : ''}</pre>`;
+                } catch {
+                    html += `<pre>${localStorage.getItem(item.key)?.substring(0, 500)}</pre>`;
+                }
+            });
+            document.getElementById('current-data').innerHTML = html;
+        }
+
+        function showActionResult(msg, type) {
+            const div = document.getElementById('action-results');
+            div.innerHTML = `<div class="${type}">${msg}</div>`;
+            setTimeout(() => div.innerHTML = '', 3000);
+        }
+
+        function refreshAll() {
+            renderStorageStatus();
+            runTests();
+            showAllData();
+        }
+
+        // Initialisation
+        refreshAll();
+    </script>
+</body>
+</html>

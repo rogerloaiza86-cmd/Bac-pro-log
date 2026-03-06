@@ -277,6 +277,7 @@ function saveScenarios(scenarios) {
         const json = JSON.stringify(scenarios);
         console.log('[saveScenarios] JSON length:', json.length, 'caractères');
         localStorage.setItem(STORAGE_KEY, json);
+        localStorage.setItem(STORAGE_VERSION_KEY, CURRENT_VERSION);  // ← CORRECTION : Définir la version
         console.log('[saveScenarios] ✅ Sauvegarde réussie');
     } catch (error) {
         console.error('[saveScenarios] ❌ Erreur:', error);
@@ -310,8 +311,13 @@ function addScenario(scenario) {
         saveScenarios(scenarios);
         
         // Vérification immédiate
-        const verify = localStorage.getItem(STORAGE_KEY);
-        const parsed = JSON.parse(verify);
+        let parsed;
+        if (LOCAL_STORAGE_AVAILABLE) {
+            const verify = localStorage.getItem(STORAGE_KEY);
+            parsed = JSON.parse(verify);
+        } else {
+            parsed = MEMORY_STORAGE;
+        }
         console.log('%c[addScenario] Vérification après sauvegarde:', 'color: #137fec;', parsed.length, 'scénarios');
         
         if (parsed.find(s => s.id === newScenario.id)) {
