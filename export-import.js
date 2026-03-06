@@ -70,8 +70,7 @@ function importScenarios(file) {
                     competences: s.competences
                         .filter(c => typeof c === 'string')
                         .map(c => c.substring(0, 20))
-                        .filter(c => c.match(/^C[1-4]\.[0-9]+(
-                        .[0-9]+)?$/)), // Validation format compétence
+                        .filter(c => c.match(/^C[1-4]\.[0-9]+(\.[0-9]+)?$/)), // Validation format compétence
                     auteur: String(s.auteur || 'Importé').substring(0, 100),
                     date: new Date().toISOString().split('T')[0],
                     duree: String(s.duree || '2h').substring(0, 20)
