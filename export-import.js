@@ -20,22 +20,75 @@ function exportScenarios() {
 }
 
 function importScenarios(file) {
+    // Vérifier la taille du fichier (max 5 Mo)
+    const MAX_FILE_SIZE = 5 * 1024 * 1024;
+    if (file.size > MAX_FILE_SIZE) {
+        alert('Fichier trop volumineux. Limite: 5 Mo');
+        return;
+    }
+    
     const reader = new FileReader();
     reader.onload = function(e) {
         try {
             const imported = JSON.parse(e.target.result);
-            if (Array.isArray(imported)) {
-                if (confirm(`Importer ${imported.length} scénarios ? Cela écrasera les scénarios existants.`)) {
-                    saveScenarios(imported);
-                    showToast(`${imported.length} scénarios importés avec succès !`);
-                    setTimeout(() => location.reload(), 1000);
+            if (!Array.isArray(imported)) {
+                alert('Format de fichier invalide : un tableau est attendu');
+                return;
+            }
+            
+            // Limiter le nombre de scénarios
+            const MAX_SCENARIOS = 100;
+            if (imported.length > MAX_SCENARIOS) {
+                alert(`Trop de scénarios. Limite: ${MAX_SCENARIOS}`);
+                return;
+            }
+            
+            // Valider et nettoyer chaque scénario
+            const validNiveaux = ['seconde', 'premiere', 'terminale'];
+            const cleaned = imported.map((s, index) => {
+                // Validation des champs requis
+                if (!s.titre || typeof s.titre !== 'string') {
+                    throw new Error(`Scénario ${index + 1}: titre invalide`);
                 }
-            } else {
-                alert('Format de fichier invalide');
+                if (!s.niveau || !validNiveaux.includes(s.niveau)) {
+                    throw new Error(`Scénario ${index + 1}: niveau invalide`);
+                }
+                if (!Array.isArray(s.competences)) {
+                    throw new Error(`Scénario ${index + 1}: compétences invalides`);
+                }
+                
+                // Nettoyage des données
+                return {
+                    id: 'import-' + Date.now() + '-' + index,
+                    titre: String(s.titre).substring(0, 200),
+                    entreprise: String(s.entreprise || '').substring(0, 100),
+                    niveau: s.niveau,
+                    problematique: String(s.problematique || '').substring(0, 500),
+                    description: String(s.description || '').substring(0, 2000),
+                    miseEnSituation: String(s.miseEnSituation || '').substring(0, 1000),
+                    magasinPedagogique: String(s.magasinPedagogique || '').substring(0, 800),
+                    competences: s.competences
+                        .filter(c => typeof c === 'string')
+                        .map(c => c.substring(0, 20))
+                        .filter(c => c.match(/^C[1-4]\.[0-9]+(
+                        .[0-9]+)?$/)), // Validation format compétence
+                    auteur: String(s.auteur || 'Importé').substring(0, 100),
+                    date: new Date().toISOString().split('T')[0],
+                    duree: String(s.duree || '2h').substring(0, 20)
+                };
+            });
+            
+            if (confirm(`Importer ${cleaned.length} scénarios ? Cela écrasera les scénarios existants.`)) {
+                saveScenarios(cleaned);
+                showToast(`${cleaned.length} scénarios importés avec succès !`);
+                setTimeout(() => location.reload(), 1000);
             }
         } catch (err) {
             alert('Erreur lors de l\'import: ' + err.message);
         }
+    };
+    reader.onerror = function() {
+        alert('Erreur lors de la lecture du fichier');
     };
     reader.readAsText(file);
 }

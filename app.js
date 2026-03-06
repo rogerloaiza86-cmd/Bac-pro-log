@@ -271,6 +271,13 @@ function loadScenarios() {
 function saveScenarios(scenarios) {
     console.log('[saveScenarios] Sauvegarde de', scenarios.length, 'scénarios');
     
+    // Vérifier le nombre maximum de scénarios
+    const MAX_SCENARIOS = 100;
+    if (scenarios.length > MAX_SCENARIOS) {
+        alert(`Nombre maximum de scénarios atteint (${MAX_SCENARIOS}). Veuillez en supprimer avant d'en ajouter de nouveaux.`);
+        throw new Error('Maximum scenarios exceeded');
+    }
+    
     // Utiliser le stockage mémoire si localStorage n'est pas disponible
     if (!LOCAL_STORAGE_AVAILABLE) {
         MEMORY_STORAGE = [...scenarios];
@@ -280,6 +287,14 @@ function saveScenarios(scenarios) {
     
     try {
         const json = JSON.stringify(scenarios);
+        
+        // Vérifier la taille (limite ~5 Mo pour laisser de la marge)
+        const MAX_SIZE = 5 * 1024 * 1024;
+        if (json.length > MAX_SIZE) {
+            alert('Les données sont trop volumineuses. Limite: 5 Mo. Veuillez exporter et supprimer des scénarios.');
+            throw new Error('Data size exceeded');
+        }
+        
         console.log('[saveScenarios] JSON length:', json.length, 'caractères');
         localStorage.setItem(STORAGE_KEY, json);
         localStorage.setItem(STORAGE_VERSION_KEY, CURRENT_VERSION);  // ← CORRECTION : Définir la version
@@ -287,7 +302,7 @@ function saveScenarios(scenarios) {
     } catch (error) {
         console.error('[saveScenarios] ❌ Erreur:', error);
         if (error.name === 'QuotaExceededError') {
-            alert('Le stockage local est plein. Impossible d\'enregistrer le scénario.');
+            alert('Le stockage local est plein. Impossible d\'enregistrer le scénario. Utilisez le bouton "Exporter JSON" pour sauvegarder.');
         } else {
             alert('Erreur de sauvegarde: ' + error.message);
         }
@@ -436,7 +451,7 @@ function updateActiveNav() {
 // =============================================
 function showToast(message) {
     const toast = document.getElementById('toast');
-    toast.innerHTML = `<span class="material-symbols-outlined">check_circle</span>${message}`;
+    toast.innerHTML = `<span class="material-symbols-outlined">check_circle</span>${escapeHtml(message)}`;
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 3500);
 }
@@ -450,7 +465,7 @@ function renderScenarioCard(scenario) {
         if (!info) return '';
         // Utilisation de la couleur du bloc dynamiquement
         const color = info.bloc.couleur;
-        return `<span class="tag" style="background: ${color}10; color: ${color}; border-color: ${color}30;">${code}</span>`;
+        return `<span class="tag" style="background: ${color}10; color: ${color}; border-color: ${color}30;">${escapeHtml(code)}</span>`;
     }).join('');
 
     const blocInfo = getCompetencyInfo(scenario.competences[0]);
