@@ -662,6 +662,38 @@ ul { list-style: none; }
 .footer-links-col a:hover { color: var(--primary); }
 .footer-bottom { border-top: 1px solid var(--border); padding-top: 20px; text-align: center; font-size: 0.8rem; color: var(--text-muted); }
 
+/* ---------- SUPABASE STATUS BADGE ---------- */
+.supabase-status {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 10px; padding: 5px 12px;
+    border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 500;
+    border: 1px solid transparent; transition: all var(--transition);
+}
+.supabase-status__dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.supabase-status--checking {
+    background: var(--surface-alt); border-color: var(--border); color: var(--text-muted);
+}
+.supabase-status--checking .supabase-status__dot {
+    background: var(--text-muted); animation: supabase-pulse 1.2s ease-in-out infinite;
+}
+.supabase-status--connected {
+    background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.25); color: #059669;
+}
+.supabase-status--connected .supabase-status__dot { background: var(--success); }
+.supabase-status--local {
+    background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.25); color: #d97706;
+}
+.supabase-status--local .supabase-status__dot { background: var(--warning); }
+.supabase-status--error {
+    background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.25); color: #dc2626;
+}
+.supabase-status--error .supabase-status__dot { background: var(--danger); }
+@keyframes supabase-pulse {
+    0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+}
+
 /* ---------- UTILITIES ---------- */
 .text-center { text-align: center; }
 .text-primary-color { color: var(--primary); }

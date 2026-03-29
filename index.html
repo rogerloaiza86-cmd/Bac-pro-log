@@ -85,6 +85,10 @@
                 </div>
                 <div class="footer-bottom">
                     <p>© 2025 Plateforme Bac Pro Logistique. Tous droits réservés.</p>
+                    <div id="supabase-status" class="supabase-status supabase-status--checking">
+                        <span class="supabase-status__dot"></span>
+                        <span class="supabase-status__label">Vérification de la connexion…</span>
+                    </div>
                 </div>
             </div>
         </footer>
@@ -93,6 +97,7 @@
     <!-- Toast Notification -->
     <div id="toast" class="toast"></div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <script src="app.js"></script>
     <script src="export-import.js"></script>
 </body>

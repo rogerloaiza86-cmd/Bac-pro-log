@@ -1277,4 +1277,46 @@ window.addEventListener('DOMContentLoaded', () => {
         const header = document.getElementById('main-header');
         if (header) header.classList.toggle('scrolled', window.scrollY > 10);
     });
+
+    // Supabase connection check
+    checkSupabaseConnection();
 });
+
+// =============================================
+// SUPABASE CONNECTION CHECK
+// =============================================
+async function checkSupabaseConnection() {
+    const badge = document.getElementById('supabase-status');
+    if (!badge) return;
+
+    const label = badge.querySelector('.supabase-status__label');
+
+    const supabaseUrl = window.ENV?.SUPABASE_URL;
+    const supabaseKey = window.ENV?.SUPABASE_ANON_KEY;
+
+    // Not configured — placeholder values or missing
+    if (!supabaseUrl || !supabaseKey ||
+        supabaseUrl === 'https://votre-projet.supabase.co' ||
+        supabaseKey === 'votre-clé-anon') {
+        badge.className = 'supabase-status supabase-status--local';
+        label.textContent = 'Mode localStorage (Supabase non configuré)';
+        return;
+    }
+
+    // Try to connect
+    try {
+        const client = window.supabase?.createClient(supabaseUrl, supabaseKey);
+        if (!client) throw new Error('Client Supabase indisponible');
+
+        // Lightweight health-check via the Supabase auth health endpoint
+        const res = await fetch(supabaseUrl + '/auth/v1/health');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+
+        badge.className = 'supabase-status supabase-status--connected';
+        label.textContent = 'Connecté à Supabase ✓';
+    } catch (err) {
+        badge.className = 'supabase-status supabase-status--error';
+        label.textContent = 'Erreur de connexion Supabase';
+        console.warn('[Supabase] Erreur de connexion:', err);
+    }
+}
