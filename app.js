@@ -481,7 +481,7 @@ function renderScenarioCard(scenario) {
         <div class="card" data-scenario-id="${scenario.id}" onclick="openScenarioModal('${scenario.id}')">
             <div class="card-img" style="background-image: url('${getRandomImage()}')">
                 <span class="card-img-badge" style="background:${blocColor}">${blocLabel}</span>
-                <span class="card-img-time"><span class="material-symbols-outlined">schedule</span>${scenario.duree}</span>
+                <span class="card-img-time"><span class="material-symbols-outlined">schedule</span>${escapeHtml(scenario.duree)}</span>
             </div>
             <div class="card-body">
                 <h4 class="card-title">${escapeHtml(scenario.titre)}</h4>
@@ -493,7 +493,7 @@ function renderScenarioCard(scenario) {
                 </div>
                 <div class="card-footer">
                     <div class="card-author">
-                        <div class="card-author-avatar">${initials}</div>
+                        <div class="card-author-avatar">${escapeHtml(initials)}</div>
                         <span>${escapeHtml(scenario.auteur)}</span>
                     </div>
                     <div class="card-actions">
@@ -617,7 +617,7 @@ function renderTopContributors() {
         return `
             <div class="contributor-item">
                 <div class="contributor-rank">${showMedal ? `<span class="medal" style="background:${medalColor}">${rank}</span>` : rank}</div>
-                <div class="contributor-avatar">${initials}</div>
+                <div class="contributor-avatar">${escapeHtml(initials)}</div>
                 <div class="contributor-info">
                     <div class="contributor-name">${escapeHtml(c.name)}</div>
                     <div class="contributor-count">${c.count} scénario${c.count > 1 ? 's' : ''}</div>
@@ -1125,7 +1125,7 @@ function renderScenarioModal(scenario) {
         const color = info.bloc.couleur;
         return `
             <div class="modal-competency" style="border-left-color: ${color}">
-                <div class="modal-competency-code" style="color: ${color}">${code}</div>
+                <div class="modal-competency-code" style="color: ${color}">${escapeHtml(code)}</div>
                 <div class="modal-competency-name">${info.nom}</div>
                 <div class="modal-competency-desc">${info.desc}</div>
             </div>
@@ -1157,7 +1157,7 @@ function renderScenarioModal(scenario) {
                     </span>
                     <span class="modal-badge" style="background: rgba(107, 114, 128, 0.9)">
                         <span class="material-symbols-outlined">schedule</span>
-                        ${scenario.duree}
+                        ${escapeHtml(scenario.duree)}
                     </span>
                     ${scenario.entreprise ? `
                     <span class="modal-badge" style="background: rgba(147, 51, 234, 0.9)">
@@ -1169,10 +1169,10 @@ function renderScenarioModal(scenario) {
                 <h2 class="modal-title">${escapeHtml(scenario.titre)}</h2>
                 <div class="modal-meta">
                     <div class="modal-author">
-                        <div class="modal-author-avatar">${initials}</div>
+                        <div class="modal-author-avatar">${escapeHtml(initials)}</div>
                         <span>${escapeHtml(scenario.auteur)}</span>
                     </div>
-                    <span class="modal-date">Créé le ${scenario.date}</span>
+                    <span class="modal-date">Créé le ${escapeHtml(scenario.date)}</span>
                 </div>
             </div>
             
