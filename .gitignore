@@ -4,3 +4,6 @@ Thumbs.db
 *.log
 .vscode/
 .antigravity/
+
+# Local Claude Code settings (contains secrets, never commit)
+.claude/settings.local.json

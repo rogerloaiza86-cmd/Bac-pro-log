@@ -12,6 +12,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <!-- Apply saved/system theme before paint to avoid a flash -->
+    <script>
+        (function () {
+            try {
+                var stored = localStorage.getItem('theme');
+                var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.setAttribute('data-theme', stored || (sysDark ? 'dark' : 'light'));
+            } catch (e) { /* localStorage may be unavailable */ }
+        })();
+    </script>
 </head>
 
 <body>
@@ -31,6 +41,9 @@
                     <a href="#terminale" class="nav-link" data-page="terminale">Terminale</a>
                 </nav>
                 <div class="header-actions">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Thème clair / sombre">
+                        <span class="material-symbols-outlined">dark_mode</span>
+                    </button>
                     <button class="btn btn-primary btn-sm" onclick="navigateTo('formulaire')">
                         <span class="material-symbols-outlined">add</span>
                         <span class="btn-label">Contribuer</span>
