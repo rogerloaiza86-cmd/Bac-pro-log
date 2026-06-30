@@ -1250,6 +1250,7 @@ function renderPage() {
 
     updateActiveNav();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    initPageAnimations();
 }
 
 // =============================================
@@ -1278,3 +1279,108 @@ window.addEventListener('DOMContentLoaded', () => {
         if (header) header.classList.toggle('scrolled', window.scrollY > 10);
     });
 });
+
+// =============================================
+// MOTION ENGINE — scroll reveal, counters, progress
+// =============================================
+function prefersReducedMotion() {
+    return window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+// Orchestrate all entrance animations for the freshly rendered page.
+function initPageAnimations() {
+    const scope = document.getElementById('page-container');
+    if (!scope) return;
+
+    // Reduced motion: skip motion, just show final values immediately.
+    if (prefersReducedMotion()) return;
+
+    initScrollReveal(scope);
+    animateCounters(scope);
+    animateProgressBars(scope);
+}
+
+// Tag elements with .reveal + stagger delay, then reveal on intersection.
+function initScrollReveal(scope) {
+    // [selector, staggerStepMs, variantClass]
+    const groups = [
+        ['.hero-badge, .hero h1, .hero-desc, .hero-actions, .hero-stats', 90, ''],
+        ['.section-header', 0, ''],
+        ['.stats-grid .stat-card', 80, 'reveal-zoom'],
+        ['.scenarios-grid > .card, .scenarios-grid > .card-add', 55, 'reveal-zoom'],
+        ['.value-grid .value-card', 90, ''],
+        ['.how-image', 0, 'reveal-right'],
+        ['.how-step', 110, 'reveal-left'],
+        ['.contributors-header, .contributors-list .contributor-item', 70, ''],
+        ['.quote-content', 0, ''],
+        ['.cta-section h2, .cta-section p, .cta-actions', 80, ''],
+        ['.parcours-hero', 0, ''],
+        ['.filter-bar', 0, ''],
+        ['.form-card, .tips-card', 110, ''],
+        ['.empty-state', 0, ''],
+    ];
+
+    const supportsIO = 'IntersectionObserver' in window;
+    const io = supportsIO ? new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }) : null;
+
+    groups.forEach(([selector, step, variant]) => {
+        const els = scope.querySelectorAll(selector);
+        els.forEach((el, i) => {
+            el.classList.add('reveal');
+            if (variant) el.classList.add(variant);
+            if (step) el.style.setProperty('--reveal-delay', (i * step) + 'ms');
+            if (io) {
+                io.observe(el);
+            } else {
+                el.classList.add('is-visible'); // graceful fallback
+            }
+        });
+    });
+}
+
+// Count-up animation for KPI values, preserving any suffix markup.
+function animateCounters(scope) {
+    const values = scope.querySelectorAll('.stat-card-value, .hero-stat-value');
+    values.forEach(el => {
+        const node = el.firstChild;
+        if (!node || node.nodeType !== 3) return; // must start with a text node
+        const match = node.nodeValue.trim().match(/^(\d[\d\s]*)(.*)$/);
+        if (!match) return;
+        const target = parseInt(match[1].replace(/\s/g, ''), 10);
+        const suffix = match[2] || '';
+        if (!isFinite(target) || target <= 0) return;
+
+        const duration = 950;
+        let startTime = null;
+        function tick(now) {
+            if (startTime === null) startTime = now;
+            const p = Math.min(1, (now - startTime) / duration);
+            const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+            node.nodeValue = Math.round(target * eased) + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+            else node.nodeValue = target + suffix;
+        }
+        node.nodeValue = '0' + suffix;
+        requestAnimationFrame(tick);
+    });
+}
+
+// Animate progress bar widths from 0 to their target (CSS transition handles the tween).
+function animateProgressBars(scope) {
+    scope.querySelectorAll('.progress-bar-fill').forEach(bar => {
+        const target = bar.style.width;
+        if (!target) return;
+        bar.style.width = '0%';
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            bar.style.width = target;
+        }));
+    });
+}
