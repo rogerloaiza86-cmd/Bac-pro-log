@@ -1167,3 +1167,86 @@ ul { list-style: none; }
 .competency-item:active { transform: scale(0.99); }
 .competency-item { transition: border-color var(--transition), transform var(--transition), background var(--transition); }
 .competency-item:hover { background: rgba(19,127,236,0.03); }
+
+/* ============================================
+   SCENARIO CARD — visual upgrade
+   ============================================ */
+.card { box-shadow: var(--shadow-sm); position: relative; }
+/* Top gradient accent that draws in on hover */
+.card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--primary), #6366f1);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-slow);
+    z-index: 3;
+}
+.card:hover::before { transform: scaleX(1); }
+.card:hover {
+    box-shadow: 0 20px 42px -14px var(--primary-glow), var(--shadow-lg);
+}
+.card-img-badge {
+    backdrop-filter: blur(6px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.28);
+}
+.card-author-avatar { transition: transform var(--transition); }
+.card:hover .card-author-avatar { transform: scale(1.08); }
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+html[data-theme="dark"] {
+    --primary: #3b9bff;
+    --primary-dark: #2b7fe0;
+    --primary-glow: rgba(59,155,255,0.30);
+    --bg-light: #0b1220;
+    --bg-dark: #060b14;
+    --surface: #131c2b;
+    --surface-alt: #1b2536;
+    --border: #26334a;
+    --text-primary: #e8edf4;
+    --text-secondary: #a6b6c9;
+    --text-muted: #71839a;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.45), 0 1px 2px rgba(0,0,0,0.35);
+    --shadow: 0 4px 6px -1px rgba(0,0,0,0.55), 0 2px 4px -2px rgba(0,0,0,0.45);
+    --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.6), 0 8px 10px -6px rgba(0,0,0,0.5);
+    --shadow-xl: 0 20px 40px -10px rgba(0,0,0,0.7);
+}
+/* Surfaces that hardcode a light value need an explicit dark override */
+html[data-theme="dark"] .header { background: rgba(15,23,33,0.82); }
+html[data-theme="dark"] .modal-close { background: rgba(30,41,59,0.92); color: var(--text-secondary); }
+html[data-theme="dark"] .modal-close:hover { background: var(--surface-alt); color: var(--text-primary); }
+html[data-theme="dark"] .how-image-card { background: rgba(19,28,43,0.92); }
+html[data-theme="dark"] ::-webkit-scrollbar-thumb { background: #334155; }
+html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover { background: #475569; }
+/* Smooth cross-fade when switching theme */
+body { transition: background-color 0.4s ease, color 0.4s ease; }
+.header, .card, .stat-card, .value-card, .form-card, .footer,
+.filter-bar, .competency-item, .modal-content {
+    transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, box-shadow var(--transition);
+}
+
+/* ---------- Theme toggle button ---------- */
+.theme-toggle {
+    display: flex; align-items: center; justify-content: center;
+    padding: 8px; border-radius: var(--radius);
+    color: var(--text-secondary); transition: all var(--transition);
+}
+.theme-toggle:hover { background: var(--surface-alt); color: var(--primary); }
+.theme-toggle .material-symbols-outlined { font-size: 20px; transition: transform var(--transition-slow); }
+.theme-toggle:hover .material-symbols-outlined { transform: rotate(25deg); }
+
+/* ============================================
+   PAGE TRANSITIONS (directional, enter-only)
+   ============================================ */
+.page.page-forward { animation: pageInRight 0.42s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.page.page-back    { animation: pageInLeft  0.42s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes pageInRight {
+    from { opacity: 0; transform: translateX(42px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes pageInLeft {
+    from { opacity: 0; transform: translateX(-42px); }
+    to   { opacity: 1; transform: translateX(0); }
+}

@@ -1249,8 +1249,24 @@ function renderPage() {
     }
 
     updateActiveNav();
+    applyPageTransition(container, page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     initPageAnimations();
+}
+
+// Directional page transition: forward = slide in from right, back = from left.
+const NAV_ORDER = ['accueil', 'seconde', 'premiere', 'terminale', 'formulaire'];
+let lastRenderedPage = null;
+function applyPageTransition(container, page) {
+    const wrapper = container.firstElementChild;
+    if (!wrapper) return;
+    if (lastRenderedPage !== null && !prefersReducedMotion()) {
+        const from = NAV_ORDER.indexOf(lastRenderedPage);
+        const to = NAV_ORDER.indexOf(page);
+        const back = from !== -1 && to !== -1 && to < from;
+        wrapper.classList.add(back ? 'page-back' : 'page-forward');
+    }
+    lastRenderedPage = page;
 }
 
 // =============================================
@@ -1278,7 +1294,33 @@ window.addEventListener('DOMContentLoaded', () => {
         const header = document.getElementById('main-header');
         if (header) header.classList.toggle('scrolled', window.scrollY > 10);
     });
+
+    // Theme toggle (light / dark)
+    initThemeToggle();
 });
+
+// =============================================
+// THEME (light / dark)
+// =============================================
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const icon = document.querySelector('#theme-toggle .material-symbols-outlined');
+    if (icon) icon.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
+}
+
+function initThemeToggle() {
+    // The inline <head> script already set data-theme; sync the icon to it.
+    const current = document.documentElement.getAttribute('data-theme') || 'light';
+    applyTheme(current);
+
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+        const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+        try { localStorage.setItem('theme', next); } catch (e) { /* ignore */ }
+    });
+}
 
 // =============================================
 // MOTION ENGINE — scroll reveal, counters, progress
