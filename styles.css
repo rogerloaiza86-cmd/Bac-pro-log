@@ -1250,3 +1250,103 @@ body { transition: background-color 0.4s ease, color 0.4s ease; }
     from { opacity: 0; transform: translateX(-42px); }
     to   { opacity: 1; transform: translateX(0); }
 }
+
+/* ============================================
+   SUPABASE AUTH & LOADING
+   ============================================ */
+
+/* Loading state */
+.loading-state {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 40vh; gap: 16px; color: var(--text-muted);
+}
+.spinner {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 3px solid var(--border);
+    border-top-color: var(--primary);
+    animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* User menu */
+.user-menu { position: relative; }
+.user-avatar-btn {
+    display: flex; align-items: center; gap: 8px;
+    padding: 4px 8px 4px 4px; border-radius: var(--radius-full);
+    background: var(--surface-alt); border: 1px solid var(--border);
+    transition: all var(--transition);
+}
+.user-avatar-btn:hover { background: var(--border); }
+.user-avatar {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-weight: 600; font-size: 0.75rem;
+}
+.user-name {
+    font-size: 0.85rem; font-weight: 500; color: var(--text-primary);
+    max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.user-dropdown {
+    position: absolute; top: calc(100% + 8px); right: 0;
+    min-width: 200px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); box-shadow: var(--shadow-xl);
+    display: none; flex-direction: column; padding: 8px 0; z-index: 200;
+}
+.user-dropdown.open { display: flex; }
+.user-dropdown-email {
+    padding: 8px 16px; font-size: 0.75rem; color: var(--text-muted);
+    border-bottom: 1px solid var(--border); word-break: break-all;
+}
+.user-dropdown-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 16px; font-size: 0.9rem; color: var(--text-primary);
+    background: none; border: none; width: 100%; text-align: left; cursor: pointer;
+    transition: background var(--transition);
+}
+.user-dropdown-item:hover { background: var(--surface-alt); }
+.user-dropdown-logout { color: var(--danger); }
+
+/* Auth modal */
+.auth-modal-content { max-width: 420px; }
+.auth-modal-header {
+    padding: 28px 28px 12px; text-align: center;
+    background: linear-gradient(135deg, var(--primary)15, var(--primary)05);
+    border-bottom: 1px solid var(--border);
+}
+.auth-modal-header h2 { font-size: 1.5rem; margin-bottom: 6px; }
+.auth-modal-header p { font-size: 0.9rem; color: var(--text-secondary); }
+#auth-form { padding: 24px 28px; }
+.auth-modal-footer {
+    padding: 0 28px 28px; display: flex; justify-content: center;
+}
+.btn-text {
+    font-size: 0.85rem; color: var(--primary); font-weight: 500;
+    background: none; border: none; cursor: pointer; padding: 8px 12px;
+}
+.btn-text:hover { text-decoration: underline; }
+
+/* Form info card */
+.form-info-card {
+    border-radius: var(--radius-lg); padding: 16px; margin-bottom: 24px;
+    background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.2);
+    color: var(--text-secondary); font-size: 0.95rem;
+}
+.form-info-card a { color: var(--primary); font-weight: 600; }
+
+/* Danger button */
+.btn-danger {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--danger); color: #fff; padding: 8px 16px;
+    border-radius: var(--radius); font-weight: 500; transition: all var(--transition);
+}
+.btn-danger:hover { background: #dc2626; transform: translateY(-1px); }
+
+/* Dark mode overrides */
+html[data-theme="dark"] .user-avatar-btn { background: var(--surface-alt); border-color: var(--border); }
+html[data-theme="dark"] .user-dropdown { background: var(--surface); border-color: var(--border); }
+html[data-theme="dark"] .user-dropdown-email { border-color: var(--border); }
+html[data-theme="dark"] .form-info-card { background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.25); }
+

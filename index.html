@@ -12,6 +12,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="supabase-config.js" defer></script>
+    <script src="export-import.js" defer></script>
+    <script src="app.js" defer></script>
     <!-- Apply saved/system theme before paint to avoid a flash -->
     <script>
         (function () {
@@ -44,11 +49,12 @@
                     <button class="theme-toggle" id="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Thème clair / sombre">
                         <span class="material-symbols-outlined">dark_mode</span>
                     </button>
-                    <button class="btn btn-primary btn-sm" onclick="navigateTo('formulaire')">
+                    <div id="auth-container"></div>
+                    <button class="btn btn-primary btn-sm" data-action="navigate" data-page="formulaire">
                         <span class="material-symbols-outlined">add</span>
                         <span class="btn-label">Contribuer</span>
                     </button>
-                    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+                    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav">
                         <span class="material-symbols-outlined">menu</span>
                     </button>
                 </div>
@@ -106,8 +112,6 @@
     <!-- Toast Notification -->
     <div id="toast" class="toast"></div>
 
-    <script src="app.js"></script>
-    <script src="export-import.js"></script>
 </body>
 
 </html>

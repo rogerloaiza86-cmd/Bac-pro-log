@@ -1,3 +1,24 @@
+# Supabase config generated at build time (contains secrets)
+supabase-config.js
+
+# Secrets and environment
+.env
+.env.local
+.env.*.local
+supabase-config.js.local
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs
+.vercel/
+dist/
+build/
+
+# OS files
 .git
 .DS_Store
 Thumbs.db
@@ -7,3 +28,4 @@ Thumbs.db
 
 # Local Claude Code settings (contains secrets, never commit)
 .claude/settings.local.json
+.mcp.json

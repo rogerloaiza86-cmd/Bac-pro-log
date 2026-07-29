@@ -124,290 +124,251 @@ const HERO_IMAGES = {
     terminale: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB-8WQ_1QdghqMQ3foo99HfM7QeH1w5FBRW166S-p3yeu9dYKEERV3mVInJllyDsMKmHyOFquRES_EXB9AeCDaJZsG3IRZ85_ho5Yk-tWpfycvhlfqwjq45AeAXhkM0DfuWCLSnAfJL82yDpRez65Hn52z0gpIwmqEd8aG1OEiL_gaiHmsGfIVqfqDIJHpxsCj8IQ2zi-61OA4LxgY6RFvoi1CfvZ5zEJgEYQkqNFt7GtiRMHHG-BkZNNjPrGx_MtHCS0oTKX4uPbA',
 };
 
-// Sample data scenarios - Progression spiralaire Bac Pro Logistique 2025
-// Auteur: Roger Loaiza Soto
-const SAMPLE_SCENARIOS = [
-    { id: 'sc-s01', titre: "Premier jour sur le quai", entreprise: "FM Logistic (Longueil-Sainte-Marie)", niveau: "seconde", problematique: "Comment se repérer et s'intégrer dans un environnement logistique professionnel ?", description: "L'élève découvre l'organisation d'un entrepôt logistique : zones fonctionnelles, circuits de circulation, organigramme. Il doit se repérer sur un plan, identifier les zones de danger et rendre compte de ses observations à son tuteur.", competences: ['C1.1', 'C3.1'], auteur: "Roger Loaiza Soto", date: "2025-02-02", duree: "3h" },
-    { id: 'sc-s02', titre: "Alerte sur le quai 7", entreprise: "Geodis (Gennevilliers)", niveau: "seconde", problematique: "Comment appliquer les protocoles de sécurité lors d'une livraison ?", description: "Une livraison de 35 palettes arrive. L'élève doit appliquer le protocole de sécurité chargement/déchargement, identifier les EPI nécessaires et repérer 3 situations dangereuses sur des photos de quai.", competences: ['C1.2'], auteur: "Roger Loaiza Soto", date: "2025-03-03", duree: "2h" },
-    { id: 'sc-s03', titre: "120 colis pour demain matin", entreprise: "Amazon (Saran)", niveau: "seconde", problematique: "Comment réceptionner une livraison et contrôler sa conformité ?", description: "L'élève réceptionne une livraison de produits électroniques. Il contrôle quantitativement le BL par rapport au bon de commande, identifie des écarts simples et saisit les données dans un tableau.", competences: ['C2.1'], auteur: "Roger Loaiza Soto", date: "2025-04-04", duree: "2h" },
-    { id: 'sc-s04', titre: "Le carton mouillé", entreprise: "Auchan Logistique (Villeparisis)", niveau: "seconde", problematique: "Comment détecter et signaler des anomalies qualitatives lors d'une réception ?", description: "Détection d'anomalies qualitatives (emballages détériorés). Formulation de réserves sur le BL et rédaction d'un mail simple au chef d'équipe pour signaler le problème.", competences: ['C2.1', 'C3.1'], auteur: "Roger Loaiza Soto", date: "2025-05-05", duree: "2h" },
-    { id: 'sc-s05', titre: "Chaque chose à sa place", entreprise: "Leroy Merlin (Dourges)", niveau: "seconde", problematique: "Comment organiser le stockage selon les règles d'adressage ?", description: "Rangement de 15 références dans un palettier (adressage ABC). Lecture des étiquettes, utilisation du plan d'implantation et mise à jour manuelle d'un fichier de stock.", competences: ['C2.1', 'C1.1'], auteur: "Roger Loaiza Soto", date: "2025-06-06", duree: "3h" },
-    { id: 'sc-s06', titre: "L'inventaire du rayon B", entreprise: "Décathlon (Lompret)", niveau: "seconde", problematique: "Comment participer à un inventaire tournant ?", description: "Participation à un inventaire tournant (40 emplacements). Comptage physique, comparaison stock théorique, consignation des écarts sur fiche d'inventaire.", competences: ['C2.1', 'C3.1'], auteur: "Roger Loaiza Soto", date: "2025-07-07", duree: "2h" },
-    { id: 'sc-s07', titre: "Commande n°4521 : prête à 14h", entreprise: "Chronopost (Chilly-Mazarin)", niveau: "seconde", problematique: "Comment préparer une commande dans les délais impartis ?", description: "Préparation d'une commande simple (8 articles). Prélèvement en picking, vérification, transfert en zone d'expédition.", competences: ['C2.2'], auteur: "Roger Loaiza Soto", date: "2025-08-08", duree: "2h" },
-    { id: 'sc-s08', titre: "Emballer, c'est un métier", entreprise: "Vente-privee (Saint-Vulbas)", niveau: "seconde", problematique: "Comment conditionner des produits fragiles pour l'expédition ?", description: "Conditionnement de 10 commandes fragiles. Choix des emballages, calage, apposition des étiquettes d'expédition.", competences: ['C2.2'], auteur: "Roger Loaiza Soto", date: "2025-09-09", duree: "2h" },
-    { id: 'sc-s09', titre: "La palette parfaite", entreprise: "Nestlé France (Noisiel)", niveau: "seconde", problematique: "Comment constituer une palette stable et optimisée ?", description: "Constitution d'une palette homogène. Calcul du nombre de couches, filmage, vérification stabilité. Intro au calcul de surface/volume.", competences: ['C2.2', 'C1.2'], auteur: "Roger Loaiza Soto", date: "2025-10-10", duree: "2h" },
-    { id: 'sc-s10', titre: "Qui livre quoi et quand ?", entreprise: "Stef (Rungis)", niveau: "seconde", problematique: "Comment comprendre et utiliser les documents de transport ?", description: "Découverte documentaire (CMR, BL, lettre de voiture). Association document/fonction, repérage d'infos clés.", competences: ['C2.3', 'C3.1'], auteur: "Roger Loaiza Soto", date: "2025-11-11", duree: "2h" },
-    { id: 'sc-s11', titre: "Le frigo ne pardonne pas", entreprise: "Pomona (Nîmes)", niveau: "seconde", problematique: "Comment gérer la chaîne du froid lors d'une réception alimentaire ?", description: "Réception alimentaire sous température dirigée. Contrôle chaîne du froid, vérif DLC, application FIFO. Sensibilisation sanitaire.", competences: ['C2.1', 'C1.2'], auteur: "Roger Loaiza Soto", date: "2025-12-12", duree: "2h" },
-    { id: 'sc-s12', titre: "SOS étiquette perdue", entreprise: "La Poste Colissimo (Wissous)", niveau: "seconde", problematique: "Comment gérer des colis sans étiquette ou avec erreur d'adresse ?", description: "Gestion de 3 colis sans étiquette et 1 erreur d'adresse. Application de procédure d'incident simple et MAJ informatique.", competences: ['C2.2', 'C3.2'], auteur: "Roger Loaiza Soto", date: "2025-01-13", duree: "2h" },
-    { id: 'sc-s13', titre: "Mon poste, ma responsabilité", entreprise: "XPO Logistics (Réau)", niveau: "seconde", problematique: "Comment analyser les risques de son poste de travail ?", description: "Analyse risques au poste de packing (TMS, engins, bruit). Renseignement d'un document unique simplifié et 2 propositions d'amélioration ergonomiques.", competences: ['C1.2', 'C3.3'], auteur: "Roger Loaiza Soto", date: "2025-02-14", duree: "3h" },
-    { id: 'sc-s14', titre: "Le client attend sa commande", entreprise: "ManoMano (Beaune-la-Rolande)", niveau: "seconde", problematique: "Comment gérer plusieurs commandes simultanées avec des priorités différentes ?", description: "Gestion de 5 commandes simultanées avec priorités. Organisation du circuit, respect délais, MAJ sortie de stock. Intro productivité.", competences: ['C2.2'], auteur: "Roger Loaiza Soto", date: "2025-03-15", duree: "3h" },
-    { id: 'sc-s15', titre: "Trier pour la planète", entreprise: "IKEA (Saint-Quentin-Fallavier)", niveau: "seconde", problematique: "Comment optimiser le tri sélectif et calculer le taux de valorisation ?", description: "Traitement des déchets d'emballage (cartons, plastiques). Tri sélectif (procédure RSE) et calcul du taux de valorisation.", competences: ['C1.2', 'C3.3'], auteur: "Roger Loaiza Soto", date: "2025-04-16", duree: "2h" },
-    { id: 'sc-s16', titre: "Parlez-vous logistique ?", entreprise: "DHL Supply Chain (Ferrières-en-Brie)", niveau: "seconde", problematique: "Comment communiquer efficacement dans un contexte international ?", description: "Appel d'un transporteur anglophone (retard). Compréhension message, transmission chef d'équipe, rédaction note interne.", competences: ['C3.1', 'C3.4'], auteur: "Roger Loaiza Soto", date: "2025-05-17", duree: "2h" },
-    { id: 'sc-s17', titre: "Le BL ne colle pas", entreprise: "Metro Cash & Carry (Nanterre)", niveau: "seconde", problematique: "Comment gérer un écart entre BL et marchandises réceptionnées ?", description: "Réception 80 colis (BL à 82, 2 réfs fausses). Formalisation réserves, contact fournisseur (mail guidé), rapport réception.", competences: ['C2.1', 'C3.1'], auteur: "Roger Loaiza Soto", date: "2025-06-18", duree: "2h" },
-    { id: 'sc-s18', titre: "Bilan de ma première saison", entreprise: "LogiSud (Entreprise fictive)", niveau: "seconde", problematique: "Comment se situer dans la supply chain et identifier ses compétences acquises ?", description: "Bilan des missions. L'élève se situe dans la supply chain (schéma), identifie ses compétences, rédige 150 mots et présente oralement.", competences: ['C3.3', 'C3.1'], auteur: "Roger Loaiza Soto", date: "2025-07-19", duree: "4h" },
-    { id: 'sc-p01', titre: "3 camions, 2 quais, 1 heure", entreprise: "Kuehne+Nagel (Saint-Priest)", niveau: "premiere", problematique: "Comment organiser la réception simultanée de plusieurs camions ?", description: "Organisation réception simultanée. Consultation planning prévisionnel, priorisation arrivées urgentes, affectation ressources.", competences: ['C1.1', 'C2.1'], auteur: "Roger Loaiza Soto", date: "2025-02-02", duree: "3h" },
-    { id: 'sc-p02', titre: "Réception sous haute tension", entreprise: "Sanofi (Val-de-Reuil)", niveau: "premiere", problematique: "Comment réceptionner des médicaments sous température contrôlée ?", description: "Lot de médicaments sous temp. contrôlée. Vérification documentaire (BL, conformité, FDS), chaîne du froid, DLC non conforme, quarantaine.", competences: ['C2.1'], auteur: "Roger Loaiza Soto", date: "2025-03-03", duree: "3h" },
-    { id: 'sc-p03', titre: "Le WMS dit non", entreprise: "ID Logistics (Château-Thierry)", niveau: "premiere", problematique: "Comment gérer des refus de mise en stock par le WMS ?", description: "Mise en stock de 25 palettes, 3 refusées par WMS. Analyse alertes, recherche emplacements alternatifs, MAJ BDD.", competences: ['C2.1', 'C3.2'], auteur: "Roger Loaiza Soto", date: "2025-04-04", duree: "3h" },
-    { id: 'sc-p04', titre: "Inventaire annuel : l'heure de vérité", entreprise: "Boulanger (Lesquin)", niveau: "premiere", problematique: "Comment piloter un inventaire et analyser les écarts significatifs ?", description: "Pilotage inventaire (200 réfs). Comptage, 12 écarts significatifs, analyse causes (saisie, vol, casse), rapport avec correctives.", competences: ['C2.1', 'C3.3'], auteur: "Roger Loaiza Soto", date: "2025-05-05", duree: "4h" },
-    { id: 'sc-p05', titre: "Commande multi-références", entreprise: "Cdiscount (Cestas)", niveau: "premiere", problematique: "Comment optimiser la préparation d'une commande complexe avec rupture de stock ?", description: "Préparation complexe (22 articles, 4 zones). Optimisation circuit, gestion rupture de stock, proposition solution client.", competences: ['C2.2'], auteur: "Roger Loaiza Soto", date: "2025-06-06", duree: "4h" },
-    { id: 'sc-p06', titre: "La palette export", entreprise: "Airbus (Toulouse-Blagnac)", niveau: "premiere", problematique: "Comment préparer une palette aéronautique pour l'export international ?", description: "Palette aéronautique internationale. Optimisation poids/volume, liasse export (packing list, BL, CMR), conformité douanière.", competences: ['C2.2', 'C2.3'], auteur: "Roger Loaiza Soto", date: "2025-07-07", duree: "4h" },
-    { id: 'sc-p07', titre: "Tournée du dernier kilomètre", entreprise: "Stuart DPD (Paris 19e)", niveau: "premiere", problematique: "Comment planifier une tournée urbaine optimisée ?", description: "Tournée urbaine 18 points. Outil de planification, calcul temps, contraintes d'accès urbains.", competences: ['C2.3'], auteur: "Roger Loaiza Soto", date: "2025-08-08", duree: "3h" },
-    { id: 'sc-p08', titre: "Retour à l'envoyeur", entreprise: "Zalando (Moissy-Cramayel)", niveau: "premiere", problematique: "Comment traiter les retours clients et analyser les motifs ?", description: "Traitement de 30 retours clients. Contrôle état, classification, MAJ stock, compte-rendu motifs pour le service qualité.", competences: ['C2.3', 'C2.1', 'C3.2'], auteur: "Roger Loaiza Soto", date: "2025-09-09", duree: "3h" },
-    { id: 'sc-p09', titre: "Produits dangereux", entreprise: "Total Energies (Dunkerque)", niveau: "premiere", problematique: "Comment réceptionner et stocker des produits chimiques conformément à l'ADR ?", description: "Réception chimique ADR. Pictogrammes, étiquetage, règles stockage, incompatibilités, registre sécurité.", competences: ['C1.2', 'C2.1'], auteur: "Roger Loaiza Soto", date: "2025-10-10", duree: "4h" },
-    { id: 'sc-p10', titre: "Le chef d'équipe est absent", entreprise: "Carrefour Supply (Combs-la-Ville)", niveau: "premiere", problematique: "Comment répartir les tâches et coordonner une petite équipe ?", description: "Répartition tâches (4 opérateurs). Lecture planning, affectation selon habilitations, briefing 5 minutes.", competences: ['C3.4', 'C3.1', 'C1.1'], auteur: "Roger Loaiza Soto", date: "2025-11-11", duree: "3h" },
-    { id: 'sc-p11', titre: "L'erreur de picking coûte cher", entreprise: "Leclerc (Scapalsace)", niveau: "premiere", problematique: "Comment analyser les causes d'un taux d'erreur élevé et proposer un plan d'action ?", description: "Analyse TdB perf (erreur 4,2%). Identification causes racines, calcul coût des erreurs, proposition plan d'action.", competences: ['C2.2', 'C3.3'], auteur: "Roger Loaiza Soto", date: "2025-12-12", duree: "4h" },
-    { id: 'sc-p12', titre: "Cross-docking express", entreprise: "Lidl (Rousset)", niveau: "premiere", problematique: "Comment gérer une opération cross-docking avec des contraintes de temps serrées ?", description: "Réception 40 palettes 6h, éclatement, chargement 8 camions avant 10h. Gestion timing et aléa (camion en retard).", competences: ['C2.1', 'C2.2', 'C2.3'], auteur: "Roger Loaiza Soto", date: "2025-01-13", duree: "4h" },
-    { id: 'sc-p13', titre: "Transporteur conteste réserves", entreprise: "Bolloré Logistics (Le Havre)", niveau: "premiere", problematique: "Comment gérer un litige avec un transporteur qui refuse de signer les réserves ?", description: "Refus de signer BL avec réserves. Argumentation, cadre juridique, rédaction courrier de litige professionnel.", competences: ['C2.1', 'C3.1', 'C3.2'], auteur: "Roger Loaiza Soto", date: "2025-02-14", duree: "3h" },
-    { id: 'sc-p14', titre: "Préparer Noël en octobre", entreprise: "Amazon (Brétigny-sur-Orge)", niveau: "premiere", problematique: "Comment planifier un pic d'activité de +180% en termes de ressources ?", description: "Planification pic activité (+180%). Calcul besoins intérim/matériel, proposition réaménagement des zones.", competences: ['C1.1', 'C2.1', 'C2.2'], auteur: "Roger Loaiza Soto", date: "2025-03-15", duree: "4h" },
-    { id: 'sc-p15', titre: "Copacking pour une promo", entreprise: "FM Logistic (Château-Thierry)", niveau: "premiere", problematique: "Comment organiser une ligne de conditionnement pour une opération promotionnelle ?", description: "Assemblage lots promo. Organisation ligne conditionnement, contrôle conformité, calcul productivité horaire.", competences: ['C2.2'], auteur: "Roger Loaiza Soto", date: "2025-04-16", duree: "4h" },
-    { id: 'sc-p16', titre: "Accident évité de justesse", entreprise: "XPO Logistics (Réau)", niveau: "premiere", problematique: "Comment analyser un presqu'accident et proposer des mesures préventives ?", description: "Analyse presqu'accident (arbre des causes). Identification manquements, rédaction fiche signalement et prévention.", competences: ['C1.2', 'C3.3'], auteur: "Roger Loaiza Soto", date: "2025-05-17", duree: "3h" },
-    { id: 'sc-p17', titre: "Le client appelle, mécontent", entreprise: "Rhenus Logistics (Strasbourg)", niveau: "premiere", problematique: "Comment gérer une réclamation client et proposer une solution adaptée ?", description: "Réclamation tél (livraison incomplète/endommagée). Dossier litige, traçabilité WMS, proposition solution.", competences: ['C3.1', 'C3.2'], auteur: "Roger Loaiza Soto", date: "2025-06-18", duree: "3h" },
-    { id: 'sc-p18', titre: "Optimiser l'espace", entreprise: "Dachser (Ferrières-en-Brie)", niveau: "premiere", problematique: "Comment analyser et améliorer le taux d'occupation d'un entrepôt ?", description: "Analyse taux occupation (62%). Réaménagement méthode ABC, calcul gain potentiel emplacements.", competences: ['C2.1', 'C3.3'], auteur: "Roger Loaiza Soto", date: "2025-07-19", duree: "4h" },
-    { id: 'sc-p19', titre: "Livraison multimodale", entreprise: "Haropa Port (Gennevilliers)", niveau: "premiere", problematique: "Comment comparer les modes de transport et optimiser l'empreinte carbone ?", description: "Expédition route + fleuve. Comparaison coûts/délais, empreinte carbone, documents adaptés. Décarbonation.", competences: ['C2.3', 'C3.3'], auteur: "Roger Loaiza Soto", date: "2025-08-20", duree: "4h" },
-    { id: 'sc-p20', titre: "Bilan de compétences", entreprise: "NordLog (Entreprise fictive)", niveau: "premiere", problematique: "Comment réaliser un bilan de compétences et se préparer à l'oral ?", description: "Bilan PFMP, schéma supply chain, points forts/progrès, préparation présentation orale de 5 minutes.", competences: ['C3.3', 'C3.1', 'C3.4'], auteur: "Roger Loaiza Soto", date: "2025-09-21", duree: "4h" },
-    { id: 'sc-t01', titre: "Lundi 6h : le planning explose", entreprise: "Geodis (Gennevilliers)", niveau: "terminale", problematique: "Comment gérer 3 aléas simultanés et réorganiser l'activité ?", description: "Gestion de 3 aléas (absent, panne, avance). Réorganisation planning, réaffectation, briefing urgence équipe.", competences: ['C1.1', 'C3.4'], auteur: "Roger Loaiza Soto", date: "2025-02-02", duree: "4h" },
-    { id: 'sc-t02', titre: "Réception 40 pieds de Shanghai", entreprise: "CMA CGM Logistics (Le Havre)", niveau: "terminale", problematique: "Comment gérer une réception import maritime et sa liasse documentaire ?", description: "Conteneur import. Liasse documentaire (BL maritime, packing list, douane), contrôle, non-conformités internationales.", competences: ['C2.1', 'C2.3'], auteur: "Roger Loaiza Soto", date: "2025-03-03", duree: "4h" },
-    { id: 'sc-t03', titre: "Stock mort, stock coûteux", entreprise: "Saint-Gobain Point.P", niveau: "terminale", problematique: "Comment analyser la rotation des stocks et proposer un plan de déstockage ?", description: "Analyse rotation. Identification surstock/stock mort, coûts possession, plan déstockage, rapport direction.", competences: ['C2.1', 'C3.3'], auteur: "Roger Loaiza Soto", date: "2025-04-04", duree: "4h" },
-    { id: 'sc-t04', titre: "Black Friday : 10 000 commandes", entreprise: "Cdiscount (Cestas)", niveau: "terminale", problematique: "Comment piloter un pic d'activité exceptionnel et prendre des décisions d'arbitrage ?", description: "Pilotage pic exceptionnel. Vagues picking, ruptures temps réel, TdB productivité, décisions d'arbitrage.", competences: ['C2.2', 'C1.1'], auteur: "Roger Loaiza Soto", date: "2025-05-05", duree: "6h" },
-    { id: 'sc-t05', titre: "La palette qui ne rentre pas", entreprise: "Stef (Rungis)", niveau: "terminale", problematique: "Comment optimiser le chargement d'un camion frigo avec contraintes multiples ?", description: "Optimisation chargement camion frigo. Simulation 3D, contraintes poids/essieu, compatibilité, gestion ajout urgent.", competences: ['C2.2', 'C2.3'], auteur: "Roger Loaiza Soto", date: "2025-06-06", duree: "4h" },
-    { id: 'sc-t06', titre: "Litige transporteur : 15 000 euros", entreprise: "Bolloré Logistics (Puteaux)", niveau: "terminale", problematique: "Comment gérer un litige majeur et négocier une indemnisation ?", description: "Litige majeur. Dossier complet, délais légaux, négociation écrite, calcul indemnisation barèmes.", competences: ['C2.1', 'C3.1', 'C3.2'], auteur: "Roger Loaiza Soto", date: "2025-07-07", duree: "4h" },
-    { id: 'sc-t07', titre: "Transport pour 3 régions", entreprise: "Dimotrans (Lyon)", niveau: "terminale", problematique: "Comment planifier un transport multi-régions avec optimisation économique et écologique ?", description: "Planification multi-régions. Sélection modes (messagerie, affrètement), devis, empreinte carbone, planning optimisé.", competences: ['C2.3', 'C3.3'], auteur: "Roger Loaiza Soto", date: "2025-08-08", duree: "4h" },
-    { id: 'sc-t08', titre: "Le client menace de résilier", entreprise: "Kuehne+Nagel Automobile", niveau: "terminale", problematique: "Comment gérer une crise client et élaborer un plan d'action correctif ?", description: "Crise client (3 retards). Analyse données WMS, rapport, plan action corrective, simulation réunion.", competences: ['C3.1', 'C3.2', 'C3.3'], auteur: "Roger Loaiza Soto", date: "2025-09-09", duree: "4h" },
-    { id: 'sc-t09', titre: "Audit sécurité : êtes-vous prêts ?", entreprise: "ID Logistics (Château-Thierry)", niveau: "terminale", problematique: "Comment préparer et réussir un audit sécurité interne ?", description: "Préparation audit interne. Inspection, conformité (extincteurs, signalétique), matrice criticité, plan conformité.", competences: ['C1.2', 'C3.3'], auteur: "Roger Loaiza Soto", date: "2025-10-10", duree: "4h" },
-    { id: 'sc-t10', titre: "Inventaire fiscal : zéro erreur", entreprise: "L'Oreal (Gauchy)", niveau: "terminale", problematique: "Comment superviser un inventaire fiscal avec 500 références et analyser les écarts ?", description: "Supervision inventaire (500 réfs). Planification équipes, double comptage, analyse écarts, rapport commissaire.", competences: ['C2.1', 'C3.3', 'C3.4'], auteur: "Roger Loaiza Soto", date: "2025-11-11", duree: "6h" },
-    { id: 'sc-t11', titre: "Quand le WMS plante à 8h", entreprise: "FM Logistic (Longueil)", niveau: "terminale", problematique: "Comment gérer une panne informatique de 3h et maintenir la traçabilité ?", description: "Panne 3h. Bascule mode dégradé (papier), traçabilité manuelle, ressaisie complète post-panne.", competences: ['C2.1', 'C2.2', 'C3.2'], auteur: "Roger Loaiza Soto", date: "2025-12-12", duree: "4h" },
-    { id: 'sc-t12', titre: "Supply chain pharma : traçabilité", entreprise: "Sanofi (Val-de-Reuil)", niveau: "terminale", problematique: "Comment gérer la sérialisation et la traçabilité des vaccins ?", description: "Sérialisation vaccins. Vérif numéros lots, enregistreur température, BPD, gestion rappel de lot.", competences: ['C2.1', 'C2.2'], auteur: "Roger Loaiza Soto", date: "2025-01-13", duree: "4h" },
-    { id: 'sc-t13', titre: "Le plan de transport ne tient plus", entreprise: "Dachser (Ferrières)", niveau: "terminale", problematique: "Comment gérer une grève des routiers et réorganiser les livraisons ?", description: "Grève routiers. Identification impacts, itinéraires alternatifs, modes substitution, infos clients, recalcul coûts.", competences: ['C2.3', 'C3.4'], auteur: "Roger Loaiza Soto", date: "2025-02-14", duree: "4h" },
-    { id: 'sc-t14', titre: "Décarboner le dernier kilomètre", entreprise: "La Poste Colissimo (IDF)", niveau: "terminale", problematique: "Comment analyser et optimiser l'empreinte carbone de la livraison urbaine ?", description: "Remplacement flotte (électrique/vélo). Analyse tournées, économies CO2, contraintes, note recommandation.", competences: ['C2.3', 'C3.3'], auteur: "Roger Loaiza Soto", date: "2025-03-15", duree: "4h" },
-    { id: 'sc-t15', titre: "Manager une équipe de 6 intérimaires", entreprise: "XPO Logistics (Réau)", niveau: "terminale", problematique: "Comment coordonner une équipe mixte et gérer les conflits ?", description: "Coordination équipe. Accueil sécurité, missions, suivi productivité, gestion conflit, débriefing.", competences: ['C3.4', 'C1.1', 'C3.1'], auteur: "Roger Loaiza Soto", date: "2025-04-16", duree: "6h" },
-    { id: 'sc-t16', titre: "Entrepôt 4.0 : robotisation", entreprise: "Ocado (Étude)", niveau: "terminale", problematique: "Comment analyser l'impact de la robotisation sur les métiers logistiques ?", description: "Analyse entrepôt automatisé (robots, IA). Comparaison, impacts métiers/compétences, note prospective.", competences: ['C1.1', 'C3.3'], auteur: "Roger Loaiza Soto", date: "2025-05-17", duree: "4h" },
-    { id: 'sc-t17', titre: "Appel d'offres logistique", entreprise: "Rhenus Logistics (Strasbourg)", niveau: "terminale", problematique: "Comment répondre à un appel d'offres et chiffrer une prestation logistique ?", description: "Réponse AO. Analyse CDC, chiffrage coûts, rédaction offre opérationnelle, présentation orale.", competences: ['C3.1', 'C3.2', 'C2.3'], auteur: "Roger Loaiza Soto", date: "2025-06-18", duree: "6h" },
-    { id: 'sc-t18', titre: "Retour de PFMP : analyse chaîne", entreprise: "Entreprise de l'élève", niveau: "terminale", problematique: "Comment cartographier la chaîne logistique et identifier des axes d'amélioration ?", description: "Cartographie chaîne logistique. Flux physiques/infos, dysfonctionnements, améliorations, soutenance (E31).", competences: ['C3.3', 'C1.1', 'C2.1', 'C2.2', 'C2.3', 'C3.1', 'C3.2', 'C3.4'], auteur: "Roger Loaiza Soto", date: "2025-07-19", duree: "8h" },
-    { id: 'sc-t19', titre: "Scénario d'examen blanc intégré", entreprise: "TransEurLog", niveau: "terminale", problematique: "Comment préparer l'épreuve E2 avec un scénario complet ?", description: "Examen blanc (E2). Dossier combinant réception anomalies, préparation sous contrainte, expédition, aléa.", competences: ['C2.1', 'C2.2', 'C2.3', 'C3.1', 'C3.2', 'C3.3', 'C3.4'], auteur: "Roger Loaiza Soto", date: "2025-08-20", duree: "8h" },
-    { id: 'sc-t20', titre: "Bilan final : mon parcours", entreprise: "Parcours de l'élève", niveau: "terminale", problematique: "Comment synthétiser son parcours et préparer son projet professionnel ?", description: "Livret compétences, bilan (schéma + 150 mots), préparation E2/E31/E32, présentation projet pro.", competences: ['C1.1', 'C1.2', 'C2.1', 'C2.2', 'C2.3', 'C3.1', 'C3.2', 'C3.3', 'C3.4'], auteur: "Roger Loaiza Soto", date: "2025-09-21", duree: "6h" },
-];
+// Scenarios are now loaded from Supabase. See data/sample-scenarios.json for the seed data.
+
 
 // =============================================
-// STATE & STORAGE
+// SUPABASE & AUTH
 // =============================================
-const STORAGE_KEY = 'logistique2025_scenarios';
-const STORAGE_VERSION_KEY = 'logistique2025_version';
-const CURRENT_VERSION = '5.0'; // Bump when referential data changes
+let supabaseClient = null;
+let USE_SUPABASE = false;
+let CURRENT_USER = null;
+let SCENARIOS_CACHE = [];
 
-// Stockage en mémoire comme fallback (si localStorage bloqué)
-let MEMORY_STORAGE = null;
-let LOCAL_STORAGE_AVAILABLE = true;
-
-// Test de disponibilité du localStorage
-try {
-    localStorage.setItem('__test__', 'test');
-    localStorage.removeItem('__test__');
-    console.log('%c[Storage] localStorage disponible ✓', 'color: #10b981;');
-} catch (e) {
-    LOCAL_STORAGE_AVAILABLE = false;
-    console.warn('%c[Storage] localStorage NON disponible - utilisation mémoire', 'background: #f59e0b; color: white; padding: 4px 8px;');
-    alert('ATTENTION: Le stockage local est désactivé sur votre navigateur. Les scénarios seront stockés temporairement en mémoire et seront perdus en quittant la page. Utilisez le bouton "Exporter JSON" pour sauvegarder vos données.');
-}
-
-function loadScenarios() {
-    // Utiliser le stockage mémoire si localStorage n'est pas disponible
-    if (!LOCAL_STORAGE_AVAILABLE) {
-        console.log('%c[loadScenarios] Utilisation du stockage mémoire', 'color: #f59e0b;');
-        if (MEMORY_STORAGE === null) {
-            MEMORY_STORAGE = JSON.parse(JSON.stringify(SAMPLE_SCENARIOS));
-            console.log(`%c[loadScenarios] ${MEMORY_STORAGE.length} scénarios chargés (mémoire)`, 'color: #f59e0b;');
-        }
-        return MEMORY_STORAGE;
-    }
-    
-    try {
-        const storedVersion = localStorage.getItem(STORAGE_VERSION_KEY);
-        if (storedVersion !== CURRENT_VERSION) {
-            // Referential data changed — migrer les données existantes si possible
-            const existingData = localStorage.getItem(STORAGE_KEY);
-            let scenarios = [];
-            
-            if (existingData) {
-                try {
-                    const parsed = JSON.parse(existingData);
-                    if (Array.isArray(parsed) && parsed.length > 0) {
-                        // Conserver les scénarios existants
-                        scenarios = parsed;
-                        console.log(`${scenarios.length} scénarios existants migrés vers la version ${CURRENT_VERSION}`);
-                    }
-                } catch (e) {
-                    console.warn('Données existantes corrompues, utilisation des samples');
-                }
-            }
-            
-            // Si aucun scénario existant, utiliser les samples
-            if (scenarios.length === 0) {
-                scenarios = JSON.parse(JSON.stringify(SAMPLE_SCENARIOS));
-            }
-            
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(scenarios));
-            localStorage.setItem(STORAGE_VERSION_KEY, CURRENT_VERSION);
-            return scenarios;
-        }
-        const stored = localStorage.getItem(STORAGE_KEY);
-        if (stored) {
-            const parsed = JSON.parse(stored);
-            // S'assurer que c'est bien un tableau
-            if (Array.isArray(parsed)) {
-                console.log(`%c[loadScenarios] ${parsed.length} scénarios chargés`, 'color: #f59e0b;');
-                return parsed;
-            }
-        }
-        // First load — seed with samples
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(SAMPLE_SCENARIOS));
-        localStorage.setItem(STORAGE_VERSION_KEY, CURRENT_VERSION);
-        return JSON.parse(JSON.stringify(SAMPLE_SCENARIOS));
-    } catch (error) {
-        console.error('Erreur lors du chargement des scénarios:', error);
-        return JSON.parse(JSON.stringify(SAMPLE_SCENARIOS));
+function initSupabase() {
+    const cfg = window.SUPABASE_CONFIG || {};
+    if (cfg.SUPABASE_URL && cfg.SUPABASE_ANON_KEY &&
+        cfg.SUPABASE_URL !== '__SUPABASE_URL__' &&
+        cfg.SUPABASE_ANON_KEY !== '__SUPABASE_ANON_KEY__' &&
+        typeof window.supabaseClient !== 'undefined') {
+        supabaseClient = window.supabaseClient.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
+        USE_SUPABASE = true;
+        console.log('%c[Supabase] Connecté ✓', 'color: #3ecf8e;');
+    } else {
+        console.warn('%c[Supabase] Non configuré — l\'application ne fonctionnera pas sans clés API.', 'color: #f59e0b;');
     }
 }
 
-function saveScenarios(scenarios) {
-    console.log('[saveScenarios] Sauvegarde de', scenarios.length, 'scénarios');
-    
-    // Vérifier le nombre maximum de scénarios
-    const MAX_SCENARIOS = 100;
-    if (scenarios.length > MAX_SCENARIOS) {
-        alert(`Nombre maximum de scénarios atteint (${MAX_SCENARIOS}). Veuillez en supprimer avant d'en ajouter de nouveaux.`);
-        throw new Error('Maximum scenarios exceeded');
+async function initAuth() {
+    if (!USE_SUPABASE) return;
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (session) {
+        CURRENT_USER = session.user;
+        await loadUserProfile();
     }
-    
-    // Utiliser le stockage mémoire si localStorage n'est pas disponible
-    if (!LOCAL_STORAGE_AVAILABLE) {
-        MEMORY_STORAGE = [...scenarios];
-        console.log('%c[saveScenarios] ✅ Sauvegardé en mémoire', 'background: #f59e0b; color: white; padding: 4px 8px;');
-        return;
-    }
-    
-    try {
-        const json = JSON.stringify(scenarios);
-        
-        // Vérifier la taille (limite ~5 Mo pour laisser de la marge)
-        const MAX_SIZE = 5 * 1024 * 1024;
-        if (json.length > MAX_SIZE) {
-            alert('Les données sont trop volumineuses. Limite: 5 Mo. Veuillez exporter et supprimer des scénarios.');
-            throw new Error('Data size exceeded');
+    supabaseClient.auth.onAuthStateChange(async (event, session) => {
+        if (event === 'SIGNED_IN' && session) {
+            CURRENT_USER = session.user;
+            await loadUserProfile();
+            renderAuthButton();
+            await renderPage();
+        } else if (event === 'SIGNED_OUT') {
+            CURRENT_USER = null;
+            renderAuthButton();
+            await renderPage();
         }
-        
-        console.log('[saveScenarios] JSON length:', json.length, 'caractères');
-        localStorage.setItem(STORAGE_KEY, json);
-        localStorage.setItem(STORAGE_VERSION_KEY, CURRENT_VERSION);  // ← CORRECTION : Définir la version
-        console.log('[saveScenarios] ✅ Sauvegarde réussie');
-    } catch (error) {
-        console.error('[saveScenarios] ❌ Erreur:', error);
-        if (error.name === 'QuotaExceededError') {
-            alert('Le stockage local est plein. Impossible d\'enregistrer le scénario. Utilisez le bouton "Exporter JSON" pour sauvegarder.');
-        } else {
-            alert('Erreur de sauvegarde: ' + error.message);
-        }
-        throw error;
+    });
+}
+
+async function loadUserProfile() {
+    if (!CURRENT_USER || !USE_SUPABASE) return;
+    const { data, error } = await supabaseClient
+        .from('profiles')
+        .select('*')
+        .eq('id', CURRENT_USER.id)
+        .single();
+    if (!error && data) {
+        CURRENT_USER.profile = data;
     }
 }
 
-function addScenario(scenario) {
-    console.log('%c[addScenario] DÉBUT', 'background: #137fec; color: white; padding: 4px 8px; border-radius: 4px;', scenario);
+async function signUp(email, password, nom, prenom) {
+    if (!USE_SUPABASE) return alert('Mode hors ligne : inscription impossible.');
+    const { data, error } = await supabaseClient.auth.signUp({
+        email,
+        password,
+        options: { data: { nom, prenom } }
+    });
+    if (error) return alert('Erreur : ' + error.message);
+    return data.user;
+}
+
+async function signIn(email, password) {
+    if (!USE_SUPABASE) return alert('Mode hors ligne : connexion impossible.');
+    const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+    if (error) return alert('Erreur : ' + error.message);
+    return data.user;
+}
+
+async function signOut() {
+    if (!USE_SUPABASE) return;
+    await supabaseClient.auth.signOut();
+}
+
+function getDisplayName() {
+    if (!CURRENT_USER) return '';
+    const p = CURRENT_USER.profile || CURRENT_USER.user_metadata || {};
+    return [p.prenom, p.nom].filter(Boolean).join(' ') || CURRENT_USER.email || 'Utilisateur';
+}
+
+function getAuthorInitials(name) {
+    if (!name) return 'U';
+    return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+}
+
+// =============================================
+// DATA — Supabase storage
+// =============================================
+async function loadScenarios() {
+    if (!USE_SUPABASE) return [];
     try {
-        const scenarios = loadScenarios();
-        console.log('%c[addScenario] Scénarios chargés:', 'color: #137fec;', scenarios.length);
-        
-        const newScenario = {
+        const { data, error } = await supabaseClient
+            .from('scenarios')
+            .select('*')
+            .order('created_at', { ascending: false });
+        if (error) throw error;
+        SCENARIOS_CACHE = data.map(s => ({
+            id: s.id,
+            titre: s.titre,
+            entreprise: s.entreprise,
+            niveau: s.niveau,
+            problematique: s.problematique,
+            description: s.description,
+            miseEnSituation: s.mise_en_situation,
+            magasinPedagogique: s.magasin_pedagogique,
+            competences: s.competences || [],
+            duree: s.duree || '2h',
+            auteur: s.auteur,
+            date: s.created_at ? s.created_at.split('T')[0] : '',
+            user_id: s.user_id
+        }));
+        console.log(`%c[loadScenarios] ${SCENARIOS_CACHE.length} scénarios chargés`, 'color: #3ecf8e;');
+        return SCENARIOS_CACHE;
+    } catch (e) {
+        console.error('[Supabase] Erreur chargement scénarios:', e);
+        showToast('Erreur de connexion à la base de données.');
+        return SCENARIOS_CACHE;
+    }
+}
+
+async function addScenario(scenario) {
+    if (!USE_SUPABASE) return alert('Mode hors ligne : impossible de publier.');
+    const auteur = getDisplayName() || scenario.auteur || 'Anonyme';
+    const payload = {
+        titre: scenario.titre,
+        entreprise: scenario.entreprise,
+        niveau: scenario.niveau,
+        problematique: scenario.problematique,
+        description: scenario.description,
+        mise_en_situation: scenario.miseEnSituation,
+        magasin_pedagogique: scenario.magasinPedagogique,
+        competences: scenario.competences || [],
+        duree: scenario.duree || '2h',
+        auteur: auteur,
+        user_id: CURRENT_USER?.id || null
+    };
+    try {
+        const { data, error } = await supabaseClient.from('scenarios').insert([payload]).select().single();
+        if (error) throw error;
+        SCENARIOS_CACHE.unshift({
             ...scenario,
-            id: 'sc-' + Date.now(),
-            date: new Date().toISOString().split('T')[0],
-            auteur: scenario.auteur || 'Contributeur',
-            duree: scenario.duree || '2h'
-        };
-        console.log('%c[addScenario] Nouveau scénario:', 'color: #137fec;', newScenario);
-        
-        scenarios.push(newScenario);
-        console.log('%c[addScenario] Scénarios après push:', 'color: #137fec;', scenarios.length);
-        
-        saveScenarios(scenarios);
-        
-        // Vérification immédiate
-        let parsed;
-        if (LOCAL_STORAGE_AVAILABLE) {
-            const verify = localStorage.getItem(STORAGE_KEY);
-            parsed = JSON.parse(verify);
-        } else {
-            parsed = MEMORY_STORAGE;
-        }
-        console.log('%c[addScenario] Vérification après sauvegarde:', 'color: #137fec;', parsed.length, 'scénarios');
-        
-        if (parsed.find(s => s.id === newScenario.id)) {
-            console.log('%c[addScenario] ✅ SCÉNARIO CONFIRMÉ DANS LOCALSTORAGE', 'background: #10b981; color: white; padding: 4px 8px; border-radius: 4px;');
-            return newScenario;
-        } else {
-            console.error('%c[addScenario] ❌ SCÉNARIO NON TROUVÉ APRÈS SAUVEGARDE', 'background: #ef4444; color: white; padding: 4px 8px; border-radius: 4px;');
-            alert('ERREUR: Le scénario a été sauvegardé mais ne peut pas être retrouvé. Vérifiez la console.');
-            return null;
-        }
-    } catch (error) {
-        console.error('%c[addScenario] ❌ ERREUR:', 'background: #ef4444; color: white; padding: 4px 8px; border-radius: 4px;', error);
-        alert('Une erreur est survenue lors de l\'enregistrement: ' + error.message);
+            id: data.id,
+            auteur: auteur,
+            date: data.created_at.split('T')[0],
+            user_id: data.user_id
+        });
+        return SCENARIOS_CACHE[0];
+    } catch (e) {
+        console.error('[Supabase] Erreur ajout:', e);
+        alert('Erreur de sauvegarde : ' + e.message);
         return null;
     }
 }
 
-function deleteScenario(id) {
-    let scenarios = loadScenarios();
-    scenarios = scenarios.filter(s => s.id !== id);
-    saveScenarios(scenarios);
+async function updateScenario(id, scenario) {
+    if (!USE_SUPABASE) return alert('Mode hors ligne : impossible de modifier.');
+    const payload = {
+        titre: scenario.titre,
+        entreprise: scenario.entreprise,
+        niveau: scenario.niveau,
+        problematique: scenario.problematique,
+        description: scenario.description,
+        mise_en_situation: scenario.miseEnSituation,
+        magasin_pedagogique: scenario.magasinPedagogique,
+        competences: scenario.competences || [],
+        duree: scenario.duree || '2h'
+    };
+    try {
+        const { data, error } = await supabaseClient.from('scenarios').update(payload).eq('id', id).select().single();
+        if (error) throw error;
+        const idx = SCENARIOS_CACHE.findIndex(s => s.id === id);
+        if (idx !== -1) {
+            SCENARIOS_CACHE[idx] = { ...SCENARIOS_CACHE[idx], ...scenario, date: data.created_at.split('T')[0] };
+        }
+        return SCENARIOS_CACHE[idx];
+    } catch (e) {
+        console.error('[Supabase] Erreur mise à jour:', e);
+        alert('Erreur de modification : ' + e.message);
+        return null;
+    }
 }
 
-function getScenariosByLevel(level) {
-    return loadScenarios().filter(s => s.niveau === level);
+async function deleteScenario(id) {
+    if (!USE_SUPABASE) return false;
+    try {
+        const { error } = await supabaseClient.from('scenarios').delete().eq('id', id);
+        if (error) throw error;
+        SCENARIOS_CACHE = SCENARIOS_CACHE.filter(s => s.id !== id);
+        return true;
+    } catch (e) {
+        console.error('[Supabase] Erreur suppression:', e);
+        alert('Erreur de suppression : ' + e.message);
+        return false;
+    }
 }
 
-function searchScenarios(query) {
-    const scenarios = loadScenarios();
-    if (!query || query.trim() === '') return scenarios;
-    
-    const lowerQuery = query.toLowerCase().trim();
-    return scenarios.filter(s => 
-        (s.titre && s.titre.toLowerCase().includes(lowerQuery)) ||
-        (s.description && s.description.toLowerCase().includes(lowerQuery)) ||
-        (s.problematique && s.problematique.toLowerCase().includes(lowerQuery)) ||
-        (s.miseEnSituation && s.miseEnSituation.toLowerCase().includes(lowerQuery)) ||
-        (s.magasinPedagogique && s.magasinPedagogique.toLowerCase().includes(lowerQuery)) ||
-        (s.entreprise && s.entreprise.toLowerCase().includes(lowerQuery)) ||
-        (s.auteur && s.auteur.toLowerCase().includes(lowerQuery)) ||
-        (s.competences && s.competences.some(c => c.toLowerCase().includes(lowerQuery)))
+function saveScenarios(scenarios) {
+    // Compatibilité export-import.js : désactivé en mode Supabase.
+    console.log('[saveScenarios] Mode Supabase actif : sauvegarde locale ignorée.');
+}
+
+async function getScenariosByLevel(level) {
+    const all = await loadScenarios();
+    return all.filter(s => s.niveau === level);
+}
+
+async function searchScenarios(query) {
+    const all = await loadScenarios();
+    if (!query || query.trim() === '') return all;
+    const lower = query.toLowerCase().trim();
+    return all.filter(s =>
+        (s.titre && s.titre.toLowerCase().includes(lower)) ||
+        (s.description && s.description.toLowerCase().includes(lower)) ||
+        (s.problematique && s.problematique.toLowerCase().includes(lower)) ||
+        (s.miseEnSituation && s.miseEnSituation.toLowerCase().includes(lower)) ||
+        (s.magasinPedagogique && s.magasinPedagogique.toLowerCase().includes(lower)) ||
+        (s.entreprise && s.entreprise.toLowerCase().includes(lower)) ||
+        (s.auteur && s.auteur.toLowerCase().includes(lower)) ||
+        (s.competences && s.competences.some(c => c.toLowerCase().includes(lower)))
     );
 }
 
-function filterScenariosByCompetence(competenceCode) {
-    const scenarios = loadScenarios();
-    if (!competenceCode) return scenarios;
-    return scenarios.filter(s => s.competences && s.competences.includes(competenceCode));
+async function filterScenariosByCompetence(code) {
+    const all = await loadScenarios();
+    if (!code) return all;
+    return all.filter(s => s.competences && s.competences.includes(code));
 }
 
-function getTopContributors(limit = 5) {
-    const scenarios = loadScenarios();
+async function getTopContributors(limit = 5) {
+    const all = await loadScenarios();
     const contributors = {};
-    
-    scenarios.forEach(s => {
+    all.forEach(s => {
         const auteur = s.auteur || 'Anonyme';
-        if (!contributors[auteur]) {
-            contributors[auteur] = {
-                name: auteur,
-                count: 0,
-                scenarios: []
-            };
-        }
+        if (!contributors[auteur]) contributors[auteur] = { name: auteur, count: 0, scenarios: [] };
         contributors[auteur].count++;
         contributors[auteur].scenarios.push(s);
     });
-    
-    return Object.values(contributors)
-        .sort((a, b) => b.count - a.count)
-        .slice(0, limit);
+    return Object.values(contributors).sort((a, b) => b.count - a.count).slice(0, limit);
 }
 
 function getCompetencyInfo(code) {
@@ -463,7 +424,6 @@ function renderScenarioCard(scenario) {
     const competencyTags = scenario.competences.map(code => {
         const info = getCompetencyInfo(code);
         if (!info) return '';
-        // Utilisation de la couleur du bloc dynamiquement
         const color = info.bloc.couleur;
         return `<span class="tag" style="background: ${color}10; color: ${color}; border-color: ${color}30;">${escapeHtml(code)}</span>`;
     }).join('');
@@ -471,17 +431,16 @@ function renderScenarioCard(scenario) {
     const blocInfo = getCompetencyInfo(scenario.competences[0]);
     const blocLabel = blocInfo ? blocInfo.bloc.nom.split('—')[0].trim() : '';
     const blocColor = blocInfo ? blocInfo.bloc.couleur : '#137fec';
-    const initials = scenario.auteur.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+    const initials = getAuthorInitials(scenario.auteur);
 
-    // Afficher la problématique si elle existe, sinon la description
     const displayText = scenario.problematique || scenario.description || '';
     const isProblematique = !!scenario.problematique;
 
     return `
-        <div class="card" data-scenario-id="${scenario.id}" onclick="openScenarioModal('${scenario.id}')">
+        <div class="card" data-scenario-id="${escapeHtml(scenario.id)}" data-action="open-modal">
             <div class="card-img" style="background-image: url('${getRandomImage()}')">
-                <span class="card-img-badge" style="background:${blocColor}">${blocLabel}</span>
-                <span class="card-img-time"><span class="material-symbols-outlined">schedule</span>${scenario.duree}</span>
+                <span class="card-img-badge" style="background:${blocColor}">${escapeHtml(blocLabel)}</span>
+                <span class="card-img-time"><span class="material-symbols-outlined">schedule</span>${escapeHtml(scenario.duree)}</span>
             </div>
             <div class="card-body">
                 <h4 class="card-title">${escapeHtml(scenario.titre)}</h4>
@@ -497,12 +456,13 @@ function renderScenarioCard(scenario) {
                         <span>${escapeHtml(scenario.auteur)}</span>
                     </div>
                     <div class="card-actions">
-                        <button class="card-view-btn" onclick="event.stopPropagation(); openScenarioModal('${scenario.id}')" title="Ouvrir">
+                        <button class="card-view-btn" data-action="open-modal" data-scenario-id="${escapeHtml(scenario.id)}" title="Ouvrir">
                             <span class="material-symbols-outlined">visibility</span>
                         </button>
-                        <button class="card-delete-btn" onclick="event.stopPropagation(); handleDelete('${scenario.id}')" title="Supprimer">
+                        ${canManageScenario(scenario) ? `
+                        <button class="card-delete-btn" data-action="delete" data-scenario-id="${escapeHtml(scenario.id)}" title="Supprimer">
                             <span class="material-symbols-outlined">delete</span>
-                        </button>
+                        </button>` : ''}
                     </div>
                 </div>
             </div>
@@ -510,8 +470,13 @@ function renderScenarioCard(scenario) {
     `;
 }
 
-function renderStats(level) {
-    const all = loadScenarios();
+function canManageScenario(scenario) {
+    if (!CURRENT_USER) return false;
+    return scenario.user_id === CURRENT_USER.id;
+}
+
+async function renderStats(level) {
+    const all = await loadScenarios();
     const filtered = level ? all.filter(s => s.niveau === level) : all;
     const totalComps = REFERENTIEL.blocs.reduce((sum, b) => sum + b.competences.length, 0);
     const coveredCodes = new Set();
@@ -599,8 +564,8 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-function renderTopContributors() {
-    const contributors = getTopContributors(5);
+async function renderTopContributors() {
+    const contributors = await getTopContributors(5);
     
     if (contributors.length === 0) {
         return '';
@@ -609,7 +574,7 @@ function renderTopContributors() {
     const podiumColors = ['#FFD700', '#C0C0C0', '#CD7F32']; // Or, Argent, Bronze
     
     const contributorsHTML = contributors.map((c, index) => {
-        const initials = c.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+        const initials = getAuthorInitials(c.name);
         const rank = index + 1;
         const medalColor = index < 3 ? podiumColors[index] : 'transparent';
         const showMedal = index < 3;
@@ -645,10 +610,11 @@ function renderTopContributors() {
 // PAGE RENDERERS
 // =============================================
 
-function renderAccueil() {
-    const totalScenarios = loadScenarios().length;
+async function renderAccueil() {
+    const all = await loadScenarios();
+    const totalScenarios = all.length;
     const coveredCodes = new Set();
-    loadScenarios().forEach(s => s.competences.forEach(c => coveredCodes.add(c)));
+    all.forEach(s => s.competences.forEach(c => coveredCodes.add(c)));
     const totalComps = REFERENTIEL.blocs.reduce((sum, b) => sum + b.competences.length, 0);
 
     return `
@@ -662,11 +628,11 @@ function renderAccueil() {
                 <h1>Ensemble pour le <span class="gradient-text">Bac Pro métiers de la logistique</span></h1>
                 <p class="hero-desc">La première plateforme collaborative dédiée à la mutualisation des parcours pédagogiques. Partagez vos scénarios, adaptez ceux de vos collègues et construisez ensemble un parcours complet et cohérent.</p>
                 <div class="hero-actions">
-                    <button class="btn btn-primary btn-lg" onclick="navigateTo('formulaire')">
+                    <button class="btn btn-primary btn-lg" data-action="navigate" data-page="formulaire">
                         <span class="material-symbols-outlined">add_circle</span>
                         Contribuer un scénario
                     </button>
-                    <button class="btn btn-glass btn-lg" onclick="navigateTo('seconde')">
+                    <button class="btn btn-glass btn-lg" data-action="navigate" data-page="seconde">
                         Découvrir les parcours
                     </button>
                 </div>
@@ -774,15 +740,15 @@ function renderAccueil() {
         </section>
 
         <!-- Top Contributors -->
-        ${renderTopContributors()}
+        ${await renderTopContributors()}
 
         <!-- CTA -->
         <section class="cta-section">
             <h2>Prêt à collaborer ?</h2>
             <p>Rejoignez la communauté des enseignants et accédez dès aujourd'hui aux ressources du Bac pro métiers de la logistique.</p>
             <div class="cta-actions">
-                <button class="btn btn-primary btn-lg" onclick="navigateTo('formulaire')">Ajouter un scénario</button>
-                <button class="btn btn-outline btn-lg" onclick="navigateTo('seconde')">Explorer les parcours</button>
+                <button class="btn btn-primary btn-lg" data-action="navigate" data-page="formulaire">Ajouter un scénario</button>
+                <button class="btn btn-outline btn-lg" data-action="navigate" data-page="seconde">Explorer les parcours</button>
             </div>
             ${renderExportImportButtons()}
         </section>
@@ -790,14 +756,14 @@ function renderAccueil() {
     `;
 }
 
-function renderParcours(level) {
+async function renderParcours(level) {
     const labels = { seconde: 'Seconde', premiere: 'Première', terminale: 'Terminale' };
     const descriptions = {
         seconde: 'Découverte des métiers de la logistique. Premiers scénarios de mise en situation professionnelle.',
         premiere: 'Approfondissement des compétences opérationnelles. Scénarios de spécialisation et co-intervention.',
         terminale: 'Préparation intensive à l\'examen. Scénarios complexes et transversaux, validation des compétences terminales.'
     };
-    const scenarios = getScenariosByLevel(level);
+    const scenarios = await getScenariosByLevel(level);
     const label = labels[level];
 
     const scenarioCards = scenarios.map(s => renderScenarioCard(s)).join('');
@@ -825,11 +791,11 @@ function renderParcours(level) {
                 </div>
             </div>
 
-            ${renderStats(level)}
+            ${await renderStats(level)}
 
             <div class="section-toolbar">
                 <h3>Scénarios Disponibles <span class="tag tag-primary">${scenarios.length}</span></h3>
-                <button class="btn btn-primary btn-sm" onclick="navigateTo('formulaire')">
+                <button class="btn btn-primary btn-sm" data-action="navigate" data-page="formulaire">
                     <span class="material-symbols-outlined">add</span>
                     Nouveau Scénario
                 </button>
@@ -837,7 +803,7 @@ function renderParcours(level) {
 
             <div class="scenarios-grid">
                 ${scenarioCards}
-                <div class="card-add" onclick="navigateTo('formulaire')">
+                <div class="card-add" data-action="navigate" data-page="formulaire">
                     <div class="card-add-icon">
                         <span class="material-symbols-outlined">add</span>
                     </div>
@@ -851,7 +817,7 @@ function renderParcours(level) {
                     <div class="empty-state-icon"><span class="material-symbols-outlined">inventory</span></div>
                     <h3>Aucun scénario pour la ${label}</h3>
                     <p>Soyez le premier à partager un scénario pédagogique pour ce niveau !</p>
-                    <button class="btn btn-primary" onclick="navigateTo('formulaire')">Ajouter un scénario</button>
+                    <button class="btn btn-primary" data-action="navigate" data-page="formulaire">Ajouter un scénario</button>
                 </div>
             ` : ''}
         </div>
@@ -859,7 +825,9 @@ function renderParcours(level) {
     `;
 }
 
-function renderFormulaire() {
+async function renderFormulaire() {
+    const isAuthenticated = !!CURRENT_USER;
+    const displayName = getDisplayName();
     return `
     <div class="page" id="page-formulaire">
         <div class="page-content">
@@ -877,15 +845,22 @@ function renderFormulaire() {
                     <p class="section-subtitle">Partagez vos séquences pédagogiques conformes au Référentiel 2025 avec la communauté des enseignants.</p>
                 </div>
                 <div style="display:flex;gap:10px">
-                    <button class="btn btn-outline btn-sm" onclick="resetForm()">Réinitialiser</button>
-                    <button class="btn btn-primary btn-sm" onclick="submitForm()">
+                    <button type="reset" class="btn btn-outline btn-sm" form="scenario-form">Réinitialiser</button>
+                    <button type="submit" class="btn btn-primary btn-sm" form="scenario-form">
                         <span class="material-symbols-outlined">publish</span>
                         Publier
                     </button>
                 </div>
             </div>
 
-            <form id="scenario-form" onsubmit="return false;">
+            ${!isAuthenticated ? `
+            <div class="form-info-card" style="margin-bottom:24px;padding:16px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:12px;color:var(--text-secondary)">
+                <span class="material-symbols-outlined" style="vertical-align:middle;margin-right:6px">info</span>
+                Vous devez être <a href="#" data-action="open-auth" style="color:var(--primary);font-weight:600">connecté</a> pour publier un scénario.
+            </div>
+            ` : ''}
+
+            <form id="scenario-form">
                 <div class="form-layout">
                     <!-- Left: Main Form -->
                     <div>
@@ -922,11 +897,12 @@ function renderFormulaire() {
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label class="form-label" for="f-auteur">Votre nom <span class="required">*</span></label>
+                                    <label class="form-label" for="f-auteur">Auteur</label>
                                     <div class="form-input-icon">
                                         <span class="material-symbols-outlined">person</span>
-                                        <input class="form-input" type="text" id="f-auteur" placeholder="Ex : M. Dupont" required />
+                                        <input class="form-input" type="text" id="f-auteur" value="${escapeHtml(displayName)}" readonly />
                                     </div>
+                                    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px">Le nom est automatiquement rempli depuis votre profil.</p>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="f-duree">Durée estimée</label>
@@ -1025,13 +1001,19 @@ function renderFormulaire() {
 // =============================================
 // FORM HANDLERS
 // =============================================
-function submitForm() {
+async function submitForm(e) {
+    if (e) e.preventDefault();
+    if (!CURRENT_USER) {
+        alert('Veuillez vous connecter pour publier un scénario.');
+        openAuthModal();
+        return;
+    }
+
     console.log('[submitForm] Début de la soumission...');
     
     const titre = document.getElementById('f-titre')?.value.trim();
     const entreprise = document.getElementById('f-entreprise')?.value.trim();
     const niveau = document.getElementById('f-niveau')?.value;
-    const auteur = document.getElementById('f-auteur')?.value.trim();
     const duree = document.getElementById('f-duree')?.value.trim();
     const problematique = document.getElementById('f-problematique')?.value.trim();
     const description = document.getElementById('f-description')?.value.trim();
@@ -1039,28 +1021,24 @@ function submitForm() {
     const magasinPedagogique = document.getElementById('f-magasin-pedagogique')?.value.trim();
     const checkboxes = document.querySelectorAll('input[name="competences"]:checked');
     const competences = Array.from(checkboxes).map(cb => cb.value);
-    
-    console.log('[submitForm] Données récupérées:', { titre, niveau, auteur, problematique, competences: competences.length });
 
     if (!titre) { alert('Veuillez saisir un titre pour le scénario.'); return; }
     if (!niveau) { alert('Veuillez sélectionner un niveau de classe.'); return; }
-    if (!auteur) { alert('Veuillez saisir votre nom.'); return; }
     if (!problematique) { alert('Veuillez saisir une problématique.'); return; }
     if (competences.length === 0) { alert('Veuillez sélectionner au moins une compétence.'); return; }
 
-    console.log('[submitForm] Validation OK, appel de addScenario...');
-    const result = addScenario({ titre, entreprise, niveau, auteur, duree: duree || '2h', problematique, description, miseEnSituation, magasinPedagogique, competences });
-    
+    const submitBtn = document.querySelector('button[type="submit"][form="scenario-form"]');
+    if (submitBtn) submitBtn.disabled = true;
+
+    const result = await addScenario({ titre, entreprise, niveau, duree: duree || '2h', problematique, description, miseEnSituation, magasinPedagogique, competences });
+
+    if (submitBtn) submitBtn.disabled = false;
     if (result) {
-        console.log('[submitForm] ✅ Scénario créé:', result.id);
         showToast('Scénario publié avec succès !');
-        // Réinitialiser le formulaire avant la navigation
         resetForm();
-        // Navigation après un délai pour laisser le temps au toast de s'afficher
         setTimeout(() => navigateTo(niveau), 800);
     } else {
-        console.error('[submitForm] ❌ Échec de la création');
-        alert('Le scénario n\'a pas pu être enregistré. Vérifiez la console pour plus de détails.');
+        alert('Le scénario n\'a pas pu être enregistré. Vérifiez la connexion et réessayez.');
     }
 }
 
@@ -1068,7 +1046,19 @@ function resetForm() {
     const form = document.getElementById('scenario-form');
     if (form) {
         form.reset();
-        updateCharCount();
+        updateCharCount('f-description', 'char-count');
+        updateCharCount('f-mise-en-situation', 'char-count-situation');
+        updateCharCount('f-magasin-pedagogique', 'char-count-magasin');
+    }
+}
+
+async function handleDelete(id) {
+    if (confirm('Supprimer ce scénario ?')) {
+        const ok = await deleteScenario(id);
+        if (ok) {
+            await renderPage();
+            showToast('Scénario supprimé.');
+        }
     }
 }
 
@@ -1080,23 +1070,14 @@ function updateCharCount(textareaId = 'f-description', counterId = 'char-count')
     }
 }
 
-function handleDelete(id) {
-    if (confirm('Supprimer ce scénario ?')) {
-        deleteScenario(id);
-        renderPage();
-        showToast('Scénario supprimé.');
-    }
-}
-
 // =============================================
 // SCENARIO MODAL
 // =============================================
-function openScenarioModal(id) {
-    const scenarios = loadScenarios();
-    const scenario = scenarios.find(s => s.id === id);
+async function openScenarioModal(id) {
+    const all = await loadScenarios();
+    const scenario = all.find(s => s.id === id);
     if (!scenario) return;
     
-    // Créer ou mettre à jour la modal
     let modal = document.getElementById('scenario-modal');
     if (!modal) {
         modal = document.createElement('div');
@@ -1125,16 +1106,16 @@ function renderScenarioModal(scenario) {
         const color = info.bloc.couleur;
         return `
             <div class="modal-competency" style="border-left-color: ${color}">
-                <div class="modal-competency-code" style="color: ${color}">${code}</div>
-                <div class="modal-competency-name">${info.nom}</div>
-                <div class="modal-competency-desc">${info.desc}</div>
+                <div class="modal-competency-code" style="color: ${color}">${escapeHtml(code)}</div>
+                <div class="modal-competency-name">${escapeHtml(info.nom)}</div>
+                <div class="modal-competency-desc">${escapeHtml(info.desc)}</div>
             </div>
         `;
     }).join('');
     
     const blocInfo = getCompetencyInfo(scenario.competences[0]);
     const blocColor = blocInfo ? blocInfo.bloc.couleur : '#137fec';
-    const initials = scenario.auteur.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+    const initials = getAuthorInitials(scenario.auteur);
     
     const niveauLabel = {
         'seconde': 'Seconde Bac Pro',
@@ -1143,9 +1124,9 @@ function renderScenarioModal(scenario) {
     }[scenario.niveau] || scenario.niveau;
     
     return `
-        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-overlay" data-action="close-modal"></div>
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">
+            <button class="modal-close" data-action="close-modal">
                 <span class="material-symbols-outlined">close</span>
             </button>
             
@@ -1153,11 +1134,11 @@ function renderScenarioModal(scenario) {
                 <div class="modal-badges">
                     <span class="modal-badge" style="background: ${blocColor}">
                         <span class="material-symbols-outlined">school</span>
-                        ${niveauLabel}
+                        ${escapeHtml(niveauLabel)}
                     </span>
                     <span class="modal-badge" style="background: rgba(107, 114, 128, 0.9)">
                         <span class="material-symbols-outlined">schedule</span>
-                        ${scenario.duree}
+                        ${escapeHtml(scenario.duree)}
                     </span>
                     ${scenario.entreprise ? `
                     <span class="modal-badge" style="background: rgba(147, 51, 234, 0.9)">
@@ -1172,7 +1153,7 @@ function renderScenarioModal(scenario) {
                         <div class="modal-author-avatar">${initials}</div>
                         <span>${escapeHtml(scenario.auteur)}</span>
                     </div>
-                    <span class="modal-date">Créé le ${scenario.date}</span>
+                    <span class="modal-date">Créé le ${escapeHtml(scenario.date)}</span>
                 </div>
             </div>
             
@@ -1206,8 +1187,14 @@ function renderScenarioModal(scenario) {
             </div>
             
             <div class="modal-footer">
-                <button class="btn btn-outline" onclick="closeModal()">Fermer</button>
-                <button class="btn btn-primary" onclick="closeModal(); navigateTo('formulaire')">
+                <button class="btn btn-outline" data-action="close-modal">Fermer</button>
+                ${canManageScenario(scenario) ? `
+                <button class="btn btn-danger" data-action="delete" data-scenario-id="${escapeHtml(scenario.id)}">
+                    <span class="material-symbols-outlined">delete</span>
+                    Supprimer
+                </button>
+                ` : ''}
+                <button class="btn btn-primary" data-action="navigate" data-page="formulaire">
                     <span class="material-symbols-outlined">add</span>
                     Créer un scénario similaire
                 </button>
@@ -1218,34 +1205,45 @@ function renderScenarioModal(scenario) {
 
 // Fermer la modal avec la touche Escape
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Escape') {
+        closeModal();
+        closeAuthModal();
+    }
 });
 
 // =============================================
 // MAIN ROUTER
 // =============================================
-function renderPage() {
+async function renderPage() {
     const page = getPage();
     const container = document.getElementById('page-container');
+    if (!container) return;
 
-    switch (page) {
-        case 'accueil':
-            container.innerHTML = renderAccueil();
-            break;
-        case 'seconde':
-            container.innerHTML = renderParcours('seconde');
-            break;
-        case 'premiere':
-            container.innerHTML = renderParcours('premiere');
-            break;
-        case 'terminale':
-            container.innerHTML = renderParcours('terminale');
-            break;
-        case 'formulaire':
-            container.innerHTML = renderFormulaire();
-            break;
-        default:
-            container.innerHTML = renderAccueil();
+    container.innerHTML = '<div class="loading-state"><div class="spinner"></div><p>Chargement des scénarios...</p></div>';
+
+    try {
+        switch (page) {
+            case 'accueil':
+                container.innerHTML = await renderAccueil();
+                break;
+            case 'seconde':
+                container.innerHTML = await renderParcours('seconde');
+                break;
+            case 'premiere':
+                container.innerHTML = await renderParcours('premiere');
+                break;
+            case 'terminale':
+                container.innerHTML = await renderParcours('terminale');
+                break;
+            case 'formulaire':
+                container.innerHTML = await renderFormulaire();
+                break;
+            default:
+                container.innerHTML = await renderAccueil();
+        }
+    } catch (err) {
+        console.error('[renderPage] Erreur:', err);
+        container.innerHTML = `<div class="empty-state"><h3>Erreur de chargement</h3><p>${escapeHtml(err.message)}</p></div>`;
     }
 
     updateActiveNav();
@@ -1270,11 +1268,250 @@ function applyPageTransition(container, page) {
 }
 
 // =============================================
+// AUTH UI
+// =============================================
+function renderAuthButton() {
+    const container = document.getElementById('auth-container');
+    if (!container) return;
+
+    if (!USE_SUPABASE) {
+        container.innerHTML = '';
+        return;
+    }
+
+    if (CURRENT_USER) {
+        const name = getDisplayName();
+        const initials = getAuthorInitials(name);
+        container.innerHTML = `
+            <div class="user-menu" id="user-menu">
+                <button class="user-avatar-btn" aria-haspopup="true" aria-expanded="false">
+                    <div class="user-avatar">${initials}</div>
+                    <span class="user-name">${escapeHtml(name)}</span>
+                    <span class="material-symbols-outlined" style="font-size:1.1rem">expand_more</span>
+                </button>
+                <div class="user-dropdown" id="user-dropdown">
+                    <div class="user-dropdown-email">${escapeHtml(CURRENT_USER.email || '')}</div>
+                    <button class="user-dropdown-item user-dropdown-logout" data-action="signout">
+                        <span class="material-symbols-outlined">logout</span> Se déconnecter
+                    </button>
+                </div>
+            </div>
+        `;
+    } else {
+        container.innerHTML = `
+            <button class="btn btn-outline btn-sm" data-action="open-auth">
+                <span class="material-symbols-outlined">login</span> Connexion
+            </button>
+        `;
+    }
+
+    const menuBtn = container.querySelector('#user-menu .user-avatar-btn');
+    if (menuBtn) {
+        menuBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const dropdown = document.getElementById('user-dropdown');
+            const expanded = dropdown?.classList.toggle('open');
+            menuBtn.setAttribute('aria-expanded', String(expanded));
+        });
+    }
+}
+
+function openAuthModal() {
+    let modal = document.getElementById('auth-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'auth-modal';
+        modal.className = 'modal';
+        document.body.appendChild(modal);
+    }
+    modal.innerHTML = renderAuthModal();
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    attachAuthModalListeners();
+}
+
+function closeAuthModal() {
+    const modal = document.getElementById('auth-modal');
+    if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+}
+
+function renderAuthModal(mode = 'login') {
+    const isLogin = mode === 'login';
+    return `
+        <div class="modal-overlay" data-action="close-auth-modal"></div>
+        <div class="modal-content auth-modal-content">
+            <button class="modal-close" data-action="close-auth-modal">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div class="auth-modal-header">
+                <h2>${isLogin ? 'Connexion' : 'Créer un compte'}</h2>
+                <p>${isLogin ? 'Accédez à vos scénarios et contribuez à la communauté.' : 'Rejoignez les enseignants qui mutualisent leurs scénarios.'}</p>
+            </div>
+            <form id="auth-form" data-mode="${mode}">
+                ${!isLogin ? `
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="auth-prenom">Prénom</label>
+                        <input class="form-input" type="text" id="auth-prenom" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="auth-nom">Nom</label>
+                        <input class="form-input" type="text" id="auth-nom" required />
+                    </div>
+                </div>
+                ` : ''}
+                <div class="form-group">
+                    <label class="form-label" for="auth-email">Email</label>
+                    <input class="form-input" type="email" id="auth-email" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="auth-password">Mot de passe</label>
+                    <input class="form-input" type="password" id="auth-password" minlength="6" required />
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg" style="width:100%;margin-top:12px">
+                    ${isLogin ? 'Se connecter' : 'Créer mon compte'}
+                </button>
+            </form>
+            <div class="auth-modal-footer">
+                <button class="btn btn-text" data-action="toggle-auth-mode">
+                    ${isLogin ? 'Pas encore de compte ? S\'inscrire' : 'Déjà un compte ? Se connecter'}
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+function attachAuthModalListeners() {
+    const modal = document.getElementById('auth-modal');
+    if (!modal) return;
+
+    modal.querySelectorAll('[data-action="close-auth-modal"]').forEach(el => {
+        el.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeAuthModal();
+        });
+    });
+
+    const toggle = modal.querySelector('[data-action="toggle-auth-mode"]');
+    if (toggle) {
+        toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            const form = modal.querySelector('#auth-form');
+            const newMode = form?.dataset.mode === 'login' ? 'register' : 'login';
+            modal.innerHTML = renderAuthModal(newMode);
+            attachAuthModalListeners();
+        });
+    }
+
+    const form = modal.querySelector('#auth-form');
+    if (form) {
+        form.addEventListener('submit', handleAuthSubmit);
+    }
+}
+
+async function handleAuthSubmit(e) {
+    e.preventDefault();
+    const mode = e.target.dataset.mode;
+    const email = document.getElementById('auth-email').value.trim();
+    const password = document.getElementById('auth-password').value;
+
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
+
+    let user = null;
+    if (mode === 'login') {
+        user = await signIn(email, password);
+    } else {
+        const prenom = document.getElementById('auth-prenom').value.trim();
+        const nom = document.getElementById('auth-nom').value.trim();
+        user = await signUp(email, password, nom, prenom);
+    }
+
+    if (submitBtn) submitBtn.disabled = false;
+    if (user) {
+        closeAuthModal();
+        showToast(mode === 'login' ? 'Connexion réussie.' : 'Compte créé avec succès.');
+        renderAuthButton();
+        await renderPage();
+    }
+}
+
+
+// =============================================
 // EVENT LISTENERS
 // =============================================
 window.addEventListener('hashchange', renderPage);
-window.addEventListener('DOMContentLoaded', () => {
-    renderPage();
+window.addEventListener('DOMContentLoaded', async () => {
+    await initApp();
+});
+
+async function initApp() {
+    initSupabase();
+    await initAuth();
+    renderAuthButton();
+    await renderPage();
+
+    // Global delegated click handler for data-action elements
+    document.addEventListener('click', (e) => {
+        const actionEl = e.target.closest('[data-action]');
+        if (!actionEl) return;
+        const action = actionEl.dataset.action;
+
+        if (action === 'navigate') {
+            e.preventDefault();
+            const page = actionEl.dataset.page;
+            if (page) navigateTo(page);
+            return;
+        }
+
+        if (action === 'open-modal') {
+            e.preventDefault();
+            e.stopPropagation();
+            const id = actionEl.dataset.scenarioId || actionEl.closest('[data-scenario-id]')?.dataset.scenarioId;
+            if (id) openScenarioModal(id);
+            return;
+        }
+
+        if (action === 'delete') {
+            e.preventDefault();
+            e.stopPropagation();
+            const id = actionEl.dataset.scenarioId;
+            if (id) handleDelete(id);
+            return;
+        }
+
+        if (action === 'close-modal') {
+            e.preventDefault();
+            closeModal();
+            return;
+        }
+
+        if (action === 'open-auth') {
+            e.preventDefault();
+            openAuthModal();
+            return;
+        }
+
+        if (action === 'close-auth-modal') {
+            e.preventDefault();
+            closeAuthModal();
+            return;
+        }
+
+        if (action === 'signout') {
+            e.preventDefault();
+            signOut();
+            return;
+        }
+
+        if (action === 'export') {
+            e.preventDefault();
+            exportScenarios();
+        }
+    });
 
     // Mobile menu toggle
     const menuBtn = document.getElementById('mobile-menu-btn');
@@ -1282,6 +1519,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (menuBtn && mobileNav) {
         menuBtn.addEventListener('click', () => {
             mobileNav.classList.toggle('open');
+            menuBtn.setAttribute('aria-expanded', String(mobileNav.classList.contains('open')));
         });
         // Close mobile nav on link click
         mobileNav.querySelectorAll('.mobile-nav-link').forEach(link => {
@@ -1297,7 +1535,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Theme toggle (light / dark)
     initThemeToggle();
-});
+}
+
+if (document.readyState !== 'loading') {
+    initApp();
+}
+
 
 // =============================================
 // THEME (light / dark)
