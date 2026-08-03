@@ -79,7 +79,8 @@ Créez `supabase-config.js` :
 ```javascript
 window.ENV = {
     SUPABASE_URL: 'https://votre-projet.supabase.co',
-    SUPABASE_ANON_KEY: 'votre-clé-publique-ici'
+    SUPABASE_ANON_KEY: 'votre-clé-publique-ici',
+    SUPABASE_PROJECT_ID: 'bac-pro-log'
 };
 ```
 
@@ -89,6 +90,7 @@ Dans Vercel :
 ```
 SUPABASE_URL = https://votre-projet.supabase.co
 SUPABASE_ANON_KEY = votre-clé-publique-ici
+SUPABASE_PROJECT_ID = bac-pro-log
 ```
 
 ### Étape 5 : Modifier index.html
@@ -114,6 +116,7 @@ Dans votre projet Vercel :
 - Ajoutez :
   - `SUPABASE_URL`
   - `SUPABASE_ANON_KEY`
+  - `SUPABASE_PROJECT_ID` (valeur par défaut : `bac-pro-log`)
 
 ### 2. Redéployer
 
@@ -129,20 +132,27 @@ git push origin master
 
 ### Méthode 1 : Script Node.js (recommandé)
 
-1. Installez le client Supabase :
+1. Installez les dépendances :
 ```bash
-npm install @supabase/supabase-js
+npm install
 ```
 
-2. Configurez les variables d'environnement :
-```bash
-export SUPABASE_URL="https://votre-projet.supabase.co"
-export SUPABASE_SERVICE_KEY="votre-clé-service"
+2. Configurez les variables d'environnement dans `.env` :
+```env
+SUPABASE_URL=https://votre-projet.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=votre-clé-service
+SUPABASE_PROJECT_ID=bac-pro-log
+DATABASE_URL="postgresql://postgres:[VOTRE-MOT-DE-PASSE]@db.votre-projet.supabase.co:5432/postgres"
 ```
 
-3. Exécutez la migration :
+3. Appliquez le schéma :
 ```bash
-node migrate-to-supabase.js
+node scripts/apply-schema.js
+```
+
+4. Exécutez la migration des scénarios :
+```bash
+npm run migrate
 ```
 
 ### Méthode 2 : SQL Direct
@@ -165,6 +175,7 @@ VALUES
 - **Connexion** sécurisée
 - **Profil utilisateur** (nom, prénom, établissement)
 - **Déconnexion**
+- **Isolation par projet** grâce à la colonne `project_id` et aux politiques RLS associées
 
 ### 👤 Gestion des scénarios
 - **Création** : Associée à l'utilisateur connecté
@@ -246,9 +257,10 @@ Les politiques configurées garantissent :
 - [ ] Tables créées avec SQL
 - [ ] RLS activé avec politiques
 - [ ] Clés API récupérées
-- [ ] Variables d'environnement configurées sur Vercel
+- [ ] Variables d'environnement configurées sur Vercel (y compris `SUPABASE_PROJECT_ID`)
 - [ ] `index.html` modifié avec SDK Supabase
-- [ ] `app-supabase.js` en place
+- [ ] `supabase-config.js` généré avec `scripts/build.js`
+- [ ] Schéma SQL appliqué sur le nouveau projet (`scripts/apply-schema.js`)
 - [ ] Données migrées (58 scénarios)
 - [ ] Test création de compte
 - [ ] Test création de scénario

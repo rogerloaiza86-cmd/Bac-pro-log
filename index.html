@@ -4,10 +4,12 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Plateforme Collaborative — Bac Pro métiers de la logistique</title>
+    <title>FANALIO — Bac Pro métiers de la logistique</title>
     <meta name="description"
         content="Plateforme collaborative de mutualisation des scénarios pédagogiques pour le Bac Pro Métiers de la Logistique — Référentiel 2025." />
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;900&display=swap"
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,600&family=Figtree:wght@400;500;600;700&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
@@ -17,16 +19,6 @@
     <script src="supabase-config.js" defer></script>
     <script src="export-import.js" defer></script>
     <script src="app.js" defer></script>
-    <!-- Apply saved/system theme before paint to avoid a flash -->
-    <script>
-        (function () {
-            try {
-                var stored = localStorage.getItem('theme');
-                var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-                document.documentElement.setAttribute('data-theme', stored || (sysDark ? 'dark' : 'light'));
-            } catch (e) { /* localStorage may be unavailable */ }
-        })();
-    </script>
 </head>
 
 <body>
@@ -36,8 +28,9 @@
         <header id="main-header" class="header">
             <div class="header-inner">
                 <a href="#accueil" class="logo-link">
-                    <span class="material-symbols-outlined logo-icon">local_shipping</span>
-                    <span class="logo-text">Bac Pro métiers de la logistique</span>
+                    <span class="logo-brand">FANALIO</span>
+                    <span class="logo-star" aria-hidden="true">✦</span>
+                    <span class="logo-text">Bac Pro Logistique</span>
                 </a>
                 <nav class="main-nav" id="main-nav">
                     <a href="#accueil" class="nav-link active" data-page="accueil">Accueil</a>
@@ -46,9 +39,6 @@
                     <a href="#terminale" class="nav-link" data-page="terminale">Terminale</a>
                 </nav>
                 <div class="header-actions">
-                    <button class="theme-toggle" id="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Thème clair / sombre">
-                        <span class="material-symbols-outlined">dark_mode</span>
-                    </button>
                     <div id="auth-container"></div>
                     <button class="btn btn-primary btn-sm" data-action="navigate" data-page="formulaire">
                         <span class="material-symbols-outlined">add</span>
@@ -78,8 +68,7 @@
                 <div class="footer-grid">
                     <div class="footer-brand">
                         <div class="footer-logo">
-                            <span class="material-symbols-outlined">inventory_2</span>
-                            <span>Plateforme Logistique</span>
+                            <span>FANALIO Bac Pro Logistique</span>
                         </div>
                         <p class="footer-desc">Initiative collaborative pour l'enseignement professionnel. Ressources
                             pédagogiques libres de droits pour l'usage en classe.</p>

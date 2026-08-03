@@ -37,6 +37,7 @@ CREATE TABLE scenarios (
     duree TEXT DEFAULT '2h',
     auteur TEXT NOT NULL,
     user_id UUID REFERENCES auth.users(id),
+    project_id TEXT NOT NULL DEFAULT 'bac-pro-log',
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -45,6 +46,7 @@ CREATE TABLE scenarios (
 CREATE INDEX idx_scenarios_niveau ON scenarios(niveau);
 CREATE INDEX idx_scenarios_auteur ON scenarios(auteur);
 CREATE INDEX idx_scenarios_user_id ON scenarios(user_id);
+CREATE INDEX idx_scenarios_project_id ON scenarios(project_id);
 
 -- Table des utilisateurs (profils)
 CREATE TABLE profiles (
@@ -61,25 +63,35 @@ CREATE TABLE profiles (
 ALTER TABLE scenarios ENABLE ROW LEVEL SECURITY;
 ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
 
--- Politique : Lecture publique des scénarios
-CREATE POLICY "Scénarios visibles par tous" 
-ON scenarios FOR SELECT 
-USING (true);
+-- Droits d'accès au Data API (nécessaire selon les paramètres du projet)
+GRANT USAGE ON SCHEMA public TO anon, authenticated;
+GRANT SELECT ON scenarios TO anon, authenticated;
+GRANT INSERT, UPDATE, DELETE ON scenarios TO authenticated;
 
--- Politique : Création uniquement par utilisateurs authentifiés
+-- Politique : Lecture publique des scénarios du projet courant
+CREATE POLICY "Scénarios visibles par projet" 
+ON scenarios FOR SELECT 
+TO anon, authenticated
+USING (project_id = 'bac-pro-log');
+
+-- Politique : Création uniquement par utilisateurs authentifiés du projet courant
 CREATE POLICY "Création de scénarios authentifiée" 
 ON scenarios FOR INSERT 
-WITH CHECK (auth.role() = 'authenticated');
+TO authenticated
+WITH CHECK (project_id = 'bac-pro-log');
 
--- Politique : Modification uniquement par l'auteur
+-- Politique : Modification uniquement par l'auteur, dans le projet courant
 CREATE POLICY "Modification par l'auteur" 
 ON scenarios FOR UPDATE 
-USING (auth.uid() = user_id);
+TO authenticated
+USING (auth.uid() = user_id AND project_id = 'bac-pro-log')
+WITH CHECK (auth.uid() = user_id AND project_id = 'bac-pro-log');
 
--- Politique : Suppression uniquement par l'auteur
+-- Politique : Suppression uniquement par l'auteur, dans le projet courant
 CREATE POLICY "Suppression par l'auteur" 
 ON scenarios FOR DELETE 
-USING (auth.uid() = user_id);
+TO authenticated
+USING (auth.uid() = user_id AND project_id = 'bac-pro-log');
 
 -- Politique profil : Lecture par l'utilisateur
 CREATE POLICY "Profil visible par soi-même" 
@@ -113,7 +125,8 @@ CREATE TRIGGER update_scenarios_updated_at
 1. Dans Supabase, allez dans **Settings** > **API**
 2. Copiez :
    - **Project URL** : `https://xxxxxxxx.supabase.co`
-   - **anon public** : `eyJhbG...` (clé publique)
+   - **anon public** : `eyJhb...` (clé publique)
+   - **service_role** : `eyJhb...` (clé secrète, pour la migration uniquement)
 
 ---
 
@@ -127,7 +140,8 @@ Créez un fichier `supabase-config.js` :
 
 const SUPABASE_CONFIG = {
     URL: 'https://votre-projet.supabase.co',
-    ANON_KEY: 'eyJhbGciOiJIUzI1NiIs...votre-clé-publique'
+    ANON_KEY: 'eyJhbGciOiJIUzI1NiIs...votre-clé-publique',
+    PROJECT_ID: 'bac-pro-log'
 };
 
 // Export pour utilisation
@@ -151,6 +165,7 @@ Dans votre projet Vercel :
 2. Ajoutez :
    - `SUPABASE_URL` = `https://votre-projet.supabase.co`
    - `SUPABASE_ANON_KEY` = `votre-clé-publique`
+   - `SUPABASE_PROJECT_ID` = `bac-pro-log`
 
 ---
 
@@ -183,6 +198,17 @@ VALUES
 
 ---
 
+## 🔒 Isolation multi-projets
+
+Le schéma inclut une colonne `project_id` (valeur par défaut `bac-pro-log`). Cela permet de partager une base Supabase avec d'autres applications tout en isolant les scénarios :
+- Les politiques RLS filtrent automatiquement sur `project_id = 'bac-pro-log'`.
+- L'application frontend injecte `project_id` dans chaque requête.
+- Pour un autre projet, changez la valeur de `SUPABASE_PROJECT_ID` et adaptez les politiques RLS.
+
+**⚠️ Important :** si les deux projets doivent être totalement isolés, utilisez des projets Supabase distincts ou des schémas Postgres séparés. Le `project_id` est une étiquette de filtrage, pas une barrière de sécurité absolue si les mêmes clés API sont partagées.
+
+---
+
 ## ✅ Avantages après migration
 
 | Avant | Après Supabase |
@@ -193,6 +219,7 @@ VALUES
 | Un seul utilisateur par navigateur | Multi-utilisateurs |
 | Pas de backup automatique | Backup automatique Supabase |
 | Limité à ~5 Mo | 500 Mo en gratuit |
+| Un seul projet possible | Isolation multi-projets par `project_id` |
 
 ---
 

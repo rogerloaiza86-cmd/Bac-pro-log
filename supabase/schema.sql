@@ -2,6 +2,9 @@
 --  Schéma Supabase — Plateforme Bac Pro Logistique
 --  Tables : scenarios, profiles
 --  RLS activé, trigger updated_at
+--  Isolation : la colonne project_id permet de partager la base
+--  avec d'autres applications tout en isolant les scénarios.
+--  Valeur par défaut pour ce projet : 'bac-pro-log'.
 -- ============================================================
 
 -- Table des scénarios pédagogiques
@@ -18,6 +21,7 @@ CREATE TABLE IF NOT EXISTS scenarios (
     duree TEXT DEFAULT '2h',
     auteur TEXT NOT NULL,
     user_id UUID REFERENCES auth.users(id) ON DELETE SET NULL,
+    project_id TEXT NOT NULL DEFAULT 'bac-pro-log',
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -27,6 +31,7 @@ CREATE INDEX IF NOT EXISTS idx_scenarios_niveau ON scenarios(niveau);
 CREATE INDEX IF NOT EXISTS idx_scenarios_auteur ON scenarios(auteur);
 CREATE INDEX IF NOT EXISTS idx_scenarios_user_id ON scenarios(user_id);
 CREATE INDEX IF NOT EXISTS idx_scenarios_created_at ON scenarios(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_scenarios_project_id ON scenarios(project_id);
 
 -- Table des profils utilisateurs (liée à auth.users)
 CREATE TABLE IF NOT EXISTS profiles (
@@ -68,34 +73,42 @@ CREATE TRIGGER update_scenarios_updated_at
 ALTER TABLE scenarios ENABLE ROW LEVEL SECURITY;
 ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
 
--- Scenarios : lecture publique
-DROP POLICY IF EXISTS "Scenarios visibles par tous" ON scenarios;
-CREATE POLICY "Scenarios visibles par tous"
-ON scenarios FOR SELECT
-TO anon, authenticated
-USING (true);
+-- Droits d'accès au Data API pour les rôles anon et authenticated.
+-- Nécessaire car les nouvelles tables ne sont pas toujours automatiquement
+-- exposées via l'API REST selon les paramètres Data API du projet.
+GRANT USAGE ON SCHEMA public TO anon, authenticated;
+GRANT SELECT ON scenarios TO authenticated;
+GRANT INSERT, UPDATE, DELETE ON scenarios TO authenticated;
+GRANT SELECT, UPDATE ON profiles TO authenticated;
 
--- Scenarios : création réservée aux utilisateurs authentifiés
+-- Scenarios : lecture reservee aux utilisateurs authentifies du projet courant
+DROP POLICY IF EXISTS "Scenarios visibles par projet" ON scenarios;
+CREATE POLICY "Scenarios visibles par projet"
+ON scenarios FOR SELECT
+TO authenticated
+USING (project_id = 'bac-pro-log');
+
+-- Scenarios : création réservée aux utilisateurs authentifiés du projet courant
 DROP POLICY IF EXISTS "Creation de scenarios authentifiee" ON scenarios;
 CREATE POLICY "Creation de scenarios authentifiee"
 ON scenarios FOR INSERT
 TO authenticated
-WITH CHECK (true);
+WITH CHECK (project_id = 'bac-pro-log');
 
--- Scenarios : modification par l'auteur uniquement
+-- Scenarios : modification par l'auteur uniquement, dans le projet courant
 DROP POLICY IF EXISTS "Modification par l'auteur" ON scenarios;
 CREATE POLICY "Modification par l'auteur"
 ON scenarios FOR UPDATE
 TO authenticated
-USING (auth.uid() = user_id)
-WITH CHECK (auth.uid() = user_id);
+USING (auth.uid() = user_id AND project_id = 'bac-pro-log')
+WITH CHECK (auth.uid() = user_id AND project_id = 'bac-pro-log');
 
--- Scenarios : suppression par l'auteur uniquement
+-- Scenarios : suppression par l'auteur uniquement, dans le projet courant
 DROP POLICY IF EXISTS "Suppression par l'auteur" ON scenarios;
 CREATE POLICY "Suppression par l'auteur"
 ON scenarios FOR DELETE
 TO authenticated
-USING (auth.uid() = user_id);
+USING (auth.uid() = user_id AND project_id = 'bac-pro-log');
 
 -- Profiles : lecture par soi-même
 DROP POLICY IF EXISTS "Profil visible par soi-meme" ON profiles;

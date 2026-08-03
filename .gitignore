@@ -29,3 +29,10 @@ Thumbs.db
 # Local Claude Code settings (contains secrets, never commit)
 .claude/settings.local.json
 .mcp.json
+
+# ZCode session artifacts (plans, internal state)
+.zcode/
+
+# FANALIO charte (document externe, ne pas committer)
+Charte*.pdf
+fanalio_page_*.png

@@ -10,7 +10,7 @@ const REFERENTIEL = {
         {
             id: 'bloc1',
             nom: 'Bloc 1 — Réaliser des opérations logistiques dans un environnement sécurisé',
-            couleur: '#137fec',
+            couleur: '#172E4A',
             competences: [
                 { code: 'C1.1', nom: 'Positionner des activités logistiques dans la supply chain', desc: 'Identifier les étapes, acteurs, zones logistiques et flux.' },
                 { code: 'C1.2', nom: 'Mettre en œuvre les règles de sécurité', desc: 'Prévention des risques et des dangers dans l\'environnement de travail.' },
@@ -32,7 +32,7 @@ const REFERENTIEL = {
         {
             id: 'bloc2',
             nom: 'Bloc 2 — Satisfaire le client par la coordination des activités logistiques',
-            couleur: '#6366f1',
+            couleur: '#F4B942',
             competences: [
                 { code: 'C2.1', nom: 'Répondre à la demande des clients internes et/ou externes', desc: 'Collecter les données pour la préparation et/ou expédition.' },
                 { code: 'C2.1.1', nom: 'Identifier les caractéristiques des produits', desc: 'Collecte des données nécessaires à la préparation.' },
@@ -60,7 +60,7 @@ const REFERENTIEL = {
         {
             id: 'bloc3',
             nom: 'Bloc 3 — Contribuer de manière responsable à l\'efficacité des activités logistiques',
-            couleur: '#10b981',
+            couleur: '#2F8F9D',
             competences: [
                 { code: 'C3.1', nom: 'Adapter le processus logistique selon le type de produit ou de flux', desc: 'Prise en compte des spécificités et environnements.' },
                 { code: 'C3.2', nom: 'Mettre en œuvre le processus de traçabilité', desc: 'Application des processus de traçabilité dans la chaîne.' },
@@ -82,7 +82,7 @@ const REFERENTIEL = {
         {
             id: 'bloc4',
             nom: 'Bloc 4 — Conduire en sécurité des engins de manutention',
-            couleur: '#f59e0b',
+            couleur: '#6B588A',
             competences: [
                 { code: 'C4.1', nom: 'Mettre en service un engin de manutention en sécurité', desc: 'Vérification de l\'adéquation et du bon fonctionnement.' },
                 { code: 'C4.1.1', nom: 'Vérifier l\'adéquation d\'un engin de manutention', desc: 'Identification des caractéristiques du transfert de charge.' },
@@ -134,16 +134,18 @@ let supabaseClient = null;
 let USE_SUPABASE = false;
 let CURRENT_USER = null;
 let SCENARIOS_CACHE = [];
+let PROJECT_ID = 'bac-pro-log';
 
 function initSupabase() {
     const cfg = window.SUPABASE_CONFIG || {};
     if (cfg.SUPABASE_URL && cfg.SUPABASE_ANON_KEY &&
         cfg.SUPABASE_URL !== '__SUPABASE_URL__' &&
         cfg.SUPABASE_ANON_KEY !== '__SUPABASE_ANON_KEY__' &&
-        typeof window.supabaseClient !== 'undefined') {
-        supabaseClient = window.supabaseClient.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
+        typeof window.supabase !== 'undefined') {
+        supabaseClient = window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
+        PROJECT_ID = cfg.SUPABASE_PROJECT_ID || 'bac-pro-log';
         USE_SUPABASE = true;
-        console.log('%c[Supabase] Connecté ✓', 'color: #3ecf8e;');
+        console.log('%c[Supabase] Connecté ✓ (project: ' + PROJECT_ID + ')', 'color: #3ecf8e;');
     } else {
         console.warn('%c[Supabase] Non configuré — l\'application ne fonctionnera pas sans clés API.', 'color: #f59e0b;');
     }
@@ -225,6 +227,7 @@ async function loadScenarios() {
         const { data, error } = await supabaseClient
             .from('scenarios')
             .select('*')
+            .eq('project_id', PROJECT_ID)
             .order('created_at', { ascending: false });
         if (error) throw error;
         SCENARIOS_CACHE = data.map(s => ({
@@ -265,7 +268,8 @@ async function addScenario(scenario) {
         competences: scenario.competences || [],
         duree: scenario.duree || '2h',
         auteur: auteur,
-        user_id: CURRENT_USER?.id || null
+        user_id: CURRENT_USER?.id || null,
+        project_id: PROJECT_ID
     };
     try {
         const { data, error } = await supabaseClient.from('scenarios').insert([payload]).select().single();
@@ -299,7 +303,7 @@ async function updateScenario(id, scenario) {
         duree: scenario.duree || '2h'
     };
     try {
-        const { data, error } = await supabaseClient.from('scenarios').update(payload).eq('id', id).select().single();
+        const { data, error } = await supabaseClient.from('scenarios').update(payload).eq('id', id).eq('project_id', PROJECT_ID).select().single();
         if (error) throw error;
         const idx = SCENARIOS_CACHE.findIndex(s => s.id === id);
         if (idx !== -1) {
@@ -316,7 +320,7 @@ async function updateScenario(id, scenario) {
 async function deleteScenario(id) {
     if (!USE_SUPABASE) return false;
     try {
-        const { error } = await supabaseClient.from('scenarios').delete().eq('id', id);
+        const { error } = await supabaseClient.from('scenarios').delete().eq('id', id).eq('project_id', PROJECT_ID);
         if (error) throw error;
         SCENARIOS_CACHE = SCENARIOS_CACHE.filter(s => s.id !== id);
         return true;
@@ -625,7 +629,7 @@ async function renderAccueil() {
             <div class="hero-gradient"></div>
             <div class="hero-content">
                 <span class="hero-badge">Nouveau Référentiel Bac Pro 2025</span>
-                <h1>Ensemble pour le <span class="gradient-text">Bac Pro métiers de la logistique</span></h1>
+                <h1>Suivre la lumière, <span class="gradient-text">ensemble</span></h1>
                 <p class="hero-desc">La première plateforme collaborative dédiée à la mutualisation des parcours pédagogiques. Partagez vos scénarios, adaptez ceux de vos collègues et construisez ensemble un parcours complet et cohérent.</p>
                 <div class="hero-actions">
                     <button class="btn btn-primary btn-lg" data-action="navigate" data-page="formulaire">
@@ -1212,12 +1216,73 @@ document.addEventListener('keydown', (e) => {
 });
 
 // =============================================
+// LANDING PAGE (visiteurs non authentifiés)
+// =============================================
+function renderLandingPage() {
+    return `
+        <section class="landing-hero">
+            <div class="landing-hero-content">
+                <span class="hero-badge"><span class="material-symbols-outlined">school</span> Bac Pro Logistique</span>
+                <h1>Suivre la lumière, <em>scénario par scénario</em></h1>
+                <p class="hero-desc">
+                    Mutualisez, enrichissez et partagez des scénarios pédagogiques
+                    autour du référentiel Bac Pro Métiers de la Logistique.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary btn-lg" data-action="open-auth">
+                        <span class="material-symbols-outlined">login</span>
+                        Se connecter / Créer un compte
+                    </button>
+                </div>
+                <p class="hero-note">L'accès aux scénarios est réservé aux enseignants et formateurs connectés.</p>
+            </div>
+            <div class="landing-hero-stats">
+                <div class="landing-stat">
+                    <span class="material-symbols-outlined">inventory_2</span>
+                    <div>
+                        <strong>58</strong>
+                        <span>scénarios mutualisés</span>
+                    </div>
+                </div>
+                <div class="landing-stat">
+                    <span class="material-symbols-outlined">verified</span>
+                    <div>
+                        <strong>Référentiel 2025</strong>
+                        <span>blocs de compétences</span>
+                    </div>
+                </div>
+                <div class="landing-stat">
+                    <span class="material-symbols-outlined">groups</span>
+                    <div>
+                        <strong>Collaboratif</strong>
+                        <span>partage entre pairs</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+}
+
+function isAuthRequired() {
+    return USE_SUPABASE && !CURRENT_USER;
+}
+
+// =============================================
 // MAIN ROUTER
 // =============================================
 async function renderPage() {
     const page = getPage();
     const container = document.getElementById('page-container');
     if (!container) return;
+
+    if (isAuthRequired()) {
+        container.innerHTML = renderLandingPage();
+        updateActiveNav();
+        applyPageTransition(container, page);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        initPageAnimations();
+        return;
+    }
 
     container.innerHTML = '<div class="loading-state"><div class="spinner"></div><p>Chargement des scénarios...</p></div>';
 
@@ -1270,12 +1335,23 @@ function applyPageTransition(container, page) {
 // =============================================
 // AUTH UI
 // =============================================
+function updateNavigationVisibility() {
+    const header = document.getElementById('main-header');
+    if (!header) return;
+    if (isAuthRequired()) {
+        header.classList.add('auth-required');
+    } else {
+        header.classList.remove('auth-required');
+    }
+}
+
 function renderAuthButton() {
     const container = document.getElementById('auth-container');
     if (!container) return;
 
     if (!USE_SUPABASE) {
         container.innerHTML = '';
+        updateNavigationVisibility();
         return;
     }
 
@@ -1314,6 +1390,8 @@ function renderAuthButton() {
             menuBtn.setAttribute('aria-expanded', String(expanded));
         });
     }
+
+    updateNavigationVisibility();
 }
 
 function openAuthModal() {
@@ -1347,8 +1425,8 @@ function renderAuthModal(mode = 'login') {
                 <span class="material-symbols-outlined">close</span>
             </button>
             <div class="auth-modal-header">
-                <h2>${isLogin ? 'Connexion' : 'Créer un compte'}</h2>
-                <p>${isLogin ? 'Accédez à vos scénarios et contribuez à la communauté.' : 'Rejoignez les enseignants qui mutualisent leurs scénarios.'}</p>
+                <h2>${isLogin ? 'Bonjour, <em>on éclaire</em>' : 'Rejoindre <em>la communauté</em>'}</h2>
+                <p>${isLogin ? 'Accédez à vos scénarios et contribuez à la communauté.' : 'Créez votre compte pour partager vos scénarios pédagogiques.'}</p>
             </div>
             <form id="auth-form" data-mode="${mode}">
                 ${!isLogin ? `
@@ -1463,7 +1541,12 @@ async function initApp() {
         if (action === 'navigate') {
             e.preventDefault();
             const page = actionEl.dataset.page;
-            if (page) navigateTo(page);
+            if (!page) return;
+            if (isAuthRequired()) {
+                openAuthModal();
+                return;
+            }
+            navigateTo(page);
             return;
         }
 
@@ -1532,9 +1615,6 @@ async function initApp() {
         const header = document.getElementById('main-header');
         if (header) header.classList.toggle('scrolled', window.scrollY > 10);
     });
-
-    // Theme toggle (light / dark)
-    initThemeToggle();
 }
 
 if (document.readyState !== 'loading') {
@@ -1544,27 +1624,6 @@ if (document.readyState !== 'loading') {
 
 // =============================================
 // THEME (light / dark)
-// =============================================
-function applyTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    const icon = document.querySelector('#theme-toggle .material-symbols-outlined');
-    if (icon) icon.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
-}
-
-function initThemeToggle() {
-    // The inline <head> script already set data-theme; sync the icon to it.
-    const current = document.documentElement.getAttribute('data-theme') || 'light';
-    applyTheme(current);
-
-    const btn = document.getElementById('theme-toggle');
-    if (!btn) return;
-    btn.addEventListener('click', () => {
-        const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        applyTheme(next);
-        try { localStorage.setItem('theme', next); } catch (e) { /* ignore */ }
-    });
-}
-
 // =============================================
 // MOTION ENGINE — scroll reveal, counters, progress
 // =============================================

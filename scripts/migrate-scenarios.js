@@ -27,6 +27,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 async function migrate() {
     console.log('Connecté à Supabase. Chargement de ' + scenarios.length + ' scénarios...');
 
+    const projectId = process.env.SUPABASE_PROJECT_ID || 'bac-pro-log';
     const payload = scenarios.map(sc => ({
         titre: sc.titre,
         entreprise: sc.entreprise || null,
@@ -38,6 +39,7 @@ async function migrate() {
         competences: sc.competences || [],
         duree: sc.duree || '2h',
         auteur: sc.auteur || 'Anonyme',
+        project_id: projectId,
         created_at: sc.date ? sc.date + 'T00:00:00Z' : new Date().toISOString()
     }));
 
