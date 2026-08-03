@@ -108,20 +108,64 @@ const REFERENTIEL = {
     ]
 };
 
-// Warehouse images for cards
-const WAREHOUSE_IMAGES = [
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuDvbgl0-UHC0BzHEVuryakPrNgEa-dbsl1vYCgg5v6zIMEuLMZBwPSN94uOLl5ap7ss-aTrvUUAQaIr9YcIpELUxu9TI1bqCkv6l8mOTxlFSfulB8k9J9_2PcAAa0wUZ-aC3Vj8bwuR3dMOSqao9PJYdl3R0MWN2aPjPx1msi4ko80qVbE8_nusG44IU3NA8qr_yGnmPrtRPQZTJvLjWmgMZsz4fHQj24gGEhlH6WYwfk_YheVR6LgPSMZ9vpKG1XcxudC9KVFalho',
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuCpGUsc35bxHXPawxODY4K0W96EtfFNIBciJsQouw7VFt8f2M1PwhJ-st15tNflw1Bajiz_zVAqz1mAVwMZTflX_FlsUUcPzecSJGgpV7Id3hFWCppKxkhXSbxbnU3DZe44sHf6fk6CH6CPFE2-dEYFZAIo7S2HV4u-Y2yQTZDcVQrs_Ap3-CNoco6qhHRjhAYa3fSFAmaz47dhFWTTycogf3Oax_tU6r2BM3YkBW6Hv5vNip2afTMlOp5DxGGIUiY03eGWc9JIXfQ',
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuAfII775YAVpOhAE-K4slKucj46XYS-HfK6Fwj-bq_eaCcaywtjkLcIvM4lrPNokFO0qUZACfdOUJdafBqoBOpM5LU9QhTMLeydO6O7XpDIZRHO6XSRlyF3ClbZtTYGJkgi4oxm4NUyblMUWzLRVsq3CR6cKMoUBaTEVuuoTwjphEeGi6fku7AeQJvbmR9mZDXSrrtNGnrkvtBgULBddt2iNQRYjziq7EnZcSUxBdrxrTzG3NfXAf4jq29yF728td1-hftofPBe81U',
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuB-8WQ_1QdghqMQ3foo99HfM7QeH1w5FBRW166S-p3yeu9dYKEERV3mVInJllyDsMKmHyOFquRES_EXB9AeCDaJZsG3IRZ85_ho5Yk-tWpfycvhlfqwjq45AeAXhkM0DfuWCLSnAfJL82yDpRez65Hn52z0gpIwmqEd8aG1OEiL_gaiHmsGfIVqfqDIJHpxsCj8IQ2zi-61OA4LxgY6RFvoi1CfvZ5zEJgEYQkqNFt7GtiRMHHG-BkZNNjPrGx_MtHCS0oTKX4uPbA',
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuASqGmAmuIUHD40odh8hKlQBBtqcQ4lHKSzJc_l-1jT3cC1Bl9TKdm8fVkFLUa42ZKdJFfQ_Zl4-cUOLL5gDSYkXtQGjWX9ShU3dPbqF7J2Lxmyf0ggwkonNTjmx9nDKw_gF-JXifQYMHotYDCbNT_6Y4Z6zGhUH7Gh5vx7JOGwahF2y4Z-QCMIUMa2vIAi5r6496G_7kJu5uaEl2MGlIICoQd16C7s0iHjEvXJuXTRrgVXvIZkef2VmZHfavJFxVSxUuk8ja3ssCk',
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuC2spJZKUxYBV5u0vLUtmW8cbgERGXLBalu8wHyN6Oekb2pttM7xBuTGgBPcbh6JCO8u2ZEZLHggWtXzgPM6H5vNoQwGtgWl6AgY9Mn7-ndqUgaAvdMrXXF_3eXZ3wULi0k2WSRr0WMgnPACZDm44pApiJXwYN1R8Y4hC17gf5yxuTdSsw8uo-MVE-E4ylicKflCQXDr5mEuL59OAXQJUuV227noDBp5LGyvilG2VFbGho3_FCbUm7mXSQBu1e68RtRDiBHi1k8xaU',
-];
+// =============================================
+// IMAGES THÉMATIQUES (Unsplash, libres de droits)
+// 4 thèmes × ~6 photos = visuels variés et cohérents
+// =============================================
+const THEME_IMAGES = {
+    reception: [
+        'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&q=80',
+        'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80',
+        'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=800&q=80',
+        'https://images.unsplash.com/photo-1473042904451-00171c69419d?w=800&q=80',
+        'https://images.unsplash.com/photo-1565514020179-026b92b84bb6?w=800&q=80',
+        'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80'
+    ],
+    stock: [
+        'https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&q=80',
+        'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=800&q=80',
+        'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=800&q=80',
+        'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&q=80',
+        'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=800&q=80',
+        'https://images.unsplash.com/photo-1565514020179-026b92b84bb6?w=800&q=80'
+    ],
+    preparation: [
+        'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80',
+        'https://images.unsplash.com/photo-1583846783214-7229a91b20ed?w=800&q=80',
+        'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=800&q=80',
+        'https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&q=80',
+        'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=800&q=80',
+        'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&q=80'
+    ],
+    expedition: [
+        'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&q=80',
+        'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&q=80',
+        'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80',
+        'https://images.unsplash.com/photo-1473042904451-00171c69419d?w=800&q=80',
+        'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80',
+        'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=800&q=80'
+    ]
+};
+
+const THEME_ICONS = {
+    reception: 'inbox',
+    stock: 'inventory_2',
+    preparation: 'shopping_cart',
+    expedition: 'local_shipping'
+};
+
+// Mots-clés pour détecter le thème d'un scénario
+const THEME_KEYWORDS = {
+    reception: ['reception', 'receptionn', 'quai', 'decharg', 'bl ', 'bon de livraison', 'controle quantit', 'controle qualit', 'livraison entrante', 'reserve', 'fournisseur', 'froid', 'dlc', 'adr', 'chimique', 'medicament'],
+    stock: ['stock', 'rang', 'inventaire', 'palettier', 'adressage', 'fifo', 'emplacement', 'rotation', 'mise en stock', 'wms', 'entrepot', 'occupation', 'destockage', 'mort'],
+    preparation: ['preparation', 'commande', 'picking', 'palette', 'emball', 'conditionn', 'film', 'copack', 'cross-dock', 'rupture'],
+    expedition: ['expedition', 'transport', 'tournee', 'camion', 'douane', 'livraison sortie', 'messagerie', 'affretement', 'multimodal', 'carbone', 'kilometre', 'cmr', 'litige transport', 'indemnisation', 'greve']
+};
 
 const HERO_IMAGES = {
-    seconde: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDvbgl0-UHC0BzHEVuryakPrNgEa-dbsl1vYCgg5v6zIMEuLMZBwPSN94uOLl5ap7ss-aTrvUUAQaIr9YcIpELUxu9TI1bqCkv6l8mOTxlFSfulB8k9J9_2PcAAa0wUZ-aC3Vj8bwuR3dMOSqao9PJYdl3R0MWN2aPjPx1msi4ko80qVbE8_nusG44IU3NA8qr_yGnmPrtRPQZTJvLjWmgMZsz4fHQj24gGEhlH6WYwfk_YheVR6LgPSMZ9vpKG1XcxudC9KVFalho',
-    premiere: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDpf0cidpWzuzXcdhz4PcGW9IpbIp9TlLDZGfhxAPiCl6YlHWzqH_L_qbOQ7Kv-s88N0VEMF26xW5Gix1r6Ah7WSyLHLOrXuF3wxZlpXMeZ7bcG-CD2BMYQTW_7gouUHz3bWqThRi5eTaiy0K_D2eV4IRaulb5pz1Gp7EC6o5Rb4eQm0Kltev4dwBXx8x5-YNlQfBsKYu1CyCREguCvBV4S4f3IdSCxT4XE1xGLZqcGGer0BXotktFQtNUEKKGQp5fnJN3zVQrPRgw',
-    terminale: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB-8WQ_1QdghqMQ3foo99HfM7QeH1w5FBRW166S-p3yeu9dYKEERV3mVInJllyDsMKmHyOFquRES_EXB9AeCDaJZsG3IRZ85_ho5Yk-tWpfycvhlfqwjq45AeAXhkM0DfuWCLSnAfJL82yDpRez65Hn52z0gpIwmqEd8aG1OEiL_gaiHmsGfIVqfqDIJHpxsCj8IQ2zi-61OA4LxgY6RFvoi1CfvZ5zEJgEYQkqNFt7GtiRMHHG-BkZNNjPrGx_MtHCS0oTKX4uPbA',
+    seconde: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1200&q=80',
+    premiere: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=1200&q=80',
+    terminale: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80'
 };
 
 // Scenarios are now loaded from Supabase. See data/sample-scenarios.json for the seed data.
@@ -388,8 +432,52 @@ function getBlocColor(code) {
     return info ? info.bloc.couleur : '#137fec';
 }
 
-function getRandomImage() {
-    return WAREHOUSE_IMAGES[Math.floor(Math.random() * WAREHOUSE_IMAGES.length)];
+function getScenarioTheme(scenario) {
+    const haystack = [
+        scenario.titre || '',
+        scenario.description || '',
+        scenario.problematique || '',
+        (scenario.competences || []).join(' ')
+    ].join(' ').toLowerCase();
+
+    // Score par thème : compte les mots-clés trouvés
+    const scores = { reception: 0, stock: 0, preparation: 0, expedition: 0 };
+    for (const [theme, keywords] of Object.entries(THEME_KEYWORDS)) {
+        for (const kw of keywords) {
+            if (haystack.includes(kw)) scores[theme]++;
+        }
+    }
+
+    // Thème gagnant (score max)
+    let bestTheme = 'reception';
+    let bestScore = -1;
+    for (const [theme, score] of Object.entries(scores)) {
+        if (score > bestScore) { bestScore = score; bestTheme = theme; }
+    }
+
+    // Fallback : si aucun mot-clé matché, utiliser le bloc de compétence
+    if (bestScore <= 0 && scenario.competences && scenario.competences.length) {
+        const code = scenario.competences[0];
+        if (code.startsWith('C2.2')) bestTheme = 'preparation';
+        else if (code.startsWith('C2.3') || code.startsWith('C2.4') || code.startsWith('C2.6')) bestTheme = 'expedition';
+        else if (code.startsWith('C1.5') || code.startsWith('C1.6')) bestTheme = 'stock';
+        else bestTheme = 'reception';
+    }
+
+    return bestTheme;
+}
+
+function getScenarioImage(scenario) {
+    const theme = getScenarioTheme(scenario);
+    const pool = THEME_IMAGES[theme] || THEME_IMAGES.reception;
+    // Hash déterministe : stable entre les rechargements
+    const key = String(scenario.id || scenario.titre || '');
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+        hash = ((hash << 5) - hash) + key.charCodeAt(i);
+        hash |= 0;
+    }
+    return pool[Math.abs(hash) % pool.length];
 }
 
 // =============================================
@@ -434,16 +522,19 @@ function renderScenarioCard(scenario) {
 
     const blocInfo = getCompetencyInfo(scenario.competences[0]);
     const blocLabel = blocInfo ? blocInfo.bloc.nom.split('—')[0].trim() : '';
-    const blocColor = blocInfo ? blocInfo.bloc.couleur : '#137fec';
+    const blocColor = blocInfo ? blocInfo.bloc.couleur : '#172E4A';
     const initials = getAuthorInitials(scenario.auteur);
+    const theme = getScenarioTheme(scenario);
+    const themeIcon = THEME_ICONS[theme] || 'inventory_2';
 
     const displayText = scenario.problematique || scenario.description || '';
     const isProblematique = !!scenario.problematique;
 
     return `
         <div class="card" data-scenario-id="${escapeHtml(scenario.id)}" data-action="open-modal">
-            <div class="card-img" style="background-image: url('${getRandomImage()}')">
+            <div class="card-img" style="background-image: url('${getScenarioImage(scenario)}')">
                 <span class="card-img-badge" style="background:${blocColor}">${escapeHtml(blocLabel)}</span>
+                <span class="card-img-theme"><span class="material-symbols-outlined">${themeIcon}</span></span>
                 <span class="card-img-time"><span class="material-symbols-outlined">schedule</span>${escapeHtml(scenario.duree)}</span>
             </div>
             <div class="card-body">
