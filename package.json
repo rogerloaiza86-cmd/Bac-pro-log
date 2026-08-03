@@ -4,7 +4,8 @@
   "description": "Plateforme collaborative de mutualisation des scénarios pédagogiques pour le Bac Pro Métiers de la Logistique — Référentiel 2025.",
   "private": true,
   "scripts": {
-    "build": "node scripts/build.js",
+    "build": "echo \"Build skipped — supabase-config.js is committed, no build step needed.\"",
+    "build:config": "node scripts/build.js",
     "migrate": "node scripts/migrate-scenarios.js",
     "serve": "npx serve ."
   },
