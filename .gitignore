@@ -1,6 +1,3 @@
-# Supabase config generated at build time (contains secrets)
-supabase-config.js
-
 # Secrets and environment
 .env
 .env.local
